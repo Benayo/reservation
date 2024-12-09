@@ -1,77 +1,81 @@
-<form class="form-search form-search-position">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 gutters-19">
-          <div class="form-group">
-            <input class="form-control" type="text" placeholder="Enter your keywords.." required>
-          </div>
-        </div>
-        <div class="col-lg-6 gutters-19">
-          <div class="row">
-            <div class="col-sm">
-              <div class="form-group">
-                <div class="form-select-custom">
-                  <select name="" id="">
-                    <option value="" disabled selected>Arrival</option>
-                    <option value="8 AM">8 AM</option>
-                    <option value="12 PM">12 PM</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm gutters-19">
-              <div class="form-group">
-                <div class="form-select-custom">
-                  <select name="" id="">
-                    <option value="" disabled selected>Number of room</option>
-                    <option value="8 AM">8 AM</option>
-                    <option value="12 PM">12 PM</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+<form class="form-search form-search-position"> 
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/wwwroot/js/vendors/elegant-icons/" type="text/css">
+  <div class="container">
+    <!-- Row for inputs -->
+    <div class="row">
+      <!-- Check In Date -->
+      <div class="col-sm gutters-19">
+        <div class="form-group">
+          <div class="form-select-custom">
+            <input
+              type="text"
+              class="form-control datepicker"
+              id="date-in"
+              placeholder="Check In Date:"
+            />
+            <i class="icon_calendar"></i>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm gutters-19">
-          <div class="form-group">
-            <div class="form-select-custom">
-              <select name="" id="">
-                <option value="" disabled selected>Departure</option>
-                <option value="8 AM">8 AM</option>
-                <option value="12 PM">12 PM</option>
-              </select>
-            </div>
+
+      <!-- Check Out Date -->
+      <div class="col-sm gutters-19">
+        <div class="form-group">
+          <div class="form-select-custom">
+            <input
+              type="text"
+              class="form-control datepicker"
+              id="date-out"
+              placeholder="Check Out Date:"
+            />
+            <i class="icon_calendar"></i>
           </div>
         </div>
-        <div class="col-sm gutters-19">
-          <div class="form-group">
-            <div class="form-select-custom">
-              <select name="" id="">
-                <option value="" disabled selected>Adult</option>
-                <option value="8 AM">8 AM</option>
-                <option value="12 PM">12 PM</option>
-              </select>
-            </div>
+      </div>
+
+      <!-- Adults Selector -->
+      <div class="col-sm gutters-19">
+        <div class="form-group">
+          <div class="form-select-custom">
+            <select name="adults" id="adults">
+              <option value="" disabled selected>Adults</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4+</option>
+            </select>
           </div>
         </div>
-        <div class="col-sm gutters-19">
-          <div class="form-group">
-            <div class="form-select-custom">
-              <select name="" id="">
-                <option value="" disabled selected>Child</option>
-                <option value="8 AM">8 AM</option>
-                <option value="12 PM">12 PM</option>
-              </select>
-            </div>
+      </div>
+
+      <!-- Children Selector -->
+      <div class="col-sm gutters-19">
+        <div class="form-group">
+          <div class="form-select-custom">
+            <select name="children" id="children">
+              <option value="" disabled selected>Children</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4+</option>
+            </select>
           </div>
         </div>
-        <div class="col-lg-4 gutters-19">
-          <div class="form-group">
-            <button class="button button-form" type="submit">Check Availability</button>
-          </div>
+      </div>
+
+      <!-- Button in the same row -->
+      <div class="col-sm gutters-19">
+        <div class="form-group">
+          <button class="button button-form" type="submit">
+            Check Availability
+          </button>
         </div>
       </div>
     </div>
-  </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="/wwwroot/js/custom/check-availabilty.js"></script>
+</form>

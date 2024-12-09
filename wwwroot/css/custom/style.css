@@ -522,118 +522,6 @@ button {
 /*---------------------
   Footer Section
 -----------------------*/
-.footer-section {
-  background: #222736;
-  color: #aaaab3;
-  font-family: "Arial", sans-serif;
-}
-
-.footer-section .footer-text {
-  padding: 100px 0 40px; 
-}
-
-.footer-section .footer-text .ft-about .fa-social a {
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	font-size: 16px;
-	line-height: 40px;
-	text-align: center;
-	color: #ffffff;
-	border: 1px solid #5A4D48;
-	border-radius: 50%;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-	margin-right: 7px;
-}
-.footer-section .ft-about .fa-social a:hover {
-  background: #dfa974;
-  border-color: #dfa974;
-  color: #fff;
-}
-
-.footer-section .ft-contact ul,
-.footer-section .copyright-option ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.footer-section .ft-contact ul li {
-  line-height: 28px;
-  margin-bottom: 10px;  
-  margin-top: 20px;
- 
-}
-
-
-.footer-section .ft-contact h6 {
-  color: #dfa974;
-}
-
-
-.footer-section .ft-newslatter .fn-form {
-  display: flex;
-  position: relative;
-}
-
-
-.footer-section .ft-newslatter h6 {
-  color: #dfa974;
-}
-
-.footer-section .ft-newslatter .fn-form input {
-  flex: 1;
-  height: 45px;
-  border: none;
-  padding: 0 15px;
-  border-radius: 2px 0 0 2px;
-  background: #393D4A;
-  color: #aaaab3;
-}
-
-.footer-section .ft-newslatter .fn-form button {
-  height: 45px;
-  border: none;
-  padding: 0 15px;
-  background: #dfa974;
-  color: #fff;
-  border-radius: 0 2px 2px 0;
-  cursor: pointer;
-}
-.footer-section .copyright-option {
-	background: rgba(16, 20, 31, 0.2);
-	padding: 20px 0;
-}
-.footer-section .copyright-option ul li {
-	list-style: none;
-	display: inline-block;
-	margin-right: 34px;
-}
-.footer-section .copyright-option ul li:last-child {
-	margin-right: 0;
-}
-.footer-section .copyright-option ul li a {
-	font-size: 16px;
-	color: #aaaab3;
-}
-.footer-section .copyright-option .co-text {
-	font-size: 16px;
-	color: #707079;
-	text-align: right;
-}
-@media (max-width: 768px) {
-  .footer-section .copyright-option ul {
-      flex-direction: column;
-      gap: 15px;  /* Reduced gap for smaller screens */
-  }
-
-  .footer-section .copyright-option p {
-      margin-top: 10px;
-  }
-}
-
 
 
 /*=================== section-intro start ====================*/
@@ -662,7 +550,7 @@ button {
         margin-bottom: 45px; } }
   .home-banner-area {
     height: 500px;
-    background: url("../images/home/header-bg.jpg") center center no-repeat;
+    background: url("/wwwroot/images/home/header-bg.jpg") center center no-repeat;
     background-size: cover;
     position: relative;
     z-index: 1; }
@@ -715,16 +603,19 @@ button {
       z-index: 1; } }
   .form-search .form-control {
     font-size: 14px;
-    color: #999999;
+    color: black;
     border-radius: 0;
     height: 50px;
     padding-left: 18px;
     border-color: #ECECEC; }
+    .form-search select {
+      color: black; /* Text color for select fields */
+    }
     .form-search .form-control:focus {
       outline: 0;
       box-shadow: none; }
     .form-search .form-control::placeholder {
-      color: #999999; }
+      color: black !important; }
   .form-search .form-group {
     margin-bottom: 20px; }
     .form-search .form-group .nice-select {
@@ -754,9 +645,25 @@ button {
     font-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none; }
+
+    .form-select-custom select {
+      color: black; /* Set text color to black inside custom selects */
+    }
+
+    .form-select-custom select option {
+  color: black; /* Make sure option text is black as well */
+}
     .form-select-custom select:focus {
       outline: 0;
       box-shadow: none; }
+
+      .form-select-custom input.datepicker {
+        position: relative;
+      }
+
+      .form-select-custom input.datepicker::placeholder {
+        color: black !important;
+      }
 
 /*=================== home search form end ====================*/
 /*=================== welcome section start ====================*/
@@ -944,7 +851,7 @@ button {
 /*=================== news section end ====================*/
 /*=================== video section start ====================*/
 .video-area {
-  background: url("../images/home/video-bg.png") left center no-repeat;
+  background: url("/wwwroot/images/home/video-bg.png") left center no-repeat;
   background-size: cover;
   padding: 50px 10px;
   position: relative;
@@ -1205,7 +1112,7 @@ button {
         font-size: 48px; } }
   .contact-banner-area {
     height: 380px;
-    background: url("../images/home/contact-bg.png") center center no-repeat;
+    background: url("/wwwroot/images/home/contact-bg.png") center center no-repeat;
     background-size: cover;
     position: relative;
     z-index: 1; }
