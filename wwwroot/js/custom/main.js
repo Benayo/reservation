@@ -12,7 +12,7 @@ $(function() {
       $('#current-year').text(currentYear);
     });
 
-
+$('#availability').load('/shared/check-availability.html')
   
  
     //------- video popup -------//
