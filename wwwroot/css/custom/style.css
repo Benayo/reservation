@@ -406,123 +406,6 @@ button {
       .header-top-info:not(:last-child) {
         margin-right: 50px; } }
 
-/*---------------------
-  Footer Section
------------------------*/
-/* 
- .footer-area {
-  padding: 120px 0px 120px;
-  background: #0b1a2a; }
-  @media (max-width: 991px) {
-    .footer-area {
-      background: #222222;
-      padding: 60px 0px; } }
-  @media (max-width: 991px) {
-    .footer-area .single-footer-widget {
-      margin-bottom: 30px; } }
-  .footer-area .single-footer-widget p {
-    color: #7b838a; }
-  .footer-area .single-footer-widget h4 {
-    color: #fff;
-    margin-bottom: 25px; }
-    @media (max-width: 1024px) {
-      .footer-area .single-footer-widget h4 {
-        font-size: 18px; } }
-    @media (max-width: 991px) {
-      .footer-area .single-footer-widget h4 {
-        margin-bottom: 15px; } }
-  .footer-area .single-footer-widget ul li {
-    margin-bottom: 10px; }
-    .footer-area .single-footer-widget ul li a {
-      color: #a3a3a3; }
-      .footer-area .single-footer-widget ul li a:hover {
-        color: #cca772; }
-  .footer-area .single-footer-widget .form-wrap {
-    margin-top: 25px; }
-  .footer-area .single-footer-widget input {
-    height: 48px;
-    border: none;
-    width: 67% !important;
-    font-weight: 400;
-    background: #363a4b;
-    color: #fff;
-    padding-left: 20px;
-    border-radius: 0;
-    font-size: 14px;
-    padding: 10px; }
-    .footer-area .single-footer-widget input:focus {
-      outline: none;
-      box-shadow: none; }
-    .footer-area .single-footer-widget input.placeholder {
-      padding-left: 10px;
-      color: #7b838a; }
-    .footer-area .single-footer-widget input:-moz-placeholder {
-      padding-left: 10px;
-      color: #7b838a; }
-    .footer-area .single-footer-widget input::-moz-placeholder {
-      padding-left: 10px;
-      color: #7b838a; }
-    .footer-area .single-footer-widget input::-webkit-input-placeholder {
-      padding-left: 10px;
-      color: #7b838a; }
-  .footer-area .single-footer-widget .click-btn {
-    font-family: "Playfair Display", serif;
-    color: #fff;
-    border-radius: 0;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    padding: 8px 20px;
-    border: 0;
-    font-size: 13px;
-    background: #cca772;
-    font-weight: 700;
-    position: relative;
-    left: 0; }
-    .footer-area .single-footer-widget .click-btn:focus {
-      outline: none;
-      box-shadow: none; }
-    @media (max-width: 375px) {
-      .footer-area .single-footer-widget .click-btn {
-        margin-top: 10px; } }
-    @media (min-width: 400px) {
-      .footer-area .single-footer-widget .click-btn {
-        left: -50px; } }
-  .footer-area .footer-bottom {
-    margin-top: 70px; }
-    @media (max-width: 991px) {
-      .footer-area .footer-bottom {
-        margin-top: 20px; } }
-    .footer-area .footer-bottom p {
-      color: #fff; }
-      .footer-area .footer-bottom p a {
-        color: #cca772; }
-    .footer-area .footer-bottom .footer-social {
-      text-align: center; }
-      @media (max-width: 991px) {
-        .footer-area .footer-bottom .footer-social {
-          text-align: left;
-          margin-top: 30px; } }
-      .footer-area .footer-bottom .footer-social a {
-        background: rgba(255, 255, 255, 0.15);
-        margin-left: 3px;
-        width: 32px;
-        color: #fff;
-        display: inline-grid;
-        text-align: center;
-        height: 32px;
-        align-content: center; }
-        .footer-area .footer-bottom .footer-social a:hover {
-          background: #cca772; }
-        .footer-area .footer-bottom .footer-social a i, .footer-area .footer-bottom .footer-social a span {
-          font-size: 14px; } 
- */
-
-
-
-/*---------------------
-  Footer Section
------------------------*/
-
 
 /*=================== section-intro start ====================*/
 .section-intro__style {
@@ -848,6 +731,9 @@ button {
   .card-news:hover .card-news__link i, .card-news:hover .card-news__link span {
     padding-left: 10px; }
 
+
+    
+
 /*=================== news section end ====================*/
 /*=================== video section start ====================*/
 .video-area {
@@ -1075,6 +961,18 @@ button {
     background: transparent;
     border-color: #cca772; }
 
+    .button-bookings {
+      border: 1px solid #cca772 !important;
+      color: #303030;
+      text-align: center;
+      padding: 8px 40px !important;
+    background-color:#cca772 ; }
+      .button-bookings:hover {
+        background: transparent;
+        border-color: #cca772;
+        color: #303030;
+       }
+    
 .button--active:hover {
   background: transparent;
   border-color: #cca772;

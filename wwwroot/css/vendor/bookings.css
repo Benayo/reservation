@@ -1,0 +1,178 @@
+.room-container {
+    padding: 80px 0; 
+    border-bottom: 1px solid #cca772;
+}
+
+.room-container:first-child {
+    padding-bottom: 80px; 
+}
+
+.room-container:last-child {
+    border-bottom: none; 
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12-column grid for layout */
+    gap: 40px;
+    width: 100%;
+}
+
+.image-container {
+    grid-column: span 7; /* Spanning 7 columns */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.side-images {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.side-images img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+}
+
+
+.main-images {
+    position: relative;
+    grid-column: span 5;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-size: cover;  /* Ensures the image covers the entire container */
+    background-position: center;  /* Keeps the image centered */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+  }
+  
+
+.details {
+    grid-column: span 5; /* Spanning 5 columns */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; /* Reduced gap to minimize spacing */
+    justify-items: stretch;
+}
+
+.room-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.room-title h4 {
+    font-size: 32px;
+    color: #cca772;
+}
+
+.room-title span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.detail-explore__price {
+    font-size: 40px;
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensuring the price and rating are aligned */
+    flex-grow: 1; /* Allows the price and rating to stretch vertically */
+}
+
+.detail-explore__price sub {
+    font-size: 18px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 4px;
+    margin-left: 20px; /* Adds spacing between price and rating */
+}
+
+.star-rating i {
+    color: #cca772; /* Gold color for stars */
+    font-size: 16px;
+}
+
+.room-accommodates {
+    font-size: 16px;
+    color: #707079;
+}
+
+.room-accommodates span {
+    color: #222222;
+}
+
+.room__number {
+    color: #707079;
+}
+
+.room__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.room__info .detail {
+    border: #2222 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room__info div {
+    padding: 4px;
+}
+
+.room__info div i {
+    font-size: 16px;
+    padding: 4px;
+}
+
+select {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    color: #222222;
+}
+
+.thumbnail {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+
+  .thumbnail.active {
+    border-color: #cca772; 
+  }
+
+  .thumbnail:hover {
+    border-color: #bbb; 
+  }
+
+@media (max-width: 768px) {
+    .details-container {
+        grid-template-columns: 1fr; /* Stacking items on small screens */
+    }
+
+    .image-container {
+        grid-column: span 1;
+        display: block;
+    }
+
+    .main-images {
+        grid-column: span 1;
+    }
+
+    .side-images img {
+        width: 60px;
+    }
+}
