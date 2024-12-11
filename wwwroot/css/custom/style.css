@@ -530,7 +530,7 @@ button {
     -moz-appearance: none; }
 
     .form-select-custom select {
-      color: black; /* Set text color to black inside custom selects */
+      color: black; 
     }
 
     .form-select-custom select option {

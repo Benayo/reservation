@@ -5,6 +5,7 @@
 
 .room-container:first-child {
     padding-bottom: 80px; 
+    padding-top: 0;
 }
 
 .room-container:last-child {
@@ -13,13 +14,13 @@
 
 .details-container {
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* 12-column grid for layout */
+    grid-template-columns: repeat(12, 1fr); 
     gap: 40px;
     width: 100%;
 }
 
 .image-container {
-    grid-column: span 7; /* Spanning 7 columns */
+    grid-column: span 7; 
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 12px;
@@ -53,10 +54,10 @@
   
 
 .details {
-    grid-column: span 5; /* Spanning 5 columns */
+    grid-column: span 5;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px; /* Reduced gap to minimize spacing */
+    gap: 10px; 
     justify-items: stretch;
 }
 
@@ -85,6 +86,8 @@
     justify-content: space-between; /* Ensuring the price and rating are aligned */
     flex-grow: 1; /* Allows the price and rating to stretch vertically */
 }
+
+
 
 .detail-explore__price sub {
     font-size: 18px;

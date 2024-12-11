@@ -4,12 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Seaplace Hotel - Contact</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+
+    <!-- FontAwesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <title>Seaplace Hotel - Contact</title>
-    <link rel="icon" href="img/favicon.png" type="image/png" />
+
+    <!-- Stylesheets -->
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css"
@@ -21,7 +27,6 @@
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css"
-      type="text/css"
     />
     <link
       rel="stylesheet"
@@ -38,217 +43,100 @@
     />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
     <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
+    <link rel="stylesheet" href="/wwwroot/css/vendor/check-guest.css" />
   </head>
-  <body>
-    <!-- ================ header section start ================= -->
-    <div id="header"></div>
-    <!-- ================ header section end ================= -->
 
-    <!-- ================ start banner area ================= -->
+  <body>
+    <!-- Header Section -->
+    <div id="header"></div>
+
+    <!-- Banner Section -->
     <section class="contact-banner-area" id="contact">
       <div class="container h-100">
-        <div class="contact-banner">
-          <div class="text-center">
-            <h1>Rooms</h1>
-            <nav aria-label="breadcrumb" class="banner-breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Rooms
-                </li>
-              </ol>
-            </nav>
-          </div>
+        <div class="contact-banner text-center">
+          <h1>Bookings</h1>
+          <nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+            </ol>
+          </nav>
         </div>
       </div>
     </section>
-    <!-- ================ end banner area ================= -->
 
-    <!-- ================ start banner form ================= -->
-    <div id="availability"></div>
-    <!-- ================ end banner form ================= -->
-
-    <!-- ================ Explore section start ================= -->
+    <!-- Booking Details Section -->
     <section class="section-margin section-margin--small">
       <div class="container">
-        <div class="section-intro text-center pb-80px">
-          <div class="section-intro__style">
-            <img src="/wwwroot/images/home/bed-icon.png" alt="" />
+        <!-- Title -->
+        <div class="check-guest__title">
+          <a href="javascript:history.back()" class="back">
+            <i class="fa fa-arrow-left"></i> <span>Booking/</span>
+          </a>
+          <span class="reserve">Reservation</span>
+          <h3>Your Booking</h3>
+        </div>
+        <!-- Booking Container -->
+        <div class="check-guest__container">
+          <!-- Dates -->
+          <div class="check-guest__container__sub">
+            <div class="check-guest__date">
+              <button class="button button-contact">Change dates</button>
+            </div>
+            <div class="check-guest__container__sub">
+              <div class="check-guest__container__sub-info">
+                <div>Check-in Date</div>
+                <div>10-12-2024</div>
+              </div>
+              <div class="check-guest__container__sub-info">
+                <div>Check-out Date</div>
+                <div>12-12-2024</div>
+              </div>
+            </div>
           </div>
-          <h2>Explore Our Rooms</h2>
+
+          <!-- Room Details -->
+          <div class="check-guest__container__sub">
+            <div class="check-guest__date">
+              <button class="button button-contact">Change Rooms</button>
+            </div>
+            <div class="check-guest__container__sub">
+              <div class="check-guest__container__sub-info">
+                <div>Room Type</div>
+                <div>Presidential</div>
+              </div>
+              <div class="check-guest__container__sub-info">
+                <div>For</div>
+                <div>1 Room 1 night</div>
+              </div>
+              <div class="check-guest__container__sub-total">
+                <div>Total</div>
+                <div>$935.00</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="row pb-4">
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore1.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $150.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Classic Bed Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
+        <!-- Contact Details -->
+        <div class="check-guest__title">
+          <h3>Contact Details</h3>
+        </div>
+        <div class="check-guest__contact">
+          <div class="check-guest__container__contact">
+            <label for="email">Email</label>
+            <input type="tel" class="form-control" id="email" name="email" />
           </div>
-
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore2.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $170.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Premium Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore3.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $190.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Family Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore4.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $120.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Single Bed Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore5.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $130.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Classic Bed Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-xl-4 mb-5">
-            <div class="card card-explore">
-              <div class="card-explore__img">
-                <img
-                  class="card-img"
-                  src="/wwwroot/images/home/explore6.png"
-                  alt=""
-                />
-              </div>
-              <div class="card-body">
-                <h3 class="card-explore__price">
-                  $150.00 <sub>/ Per Night</sub>
-                </h3>
-                <h4 class="card-explore__title">
-                  <a href="/view/room-details.html">Family Room</a>
-                </h4>
-                <p>
-                  Beginning fourth dominion creeping god was. Beginning, which
-                  fly yieldi dry beast moved blessed
-                </p>
-                <a class="card-explore__link" href="#"
-                  >Book Now <i class="ti-arrow-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
+        <button class="button button-contact">Continue</button>
         </div>
       </div>
     </section>
-    <!-- ================ Explore section end ================= -->
 
-    <!-- ================ start footer Area ================= -->
+    <!-- Footer Section -->
     <div id="footer"></div>
-    <!-- ================ End footer Area ================= -->
 
+    <!-- Scripts -->
     <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>
