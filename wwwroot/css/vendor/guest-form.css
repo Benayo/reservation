@@ -1,0 +1,116 @@
+.check-guest__title .back{
+    margin-bottom: 12px;
+    color: #222222;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    }
+    
+    .check-guest__title .navigation{
+      display: flex;
+    }
+    
+    
+    .check-guest__title .back i {
+      font-size: 14px;
+      margin-right: 8px; 
+      font-weight: 100;
+    }
+    
+    
+    .check-guest__title__contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .check-guest__title__contact select {
+      color: black !important; 
+    }
+    
+    
+    .check-guest__title .reserve{
+      color: #cca772; 
+    cursor: default;
+      }
+  
+    .check-guest__container {
+      border: #2222 1px solid;
+      background-color: white !important;
+        padding: 16px;
+        margin: 16px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+      }
+      
+      .check-guest__container__sub {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .check-guest__date {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 6px;
+      }
+      
+      .check-guest__container__sub-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+        padding: 4px;
+        border-bottom:#2222 1px solid;
+      }
+      
+      .check-guest__container__sub-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: black;
+        padding: 4px;
+      }
+      
+      .check-guest__contact {
+        border: #2222 1px solid;
+        background-color: white !important;
+        padding: 16px;
+        margin: 16px 0;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+      }
+      
+      
+    
+      .check-guest__contact .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-column: span 2; 
+        gap: 44px !important	;
+      }
+    
+      .check-guest__contact label{
+        color: black !important;
+      }
+    
+      .check-guest__contact label span{
+        color: red !important;
+      }
+    
+      
+      .guest-button__container {
+        grid-column: span 2; 
+        display: flex;
+        justify-content: flex-end; 
+        align-items: center;
+        width: 100%; 
+      }
+    
+    

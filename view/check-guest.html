@@ -60,7 +60,9 @@
               <li class="breadcrumb-item">
                 <a href="/index.html">Home</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Bookings</li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Bookings
+              </li>
             </ol>
           </nav>
         </div>
@@ -72,10 +74,13 @@
       <div class="container">
         <!-- Title -->
         <div class="check-guest__title">
-          <a href="javascript:history.back()" class="back">
-            <i class="fa fa-arrow-left"></i> <span>Booking/</span>
-          </a>
-          <span class="reserve">Reservation</span>
+          <div class="navigation">
+            <a href="javascript:history.back()" class="back">
+              <i class="fa fa-arrow-left"></i> <span>Booking/</span>
+            </a>
+            <span class="reserve">Reservation</span>
+          </div>
+
           <h3>Your Booking</h3>
         </div>
         <!-- Booking Container -->
@@ -120,15 +125,27 @@
         </div>
 
         <!-- Contact Details -->
-        <div class="check-guest__title">
+        <div class="check-guest__title__contact">
           <h3>Contact Details</h3>
+
+          <div>
+            <select name="" id="">
+              <option value="">Email</option>
+              <option value="">Phone</option>
+            </select>
+          </div>
         </div>
         <div class="check-guest__contact">
-          <div class="check-guest__container__contact">
-            <label for="email">Email</label>
-            <input type="tel" class="form-control" id="email" name="email" />
+          <div class="container">
+            <label for="email">Email<span>*</span></label>
+            <input type="email" class="form-control" id="email" name="email" />
           </div>
-        <button class="button button-contact">Continue</button>
+
+          <div class="guest-button__container">
+            <a href="/view/guest-form.html" class="button button-contact"
+              >Continue</a
+            >
+          </div>
         </div>
       </div>
     </section>

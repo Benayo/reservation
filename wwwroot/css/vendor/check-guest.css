@@ -6,6 +6,9 @@ display: inline-flex;
 align-items: center;
 }
 
+.check-guest__title .navigation{
+  display: flex;
+}
 
 
 .check-guest__title .back i {
@@ -13,6 +16,18 @@ align-items: center;
   margin-right: 8px; 
   font-weight: 100;
 }
+
+
+.check-guest__title__contact {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.check-guest__title__contact select {
+  color: black !important; 
+}
+
 
 .check-guest__title .reserve{
   color: #cca772; 
@@ -69,18 +84,35 @@ cursor: default;
     padding: 16px;
     margin: 16px 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 24px;
+    width: 100%;
   }
   
-  .check-guest__container__contact {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    
-  }
   
 
-  .check-guest__container__contact label{
-    color: black;
+  .check-guest__contact .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: span 2; 
+    gap: 44px !important	;
   }
+
+  .check-guest__contact label{
+    color: black !important;
+  }
+
+  .check-guest__contact label span{
+    color: red !important;
+  }
+
+  
+  .guest-button__container {
+    grid-column: span 2; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    width: 100%; 
+  }
+
