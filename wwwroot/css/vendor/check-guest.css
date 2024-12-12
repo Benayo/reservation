@@ -1,3 +1,12 @@
+body {
+  background-color: #f4f4f4;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.667; }
+
+
+
 .check-guest__title .back{
 margin-bottom: 12px;
 color: #222222;
@@ -38,7 +47,7 @@ cursor: default;
 
 
 .check-guest__container {
-  border: #2222 1px solid;
+  /* border: #2222 1px solid; */
   background-color: white !important;
     padding: 16px;
     margin: 16px 0;
@@ -96,7 +105,7 @@ cursor: default;
     font-weight: 800;
    }
   .check-guest__contact {
-    border: #2222 1px solid;
+    /* border: #2222 1px solid; */
     background-color: white !important;
     padding: 16px;
     margin: 16px 0;
@@ -140,4 +149,38 @@ cursor: default;
 justify-content: end;
  
 
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terms-checkbox input {
+  width: auto;
+}
+
+
+.checkbox-size {
+  width: 16px; 
+  height: 16px; 
+  margin-right: 8px; 
 }

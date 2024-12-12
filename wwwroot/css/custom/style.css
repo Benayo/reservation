@@ -530,10 +530,12 @@ button {
     -moz-appearance: none; }
 
     .form-select-custom select {
+     
       color: black; 
     }
 
     .form-select-custom select option {
+      cursor: pointer;
   color: black; /* Make sure option text is black as well */
 }
     .form-select-custom select:focus {
@@ -541,13 +543,41 @@ button {
       box-shadow: none; }
 
       .form-select-custom input.datepicker {
+        cursor: pointer;
         position: relative;
       }
 
       .form-select-custom input.datepicker::placeholder {
         color: black !important;
       }
-
+      .form-select-custom {
+        position: relative;
+      }
+    
+      .calendar-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none; /* Make sure the icon doesn't interfere with input field clicks */
+        font-size: 18px; /* Adjust the icon size if necessary */
+        color: #6c757d; /* Optional: Change the icon color */
+      }
+    
+      .form-control {
+        padding-right: 30px; /* Make space for the calendar icon */
+      }
+    
+      /* Ensure the input field and icon align well */
+      .form-select-custom input {
+        width: 100%;
+        padding-right: 35px; /* Adjust padding to prevent overlap with icon */
+      }
+    
+      /* Optional: Adjust the look of the icon on focus (hover or click on the input field) */
+      .form-control:focus + .calendar-icon {
+        color: #cca772; /* Change color when input is focused */
+      }
 /*=================== home search form end ====================*/
 /*=================== welcome section start ====================*/
 .welcome {

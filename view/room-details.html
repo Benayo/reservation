@@ -8,7 +8,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
     <title>Seaplace Hotel - Contact</title>
     <link rel="icon" href="img/favicon.png" type="image/png" />
     <link
@@ -37,7 +36,6 @@
       rel="stylesheet"
       href="/wwwroot/js/vendors/nice-select/nice-select.css"
     />
-
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/elegant-icons/elegant-icons.css"
@@ -45,13 +43,53 @@
     <link rel="stylesheet" href="/wwwroot/css/vendor/room-details.css" />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
     <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
+    <style>
+      .room-details-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+      .room-details-item {
+        margin-bottom: 50px;
+        overflow: hidden;
+      } /* Image carousel styles */
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .carousel-images {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .carousel-images img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+      .carousel-controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+      }
+      .carousel-controls button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .carousel-controls button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+    </style>
   </head>
   <body>
-    <!-- ================ header section start ================= -->
     <div id="header"></div>
-    <!-- ================ header section end ================= -->
-
-    <!-- ================ start banner area ================= -->
+    <!-- Banner and content section -->
     <section class="contact-banner-area" id="contact">
       <div class="container h-100">
         <div class="contact-banner">
@@ -69,29 +107,45 @@
         </div>
       </div>
     </section>
-    <!-- Breadcrumb Section End -->
-
     <!-- Room Details Section Begin -->
     <section class="room-details-section spad">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div class="room-details-item">
-              <img src="/wwwroot/images/rooms/room-details.jpg" alt="" />
+              <!-- Carousel Section -->
+              <div class="carousel-container">
+                <div class="carousel-images">
+                  <img
+                    src="/wwwroot/images/rooms/room-details.jpg"
+                    alt="Room Image 1"
+                  />
+                  <img
+                    src="/wwwroot/images/rooms/room-details.jpg"
+                    alt="Room Image 2"
+                  />
+                  <img
+                    src="/wwwroot/images/rooms/room-details.jpg"
+                    alt="Room Image 3"
+                  />
+                </div>
+                <div class="carousel-controls">
+                  <button id="prevBtn">&#10094;</button>
+                  <button id="nextBtn">&#10095;</button>
+                </div>
+              </div>
               <div class="rd-text">
                 <div class="rd-title">
                   <h3>Premium King Room</h3>
-
                   <div class="content">
                     <div class="star-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
                     </div>
-                    <button href="/view/bookings.html" class="button  button-contact">Booking Now
-                    </button>
+                    <a href="/view/bookings-item.html" class="button button-contact"
+                      >Booking Now</a
+                    >
                   </div>
                 </div>
                 <h2>159$<span>/Pernight</span></h2>
@@ -125,19 +179,17 @@
                   purchasing an RV. Possessing a motorhome or fifth wheel is an
                   achievement of a lifetime. It can be similar to sojourning
                   with your residence as you search the various sites of our
-                  great land, America.
-                </p>
-                <p>
-                  The two commonly known recreational vehicle classes are the
-                  motorized and towable. Towable rvs are the travel trailers and
-                  the fifth wheel. The rv travel trailer or fifth wheel has the
-                  attraction of getting towed by a pickup or a car, thus giving
-                  the adaptability of possessing transportation for you when you
-                  are parked at your campsite.
+                  great land, America. The two commonly known recreational
+                  vehicle classes are the motorized and towable. Towable rvs are
+                  the travel trailers and the fifth wheel. The rv travel trailer
+                  or fifth wheel has the attraction of getting towed by a pickup
+                  or a car, thus giving the adaptability of possessing
+                  transportation for you when you are parked at your campsite.
                 </p>
               </div>
             </div>
           </div>
+
           <div class="col-lg-4">
             <div class="room-booking">
               <h3>Your Reservation</h3>
@@ -164,19 +216,17 @@
                     <option value="">1 Room</option>
                   </select>
                 </div>
-                <button class="button button-form" type="submit">Check Availability</button>
+                <button class="button button-form" type="submit">
+                  Check Availability
+                </button>
               </form>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Room Details Section End -->
-
-    <!-- ================ start footer Area ================= -->
     <div id="footer"></div>
-    <!-- ================ End footer Area ================= -->
-
+    <!-- JS Libraries -->
     <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>
@@ -187,7 +237,9 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
-    <script src="/wwwroot/js/custom/rooms.js"></script>
+    <script src="/wwwroot/js/custom/room-details.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
+    <!-- Carousel JS -->
+    
   </body>
 </html>
