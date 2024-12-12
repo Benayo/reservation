@@ -492,7 +492,7 @@ button {
     padding-left: 18px;
     border-color: #ECECEC; }
     .form-search select {
-      color: black; /* Text color for select fields */
+      color: black; 
     }
     .form-search .form-control:focus {
       outline: 0;
@@ -520,7 +520,7 @@ button {
     height: 50px;
     border: 0;
     border: 1px solid #ECECEC;
-    background: #fff url("../images/home/down-arrow.png") no-repeat;
+    background: #fff url("/wwwroot/images/home/down-arrow.png") no-repeat;
     background-size: 11px;
     background-position: right 15px center;
     padding-left: 18px;
@@ -530,13 +530,12 @@ button {
     -moz-appearance: none; }
 
     .form-select-custom select {
-     
-      color: black; 
+     color: black; 
     }
 
     .form-select-custom select option {
       cursor: pointer;
-  color: black; /* Make sure option text is black as well */
+  color: black; 
 }
     .form-select-custom select:focus {
       outline: 0;
@@ -548,7 +547,7 @@ button {
       }
 
       .form-select-custom input.datepicker::placeholder {
-        color: black !important;
+        color: #222222 !important;
       }
       .form-select-custom {
         position: relative;
@@ -559,24 +558,24 @@ button {
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
-        pointer-events: none; /* Make sure the icon doesn't interfere with input field clicks */
-        font-size: 18px; /* Adjust the icon size if necessary */
-        color: #6c757d; /* Optional: Change the icon color */
+        pointer-events: none; 
+        font-size: 14px; 
+        color: #6c757d; 
       }
     
       .form-control {
-        padding-right: 30px; /* Make space for the calendar icon */
+        padding-right: 30px; 
       }
     
-      /* Ensure the input field and icon align well */
+     
       .form-select-custom input {
         width: 100%;
-        padding-right: 35px; /* Adjust padding to prevent overlap with icon */
+        padding-right: 35px; 
       }
     
-      /* Optional: Adjust the look of the icon on focus (hover or click on the input field) */
+     
       .form-control:focus + .calendar-icon {
-        color: #cca772; /* Change color when input is focused */
+        color: #cca772; 
       }
 /*=================== home search form end ====================*/
 /*=================== welcome section start ====================*/
