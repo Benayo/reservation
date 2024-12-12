@@ -72,15 +72,15 @@
     <!-- Booking Details Section -->
     <section class="section-margin section-margin--small">
       <div class="container">
+        <div class="navigation">
+          <a href="javascript:history.back()" class="back">
+            <i class="fa fa-arrow-left"></i>
+            <span> <span>Booking/Reservation/Guest/Preview/</span></span>
+          </a>
+          <span class="reserve">Payment</span>
+        </div>
         <!-- Title -->
         <div class="check-guest__title">
-          <div class="navigation">
-            <a href="javascript:history.back()" class="back">
-              <i class="fa fa-arrow-left"></i> <span> <span>Booking/Reservation/Guest/Preview/</span></span>
-            </a>
-            <span class="reserve">Payment</span>
-          </div>
-
           <h3>Your Booking</h3>
         </div>
         <!-- Booking Container -->
@@ -127,19 +127,21 @@
         <!-- Contact Details -->
         <div class="check-guest__title__contact">
           <h3>Payment Method</h3>
-
         </div>
         <div class="check-guest__contact">
-          <div class="container">
+          <div class="label-container">
             <label for="email">Method:<span>*</span></label>
-            <select name="" id="">
-                <option value="">Book on Hold</option>
-                <option value="">Paystack</option>
-              </select>
+          </div>
+
+          <div>
+            <select class="form-control" name="payment" id="payment">
+              <option value="Male">Book on Hold</option>
+              <option value="Female">Paystack</option>
+            </select>
           </div>
 
           <div class="guest-button__container">
-            <a href="/view/guest-form.html" class="button button-contact"
+            <a href="" class="button button-contact"
               >Continue</a
             >
           </div>

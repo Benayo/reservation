@@ -227,16 +227,12 @@
 
   .image-container {
     grid-column: span 7;
-  
     display: flex;
     flex-direction: column;
     gap: 12px;
-
-   
   }
 
   .side-images {
-    
     display: flex;
    align-items: center;
     gap: 8px;
@@ -268,7 +264,7 @@
     grid-column: span 5;
     display: grid;
     grid-template-columns: 1fr;
-  
+  gap: 16px;
     justify-items: stretch;
   }
 
@@ -320,6 +316,15 @@
 
   }
 
+
+  
+  .room-accommodates .title {
+    font-size: 16px;
+    text-align: center;
+   }
+
+   
+
   .room-accommodates p {
     font-size: 14px;
     color: #707079;
@@ -330,14 +335,11 @@
   }
 
 
-  .room__more__details {
+  .room__more__details div{
     margin-bottom: 8px;
       }
 
 
-  .room__more__details p{
-color: #222222;
-  }
 
   .room__more__details span{
     color: #000;
@@ -347,23 +349,16 @@ color: #222222;
           }
 
 
-          .room__more__details a:hover{
+.room__more__details a:hover{
            text-decoration: underline;
               }
-  .room__number {
-  
-  }
 
 .room__info__container{
 display: flex;
-justify-content: space-between;
+
 align-items: center;
-gap: 16px;
+gap: 24px;
   }
-
-
-  
-
 
   .room__info {
     display: flex;
@@ -437,21 +432,77 @@ gap: 16px;
     background-color: rgba(0, 0, 0, 0.7);
   }
 
-  @media (max-width: 768px) {
+
+
+@media (max-width: 480px) {
+  .room-title h4 {
+    font-size: 20px;
+  }
+
+  .detail-explore__price h3 {
+    font-size: 28px;
+  }
+
+  .side-images img {
+    width: 50px;
+  }
+
+  .room__info div {
+    font-size: 12px;
+  }
+
+  .room-accommodates .title {
+    font-size: 14px;
+  }
+
+  .carousel-buttons button {
+    padding: 8px;
+  }
+
+  /* Ensure images fill the mobile screen */
+  .main-images img {
+    width: 100%;
+    height: 100%; /* Fill screen height */
+    object-fit: cover;
+  }
+
+  .side-images {
+    gap: 4px;
+    width: 100%;
+   
+     
+  }
+
+  .side-images img {
+    width: 25%;
+    height: 90px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .room__more__details span{
+   font-size: 14px;
+      }
+
+      .room__more__details a{
+        font-size: 14px;
+          }
+
+          .room-accommodates  {
+           flex-direction: column;
+           gap: 8px;
+         align-items: self-start
+           }
+ 
+}
+
+
+
+  @media (max-width: 1024px) {
     .details-container {
-      grid-template-columns: 1fr;
-    }
-
-    .image-container {
-      grid-column: span 1;
-      display: block;
-    }
-
-    .main-images {
-      grid-column: span 1;
-    }
-
-    .side-images img {
-      width: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+     /* padding: 44px 0; */
     }
   }
