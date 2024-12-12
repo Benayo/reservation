@@ -77,7 +77,24 @@ cursor: default;
     color: black;
     padding: 4px;
   }
+  .check-guest__main{
+    display: flex;
+    align-items: center;
+   gap: 80px;
+    color: black;
+    padding: 4px;
+    border-bottom:#2222 1px solid;
+  }
   
+
+  .check-guest__container__sub-info .title {
+   font-weight: 800;
+  }
+
+  
+  .check-guest__container__sub-total .title {
+    font-weight: 800;
+   }
   .check-guest__contact {
     border: #2222 1px solid;
     background-color: white !important;
@@ -116,3 +133,11 @@ cursor: default;
     width: 100%; 
   }
 
+.button-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+justify-content: end;
+ 
+
+}
