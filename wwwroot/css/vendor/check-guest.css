@@ -53,10 +53,9 @@ align-items: center;
 
 
 .check-guest__container {
-
   background-color: white !important;
     padding: 16px;
-   margin-bottom: 60px;
+   margin-bottom: 64px;
     display: flex;
     align-items: flex-start;
     gap: 24px;
@@ -112,31 +111,24 @@ align-items: center;
     font-weight: 800;
    }
 
-   .check-guest__title__contact{
-    padding-top: 32px;
-   }
+
 
    
   .check-guest__contact {
-   
     background-color: white !important;
-    padding: 16px;
-    margin-bottom: 32px;
+    padding: 24px 16px;
+    margin-bottom: 64px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-align-items: center;
-    gap: 24px;
-    width: 100%;
+
   }
 
-  .check-guest__contact .label-container {
-  
-    grid-column: span 1;
+  .guest__label__container {
+  grid-column: span 1;
   grid-column-start: 1;
-  width: 100%;
- 
-  }
+max-width: 100%;
+ }
 
 
   
@@ -157,12 +149,22 @@ align-items: center;
     grid-column: span 1;
   }
 
+  .check-guest__contact textarea {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    grid-column: span 1;
+  }
+
+
   .guest-button__container {
     grid-column: span 1; 
     display: flex;
     justify-content: flex-end; 
     align-items: center;
     width: 100%; 
+    margin-top: 4px;
   }
   
   
@@ -212,12 +214,13 @@ textarea {
 }
 
 
+
 @media (max-width: 480px) {
 
 
   .check-guest__container {
       padding: 16px;
-      margin-bottom: 44px ;
+      margin-bottom: 48px ;
       display: flex;
       flex-direction: column;
       gap: 32px;
@@ -229,18 +232,34 @@ textarea {
         display: flex;
         flex-direction: column;
         gap: 32px;
-       /* padding: 44px 0; */
+     
       }
 
+  
 
       .check-guest__contact{
         display: block;
-      
+        margin-bottom: 48px ;
       }
 
-      .check-guest__contact .label-container{
+      .check-guest__contact .guest__label__container{
+        width: 100%;
         padding: 0;
       }
     
+
+      .check-guest__contact input {
+       margin-bottom: 24px;
+      
+      }
+      .check-guest__contact select{
+        margin-bottom: 24px;
+       
+       }
+
+       .check-guest__contact textarea {
+        margin-bottom: 24px;
+       
+       }
 
 }

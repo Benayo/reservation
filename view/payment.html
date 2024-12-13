@@ -42,8 +42,10 @@
       href="/wwwroot/js/vendors/nice-select/nice-select.css"
     />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
-    <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
+   
     <link rel="stylesheet" href="/wwwroot/css/vendor/check-guest.css" />
+
+    <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
   </head>
 
   <body>
@@ -129,21 +131,20 @@
           <h3>Payment Method</h3>
         </div>
         <div class="check-guest__contact">
-          <div class="label-container">
-            <label for="email">Method:<span>*</span></label>
+          <div class="guest__label__container">
+            <label for="email">Method of Payment<span>*</span></label>
           </div>
 
           <div>
-            <select class="form-control" name="payment" id="payment">
-              <option value="Male">Book on Hold</option>
-              <option value="Female">Paystack</option>
+            <select class="form-control nice-select" name="title" id="title">
+              <option value="Mr">Book on Hold</option>
+              <option value="Mrs">Paystack</option>
+
             </select>
           </div>
 
           <div class="guest-button__container">
-            <a href="" class="button button-contact"
-              >Continue</a
-            >
+            <a href="" class="button button-contact">Continue</a>
           </div>
         </div>
       </div>

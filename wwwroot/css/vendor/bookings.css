@@ -249,7 +249,7 @@
     position: relative;
     grid-column: span 5;
     width: 100%;
-    height: 340px; 
+    height: 360px; 
     overflow: hidden;
    
   }
@@ -264,7 +264,7 @@
     grid-column: span 5;
     display: grid;
     grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 20px;
     justify-items: stretch;
   }
 
@@ -343,9 +343,12 @@
 
   .room__more__details span{
     color: #000;
+    font-size: 14px;
+    line-height: 28px;
       }
       .room__more__details a{
         color: #cca772;
+        font-size: 14px;
           }
 
 
@@ -355,9 +358,8 @@
 
 .room__info__container{
 display: flex;
-
 align-items: center;
-gap: 24px;
+gap: 12px;
   }
 
   .room__info {
@@ -377,13 +379,21 @@ gap: 24px;
   }
 
   .room__info div {
-    padding: 4px;
+    cursor: default;
+    padding: 2px;
+    font-size: 14px;
   }
 
   .room__info div i {
     font-size: 16px;
     padding: 4px;
   }
+
+  .room__info div:hover {
+color: #cca772;
+
+  }
+
 .room__number__container{
   display: flex;
   flex-direction: column;

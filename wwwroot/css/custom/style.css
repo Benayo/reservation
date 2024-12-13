@@ -102,12 +102,16 @@ button {
   border-radius: 0;
   border-color: #ECECEC;
   color: #999999;
-  padding-top: 4px; }
+  padding-top: 4px; 
+margin-bottom: 8px;}
   .nice-select::after {
     right: 16px; }
   .nice-select .list {
     min-width: 200px; }
-
+@media (max-width: 480px) {
+  .nice-select {
+  margin-bottom: 8px;}
+}
 .pb-20px {
   padding-bottom: 20px; }
 
