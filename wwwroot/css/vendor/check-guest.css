@@ -32,7 +32,7 @@ align-items: center;
 
 
 .navigation .reserve{
-  color: #cca772; 
+  color: var(--primary-color); 
 cursor: default;
   }
 

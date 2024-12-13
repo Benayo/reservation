@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    
     $('#date-in').datepicker({
       dateFormat: 'dd/mm/yy', 
       minDate: 0, 

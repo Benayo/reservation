@@ -1,6 +1,6 @@
 /* .room-container {
     padding: 80px 0;
-    border-bottom: 1px solid #cca772;
+    border-bottom: 1px solid var(--primary-color);
   }
 
   .room-container:first-child {
@@ -71,7 +71,7 @@
 
   .room-title h4 {
     font-size: 32px;
-    color: #cca772;
+    color: var(--primary-color);
   }
 
   .room-title span {
@@ -99,7 +99,7 @@
   }
 
   .star-rating i {
-    color: #cca772;
+    color: var(--primary-color);
     font-size: 16px;
   }
 
@@ -153,7 +153,7 @@
   }
 
   .thumbnail.active {
-    border-color: #cca772;
+    border-color: var(--primary-color);
   }
 
   .thumbnail:hover {
@@ -206,7 +206,7 @@
 
   .room-container {
     padding: 80px 0;
-    border-bottom: 1px solid #cca772;
+    border-bottom: 1px solid var(--primary-color);
   }
 
   .room-container:first-child {
@@ -277,7 +277,7 @@
 
   .room-title h4 {
     font-size: 32px;
-    color: #cca772;
+    color: var(--primary-color);
   }
 
   .room-title span {
@@ -305,7 +305,7 @@
   }
 
   .star-rating i {
-    color: #cca772;
+    color: var(--primary-color);
     font-size: 16px;
   }
 
@@ -347,7 +347,7 @@
     line-height: 28px;
       }
       .room__more__details a{
-        color: #cca772;
+        color: var(--primary-color);
         font-size: 14px;
           }
 
@@ -390,7 +390,7 @@ gap: 12px;
   }
 
   .room__info div:hover {
-color: #cca772;
+color: var(--primary-color);
 
   }
 
@@ -413,7 +413,7 @@ color: #cca772;
   }
 
   .thumbnail.active {
-    border-color: #cca772;
+    border-color: var(--primary-color);
   }
 
   .thumbnail:hover {

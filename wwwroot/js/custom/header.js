@@ -40,4 +40,9 @@ $('#email-link').attr('href',`tel:${email}`)
   }).fail(function(){
     console.error("Failed to load settings.json");
   })
+
+
+
+
+  
 });

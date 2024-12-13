@@ -50,7 +50,7 @@ gap: 16px;
   }
   
   .room-details-item .rd-text .rd-title .rdt-right .rating i {
-    color: #cca772;
+    color: var(--primary-color);
   }
   
   .room-details-item .rd-text .rd-title .rdt-right a {
@@ -367,11 +367,11 @@ gap: 16px;
   }
   
   .button-form {
-    border: 1px solid #cca772 !important;
+    border: 1px solid var(--primary-color) !important;
     color: #303030; }
     .button-form:hover {
       background: transparent;
-      border-color: #cca772; }
+      border-color: var(--primary-color); }
 
 .star-rating {
   display: flex;
@@ -380,7 +380,7 @@ gap: 16px;
 }
 
 .star-rating i {
-  color: #cca772; /* Gold color for stars */
+  color: var(--primary-color); /* Gold color for stars */
   font-size: 16px;
 }
   @media only screen and (min-width: 1200px) {

@@ -30,7 +30,7 @@
     
     
     .check-guest__title .reserve{
-      color: #cca772; 
+      color: var(--primary-color); 
     cursor: default;
       }
   
