@@ -996,27 +996,34 @@ margin-bottom: 8px;}
 
 .button-form {
   border: 1px solid var(--primary-color) !important;
-  color: #303030; }
+  color: #fff; }
   .button-form:hover {
     background: transparent;
     border-color: var(--primary-color); }
+.button-form a{
+  text-decoration: none;
+  color: #fff;
+}
 
+.button-form a:hover{
+  color: var(--primary-color);
+}
     .button-bookings {
       border: 1px solid var(--primary-color) !important;
-      color: #303030;
+      color: #fff;
       text-align: center;
       padding: 8px 40px !important;
     background-color:var(--primary-color) ; }
       .button-bookings:hover {
         background: transparent;
         border-color: var(--primary-color);
-        color: #303030;
+        color: var(--primary-color);
        }
     
 .button--active:hover {
   background: transparent;
   border-color: var(--primary-color);
-  color: #222222; }
+  color: var(--primary-color); }
 
 .button-contact {
   border: 1px solid var(--primary-color) !important;
