@@ -6,6 +6,9 @@ $(document).ready(function () {
           mainImage.src = newSrc;
           document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
           e.target.classList.add('active');
+
+
+          
       });
   });
 

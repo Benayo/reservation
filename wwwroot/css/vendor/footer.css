@@ -45,16 +45,24 @@
 .footer-section .footer-text .ft-contact {
 	margin-bottom: 30px;
 }
-.footer-section .footer-text .ft-contact h6 {
+.footer-section .footer-text .ft-contact h3 {
 	font-size: 14px;
 	color: #dfa974;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 700;
 	letter-spacing: 3px;
-	font-family: "Cabin", sans-serif;
+	/* font-family: "Cabin", sans-serif; */
 	margin-bottom: 20px;
 }
+
 .footer-section .footer-text .ft-contact ul li {
+	font-size: 16px;
+	color: #aaaab3;
+	line-height: 32px;
+	list-style: none;
+}
+
+.footer-section .footer-text .ft-contact ul li a {
 	font-size: 16px;
 	color: #aaaab3;
 	line-height: 32px;

@@ -27,6 +27,8 @@ $(function () {
 
 
 
+
+
   //------- video popup -------//
   $(".play-btn").magnificPopup({
     disableOn: 700,
