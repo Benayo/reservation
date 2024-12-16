@@ -18,7 +18,18 @@ $(function () {
   $.getJSON("/appsettings.json", function (data) {
     const primaryColor = data.appSettings.primaryColor;
 
-    // Set the PrimaryColor as a CSS variable on the root element
+   const textInfo = data.appText
+
+   $('#slogan').text(textInfo.slogan)
+   $('#banner').text(textInfo.banner)
+
+  //  const sloganText = textInfo.slogan.split(' ');
+
+
+  //  const h1Element = $('h1');
+  //  h1Element.html(sloganText[0] + ' <em>' + sloganText[1] + '</em> ' + sloganText[2]);
+
+
     document.documentElement.style.setProperty("--primary-color", primaryColor);
   }).fail(function () {
     console.error("Failed to load appsettings.json");

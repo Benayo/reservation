@@ -996,18 +996,28 @@ margin-bottom: 8px;}
 
 .button-form {
   border: 1px solid var(--primary-color) !important;
-  color: #fff; }
-  .button-form:hover {
-    background: transparent;
-    border-color: var(--primary-color); }
-.button-form a{
-  text-decoration: none;
-  color: #fff;
-}
-
-.button-form a:hover{
   color: var(--primary-color);
-}
+  text-align: center;
+  font-weight: bold !important;
+  font-family: "Playfair Display", serif;
+  text-transform: uppercase; }
+  .button-form:hover {
+    background:  var(--primary-color);
+  color: #ffff; }
+
+
+  .button-form a {
+    color: inherit !important;
+    text-decoration: none;
+  } 
+
+/* .button-form a:hover{
+  color: var(--primary-color);
+} 
+*/
+
+
+
     .button-bookings {
       border: 1px solid var(--primary-color) !important;
       color: #fff;
@@ -1027,10 +1037,10 @@ margin-bottom: 8px;}
 
 .button-contact {
   border: 1px solid var(--primary-color) !important;
-  padding: 9px 30px;
+  /* padding: 9px 30px; */
   background: var(--primary-color);
   color: #fff;
-  font-size: 13px;
+  /* font-size: 13px; */
   font-weight: 700;
   font-family: "Playfair Display", serif;
   text-transform: uppercase; }
@@ -1040,6 +1050,35 @@ margin-bottom: 8px;}
     border-color: var(--primary-color);
     color: var(--primary-color); }
 
+
+    .button-contact a {
+      color: inherit;
+      text-decoration: none;
+
+    }
+
+    
+
+    .button-contact-booking {
+      border: 1px solid var(--primary-color) !important;
+      padding: 9px 30px;
+      background: var(--primary-color);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: "Playfair Display", serif;
+      text-transform: uppercase; }
+      .button-contact-booking:hover {
+        outline: 0;
+        background: transparent;
+        border-color: var(--primary-color);
+        color: var(--primary-color); }
+    
+    
+        .button-contact-booking a {
+          color: inherit;
+          text-decoration: none;
+        }
 /*=================== contact banner start ====================*/
 .contact-banner {
   position: relative; }

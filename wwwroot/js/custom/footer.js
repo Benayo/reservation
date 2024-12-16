@@ -18,6 +18,10 @@ $(document).ready(function () {
     $('#phone').text(contactDetails.phone);
     $('#email').text(contactDetails.email);
 
+    const textInfo=data.appText
+
+    $('#slogan').text(textInfo.slogan);
+
     // Correctly format phone and email links
     $('#phone-link').attr('href', 'tel:' + contactDetails.phone);
     $('#email-link').attr('href', 'mailto:' + contactDetails.email);

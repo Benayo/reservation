@@ -1,4 +1,17 @@
 $(document).ready(function () {
+
+var urlParams = new URLSearchParams(window.location.search);
+
+var roomType = urlParams.get('room')
+var price = urlParams.get('price')
+var title = urlParams.get('title')
+
+if(roomType && price &&title){
+    $('#room_title').text(title)
+    $('#title').text(title)
+    $('#room_price').text(price)
+}
+
   document.querySelectorAll('.thumbnail').forEach((thumbnail) => {
       thumbnail.addEventListener('click', (e) => {
           const mainImage = document.getElementById('main-image');

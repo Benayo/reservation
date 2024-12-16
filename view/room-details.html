@@ -40,52 +40,14 @@
       rel="stylesheet"
       href="/wwwroot/js/vendors/elegant-icons/elegant-icons.css"
     />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/wwwroot/css/vendor/room-details.css" />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
     <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
-    <style>
-      .room-details-section {
-        padding-top: 80px;
-        padding-bottom: 80px;
-      }
-      .room-details-item {
-        margin-bottom: 50px;
-        overflow: hidden;
-      } /* Image carousel styles */
-      .carousel-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .carousel-images {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-      .carousel-images img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
-      .carousel-controls {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transform: translateY(-50%);
-      }
-      .carousel-controls button {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-      }
-      .carousel-controls button:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-    </style>
+  
+  
   </head>
   <body>
     <div id="header"></div>
@@ -94,7 +56,7 @@
       <div class="container h-100">
         <div class="contact-banner">
           <div class="text-center">
-            <h1>Rooms</h1>
+            <h1 id="room_title"></h1>
             <nav aria-label="breadcrumb" class="banner-breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
@@ -113,42 +75,65 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="room-details-item">
-              <!-- Carousel Section -->
-              <div class="carousel-container">
-                <div class="carousel-images">
+      
+
+              <div class="image-container">
+                <div class="main-images">
                   <img
                     src="/wwwroot/images/rooms/room-details.jpg"
-                    alt="Room Image 1"
+                    alt="room-image"
+                    id="main-image"
                   />
-                  <img
-                    src="/wwwroot/images/rooms/room-details.jpg"
-                    alt="Room Image 2"
-                  />
-                  <img
-                    src="/wwwroot/images/rooms/room-details.jpg"
-                    alt="Room Image 3"
-                  />
-                </div>
-                <div class="carousel-controls">
-                  <button id="prevBtn">&#10094;</button>
-                  <button id="nextBtn">&#10095;</button>
-                </div>
-              </div>
-              <div class="rd-text">
-                <div class="rd-title">
-                  <h3>Premium King Room</h3>
-                  <div class="content">
-                    <div class="star-rating">
-                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                    <a href="/view/bookings.html" class="button button-contact"
-                      >Booking Now</a
-                    >
+                  <div class="carousel-buttons">
+                    <button id="prevBtn">
+                      &#10094;
+                    </button>
+                    <button id="nextBtn">
+                      &#10095;
+                    </button>
                   </div>
                 </div>
-                <h2>159₦<span>/Pernight</span></h2>
+  
+                <div class="side-images">
+                  <img
+                    src="/wwwroot/images/gallery/g1.png"
+                    alt="img-1"
+                    class="thumbnail active"
+                  />
+                  <img
+                    src="/wwwroot/images/gallery/g2.png"
+                    alt="img-2"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="/wwwroot/images/gallery/g3.png"
+                    alt="img-3"
+                    class="thumbnail"
+                  />
+                  <img
+                    src="/wwwroot/images/gallery/g4.png"
+                    alt="img-4"
+                    class="thumbnail"
+                  />
+                </div>
+              </div>
+
+
+
+              <div class="rd-text">
+                <div class="rd-title">
+                  <h3 id="title"></h3>
+                  <div class="content">
+                    
+                    <div id="rating-1" class="star-rating"></div>
+
+                    <button class="button-contact-booking"> <a id="booking-link" href="#" 
+                      >Booking Now</a
+                    ></button>
+                   
+                  </div>
+                </div>
+                <h2 id="price"><span>/ Night</span></h2>
                 <table>
                   <tbody>
                     <tr>
@@ -196,28 +181,35 @@
               <form action="#">
                 <div class="check-date">
                   <label for="date-in">Check In:</label>
-                  <input type="text" class="date-input" id="date-in" />
-                  <i class="icon_calendar"></i>
+                  <input type="text"  class="form-control datepicker"  id="date-in" />
+                  <i id="date-in" class="fas fa-calendar-alt  icon_calendar"></i>
                 </div>
                 <div class="check-date">
                   <label for="date-out">Check Out:</label>
-                  <input type="text" class="date-input" id="date-out" />
-                  <i class="icon_calendar"></i>
+                  <input type="text"   class="form-control datepicker" id="date-out" />
+                 
+                  <i id="date-out" class="fas fa-calendar-alt  icon_calendar"></i>
                 </div>
                 <div class="select-option">
-                  <label for="guest">Guests:</label>
+                  <label for="guest">Adults</label>
                   <select id="guest">
-                    <option value="">3 Adults</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4+</option>
                   </select>
                 </div>
                 <div class="select-option">
-                  <label for="room">Room:</label>
+                  <label for="room">Children</label>
                   <select id="room">
-                    <option value="">1 Room</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4+</option>
                   </select>
                 </div>
-                <button class="button button-form" type="submit">
-                  Check Availability
+                <button class="button-form">
+                 <a href="/view/bookings.html"></a> Check Availability
                 </button>
               </form>
             </div>
@@ -232,11 +224,16 @@
     <script src="/wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>
     <script src="/wwwroot/js/vendors/easing.min.js"></script>
     <script src="/wwwroot/js/vendors/superfish.min.js"></script>
-    <script src="/wwwroot/js/vendors/nice-select/jquery.nice-select.min.js"></script>
+    
     <script src="/wwwroot/js/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
+    <script src="/wwwroot/js/vendors/nice-select/jquery.nice-select.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+   
     <script src="/wwwroot/js/custom/room-details.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
     <!-- Carousel JS -->
