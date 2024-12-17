@@ -1,40 +1,86 @@
-$(function () {
+$(document).ready(function () {
   "use strict";
 
   $("#header").load("/shared/header.html");
 
   $("#footer").load("/shared/footer.html", function () {
-    // Set the year dynamically
-    const currentYear = new Date().getFullYear();
-    $("#current-year").text(currentYear);
+ 
+   
   });
 
   $("#availability").load("/shared/check-availability.html");
 
 
-
   
-  // Load appsettings.json and use the PrimaryColor dynamically
+
+
+
+
   $.getJSON("/appsettings.json", function (data) {
     const primaryColor = data.appSettings.primaryColor;
 
-   const textInfo = data.appText
+   const textInfo = data.homeContent
+
+   const visibilitySettings= data.homeContent.visibility
+   if (!visibilitySettings.welcomeSection) {
+    $(".welcome").hide();
+  }
+
+  if (!visibilitySettings.specialSection) {
+    $(".section-padding.bg-porcelain").hide();
+  }
+  if (!visibilitySettings.videoSection) {
+    $(".video-area").hide();
+  }
+  if (!visibilitySettings.testimonialSection) {
+    $(".testi-carousel").hide(); 
+  }
 
    $('#slogan').text(textInfo.slogan)
    $('#banner').text(textInfo.banner)
+   $('#banner-title').html(textInfo.welcomeBanner.title)
+     $('#banner-text').html(textInfo.welcomeBanner.text)
+     $('#banner-button').text(textInfo.welcomeBanner.buttonText);
 
-  //  const sloganText = textInfo.slogan.split(' ');
 
 
-  //  const h1Element = $('h1');
-  //  h1Element.html(sloganText[0] + ' <em>' + sloganText[1] + '</em> ' + sloganText[2]);
+     $('#facility-title1').text(textInfo.facilities.facility1.title)
+     $('#facility-title2').text(textInfo.facilities.facility2.title)
+     $('#facility-title3').text(textInfo.facilities.facility3.title)
 
+
+     $('#facility-text1').text(textInfo.facilities.facility1.text)
+     $('#facility-text2').text(textInfo.facilities.facility2.text)
+     $('#facility-text3').text(textInfo.facilities.facility3.text)
+    
+
+$('#testimonial-text1').html(textInfo.testimonial.testimonial1.text)
+$('#testimonial-text2').html(textInfo.testimonial.testimonial2.text)
+    $('#testimonial-text3').html(textInfo.testimonial.testimonial3.text)
+    $('#testimonial-text4').html(textInfo.testimonial.testimonial4.text)
+    $('#testimonial-text5').html(textInfo.testimonial.testimonial5.text)
+    $('#testimonial-text6').html(textInfo.testimonial.testimonial6.text)
+
+    $('#testimonial-name1').html(textInfo.testimonial.testimonial1.name)
+    $('#testimonial-name2').html(textInfo.testimonial.testimonial2.name)
+        $('#testimonial-name3').html(textInfo.testimonial.testimonial3.name)
+        $('#testimonial-name4').html(textInfo.testimonial.testimonial4.name)
+        $('#testimonial-name5').html(textInfo.testimonial.testimonial5.name)
+        $('#testimonial-name6').html(textInfo.testimonial.testimonial6.name)
+    
+
+        
+    $('#testimonial-designation1').html(textInfo.testimonial.testimonial1.designation)
+    $('#testimonial-designation2').html(textInfo.testimonial.testimonial2.designation)
+        $('#testimonial-designation3').html(textInfo.testimonial.testimonial3.designation)
+        $('#testimonial-designation4').html(textInfo.testimonial.testimonial4.designation)
+        $('#testimonial-designation5').html(textInfo.testimonial.testimonial5.designation)
+        $('#testimonial-designation6').html(textInfo.testimonial.testimonial6.designation)
 
     document.documentElement.style.setProperty("--primary-color", primaryColor);
   }).fail(function () {
     console.error("Failed to load appsettings.json");
   });
-
 
 
 
