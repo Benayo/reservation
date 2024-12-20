@@ -86,66 +86,28 @@
           <h3>Your Booking</h3>
         </div>
         <!-- Booking Container -->
-        <div class="check-guest__container">
-          <!-- Dates -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button button-contact">Change dates</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Check-in Date</div>
-                <div>10-12-2024</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>Check-out Date</div>
-                <div>12-12-2024</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Room Details -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button button-contact">Change Rooms</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Room Type</div>
-                <div>Presidential</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>For</div>
-                <div>1 Room 1 night</div>
-              </div>
-              <div class="check-guest__container__sub-total">
-                <div>Total</div>
-                <div>₦935,000</div>
-              </div>
-            </div>
-          </div>
-        </div>
+       <div id="reservation"></div>
 
         <!-- Contact Details -->
         <div class="check-guest__title__contact">
           <h3>Payment Method</h3>
         </div>
-        <div class="check-guest__contact">
+        <form  id="guest-payment" class="check-guest__contact">
           <div class="guest__label__container">
             <label for="email">Method of Payment<span>*</span></label>
           </div>
 
           <div>
-            <select class="form-control nice-select" name="title" id="title">
-              <option value="Mr">Book on Hold</option>
-              <option value="Mrs">Paystack</option>
+            <select class="form-control nice-select" name="" id="">
+              <option value="">Book on Hold</option>
+              <option value="">Paystack</option>
             </select>
           </div>
 
           <div class="guest-button__container">
-            <a href="" class="button button-contact">Continue</a>
+            <button id="payment-button" class="button button-contact" type="submit">Continue</button>
           </div>
-        </div>
+        </form>
       </div>
     </section>
 
@@ -163,7 +125,7 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
-    <script src="/wwwroot/js/custom/rooms.js"></script>
+    <script src="/wwwroot/js/custom/payment.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
   </body>
 </html>

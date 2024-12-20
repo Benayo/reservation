@@ -1,19 +1,47 @@
 $(document).ready(function(){
     $('#header').load('/shared/header.html')
     $('#footer').load('/shared/footer.html')
-
-    $('#date-in').datepicker({
-        dateFormat: 'dd/mm/yy',
-        minDate: 0,
-        onClose: function(selectedDate) {
+    if ($.fn.datepicker) {
+      
+        $('#room-date-in').datepicker({
+          dateFormat: 'yy/mm/dd',   
+          minDate: 0,              
+          onClose: function(selectedDate) {
+         
             $('#date-out').datepicker('option', 'minDate', selectedDate);
-        }
-    });
+          }
+        });
+    
+   
+        $('#room-date-out').datepicker({
+          dateFormat: 'yy/mm/dd',  
+          minDate: 1,              
+        });
+      } else {
+        console.error('jQuery UI Datepicker is not loaded!');
+      }
+    
+    
+  
+  $('#room-availability').submit(function(event) {
+    event.preventDefault();  
+    
+    var checkInDate = $('#room-date-in').val();
+    var checkOutDate = $('#room-date-out').val();
+    var adults = $('#room-guest-adult').val();
+    var children = $('#room-guest-children').val();
 
-    $('#date-out').datepicker({
-        dateFormat: 'dd/mm/yy',
-        minDate: 1,
-    });
+
+    console.log(checkInDate, checkOutDate, adults, children)
+    
+    var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
+                      '&checkOutDate=' + encodeURIComponent(checkOutDate) +
+                      '&adults=' + encodeURIComponent(adults) +
+                      '&children=' + encodeURIComponent(children);
+    
+                      
+    window.location.href = '/view/bookings.html?' + queryParams;
+  });
     
 
    function setRating(rating) {
@@ -40,10 +68,31 @@ $(document).ready(function(){
             }
 
             
-            $('#rating-1').html(setRating(2.8));
+            // $('#rating-1').html(setRating(2.8));
 
            
 
+            var bookingData = JSON.parse(sessionStorage.getItem('roomDetailsData'));
+
+if (bookingData) {
+    
+    
+console.log(bookingData.roomType)
+
+    $('#room_details_title').text(bookingData.roomType);
+    $('#room_details__title').text(bookingData.roomType);
+    $('#room_image-1').attr('src', bookingData.image1);
+    $('#room_image-2').attr('src', bookingData.image2);    
+    $('#room_image-3').attr('src', bookingData.image3);   
+    $('#room_image-4').attr('src', bookingData.image4);
+    $('#room_image-5').attr('src', bookingData.image4);
+    $('#rating-1').html(setRating(bookingData.rateId))
+    $('#room_details_rate').text('₦ ' + bookingData.rate);
+    $('#room_details_summary').text(bookingData.summary);
+    
+  } else {
+    console.log('No booking data found in sessionStorage.');
+  }
 
             var urlParams = new URLSearchParams(window.location.search);
             var roomType = urlParams.get('room');

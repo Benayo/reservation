@@ -176,10 +176,21 @@ gap: 16px;
     padding: 14px 28px 13px;
   }
   
+  
   .room-details-item .rd-text h2 {
+    display: inline;
     color: var(--primary-color);;
     font-weight: 700;
     margin-bottom: 25px;
+  }
+  .room_details_rate {
+    margin: 24px 0;
+  }
+  .room_details_rate span{
+    font-family: "Cabin", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #19191a;
   }
   
   .room-details-item .rd-text h2 span {

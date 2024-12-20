@@ -5,27 +5,25 @@ $(document).ready(function () {
     
     const currentYear = new Date().getFullYear();
     $("#current-year").text(currentYear);
+   
+    $("#facebook_footer-link").attr("href", socialLinks.facebook);
+    $("#twitter_footer-link").attr("href", socialLinks.twitter);
+    $("#instagram_footer-link").attr("href", socialLinks.instagram);
 
-    // Set social media links
-    $("#facebook-link").attr("href", socialLinks.facebook);
-    $("#twitter-link").attr("href", socialLinks.twitter);
-    $("#instagram-link").attr("href", socialLinks.instagram);
-
-    // Set contact info
     const contactDetails = data.contactInfo;
 
     
     $("#address").text(contactDetails.address);
     $("#state").text(contactDetails.state);
     $("#country").text(contactDetails.country);
-    $('#phone').text(contactDetails.phone);
-    $('#email').text(contactDetails.email);
+    $('#phone_footer').html(contactDetails.phone);
+    $('#email_footer').text(contactDetails.email);
 
     const textInfo=data.homeContent
 
     $('#slogan-text').text(textInfo.slogan);
-    $('#phone-link').attr('href', 'tel:' + contactDetails.phone);
-    $('#email-link').attr('href', 'mailto:' + contactDetails.email);
+    $('#phone_footer-link').attr('href', 'tel:' + contactDetails.phone);
+    $('#email_footer-link').attr('href', 'mailto:' + contactDetails.email);
   }).fail(function () {
     console.error("Failed to load settings.json");
   });

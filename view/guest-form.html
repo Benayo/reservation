@@ -84,45 +84,7 @@
           <h3>Your Booking</h3>
         </div>
         <!-- Booking Container -->
-        <div class="check-guest__container">
-          <!-- Dates -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button button-contact">Change dates</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Check-in Date</div>
-                <div>10-12-2024</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>Check-out Date</div>
-                <div>12-12-2024</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Room Details -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button button-contact">Change Rooms</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Room Type</div>
-                <div>Presidential</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>For</div>
-                <div>1 Room 1 night</div>
-              </div>
-              <div class="check-guest__container__sub-total">
-                <div>Total</div>
-                <div>₦935,000</div>
-              </div>
-            </div>
-          </div>
-        </div>
+       <div id="reservation"></div>
 
         <!-- Personal Details -->
         <div class="check-guest__title__contact">
@@ -134,7 +96,7 @@
             <label for="title">Title<span>*</span></label>
           </div>
           <div>
-            <select class="form-control" name="title" id="title">
+            <select class="form-control" name="title" id="guest-title">
               <option value="Mr">Mr</option>
               <option value="Mrs">Mrs</option>
               <option value="Miss">Miss</option>
@@ -142,26 +104,26 @@
           </div>
 
           <div class="guest__label__container">
-            <label for="firstname">First Name<span>*</span></label>
+            <label for="first-name">First Name<span>*</span></label>
           </div>
           <div>
             <input
               type="text"
               class="form-control"
-              id="firstname"
-              name="firstname"
+              id="guest-first-name"
+              name="first-name"
             />
           </div>
 
           <div class="guest__label__container">
-            <label for="lastname">Last Name<span>*</span></label>
+            <label for="last-name">Last Name<span>*</span></label>
           </div>
           <div>
             <input
               type="text"
               class="form-control"
-              id="lastname"
-              name="lastname"
+              id="guest-last-name"
+              name="last-name"
             />
           </div>
 
@@ -169,7 +131,7 @@
             <label for="sex">Sex<span>*</span></label>
           </div>
           <div>
-            <select class="form-control" name="sex" id="sex">
+            <select class="form-control" name="sex" id="guest-gender">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Other">I choose not to disclose</option>
@@ -180,12 +142,7 @@
             <label for="date-of-birth">Date of Birth<span>*</span></label>
           </div>
           <div>
-            <input
-              type="date"
-              class="form-control"
-              id="date-of-birth"
-              name="date-of-birth"
-            />
+            <input type="date" class="form-control" id="guest-date-of-birth" name="guest-date-of-birth" />
           </div>
 
           <div class="guest__label__container">
@@ -195,7 +152,7 @@
             <input
               type="text"
               class="form-control"
-              id="occupation"
+              id="guest-occupation"
               name="occupation"
             />
           </div>
@@ -211,14 +168,14 @@
             <label for="phone">Phone<span>*</span></label>
           </div>
           <div>
-            <input type="tel" class="form-control" id="phone" name="phone" />
+            <input type="tel" class="form-control" id="guest-phone" name="phone" />
           </div>
 
           <div class="guest__label__container">
             <label for="email">Email<span>*</span></label>
           </div>
           <div>
-            <input type="text" class="form-control" id="email" name="email" />
+            <input type="text" class="form-control" id="guest-email" name="email" />
           </div>
 
           <div class="guest__label__container">
@@ -228,7 +185,7 @@
             <input
               type="text"
               class="form-control"
-              id="addressLine1"
+              id="guest-address-line1"
               name="addressLine1"
             />
           </div>
@@ -240,27 +197,28 @@
             <input
               type="text"
               class="form-control"
-              id="addressLine2"
+              id="guest-address-line2"
               name="addressLine2"
             />
           </div>
 
+
           <div class="guest__label__container">
-            <label for="city">City<span>*</span></label>
+            <label for="country">Country<span>*</span></label>
           </div>
           <div>
-            <input type="text" class="form-control" id="city" name="city" />
+            <select name="country" id="guest-country" class="form-control">
+            </select>
           </div>
 
           <div class="guest__label__container">
             <label for="state">State<span>*</span></label>
           </div>
           <div>
-            <select name="state" id="state" class="form-control">
-              <option value="Male">Abia</option>
-              <option value="Male">Anambra</option>
-            </select>
+           <select name="state" id="guest-state" class="form-control"></select>
           </div>
+
+         
         </div>
 
         <!-- Booking Details -->
@@ -273,9 +231,9 @@
             <label for="arrivalTime">Arrival Time:<span>*</span></label>
           </div>
           <div>
-            <select class="form-control" name="arrivalTime" id="arrivalTime">
-              <option value="Mr">12pm</option>
-              <option value="Mrs">12am</option>
+            <select class="form-control" name="arrivalTime" id="guest-arrival-time">
+              <option value="12pm">12pm</option>
+              <option value="12am">12am</option>
             </select>
           </div>
 
@@ -283,9 +241,9 @@
             <label for="purpose">Purpose<span>*</span></label>
           </div>
           <div>
-            <select class="form-control" name="sex" id="sex">
-              <option value="Male">Business</option>
-              <option value="Female">Pleasure</option>
+            <select class="form-control" name="purpose" id="guest-purpose">
+              <option value="Business">Business</option>
+              <option value="Pleasure">Pleasure</option>
             </select>
           </div>
 
@@ -295,7 +253,7 @@
             >
           </div>
           <div>
-            <textarea class="form-control" name="requirements" id="">
+            <textarea class="form-control" name="requirements" id="guest-requirements">
             </textarea>
           </div>
         </div>
@@ -340,7 +298,7 @@
           </div>
 
           <div class="guest-button__container">
-            <a href="/view/booking-preview.html" class="button button-contact"
+            <a id="guest-form-button" href="" class="button button-contact"
               >Continue</a
             >
           </div>
@@ -355,6 +313,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/wwwroot/js/custom/guest-form.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
   </body>
 </html>

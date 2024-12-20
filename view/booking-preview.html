@@ -85,46 +85,11 @@
           <h3>Your Booking</h3>
         </div>
         <!-- Booking Container -->
-        <div class="check-guest__container">
-          <!-- Dates -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button-contact">Change dates</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Check-in Date</div>
-                <div>10-12-2024</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>Check-out Date</div>
-                <div>12-12-2024</div>
-              </div>
-            </div>
-          </div>
+       <div id="reservation"></div>
 
-          <!-- Room Details -->
-          <div class="check-guest__container__sub">
-            <div class="check-guest__date">
-              <button class="button button-contact">Change Rooms</button>
-            </div>
-            <div class="check-guest__container__sub">
-              <div class="check-guest__container__sub-info">
-                <div>Room Type</div>
-                <div>Presidential</div>
-              </div>
-              <div class="check-guest__container__sub-info">
-                <div>For</div>
-                <div>1 Room 1 night</div>
-              </div>
-              <div class="check-guest__container__sub-total">
-                <div>Total</div>
-                <div>₦935,000</div>
-              </div>
-            </div>
-          </div>
-        </div>
 
+
+       
         <div class="check-guest__title__contact">
           <h3>Personal Details</h3>
         </div>
@@ -135,16 +100,16 @@
             <div class="check-guest__container__sub">
               <div class="check-guest__container__sub-info">
                 <div>Title</div>
-                <div>Mr.</div>
+                <div id="preview-guest-title">Mr.</div>
               </div>
               <div class="check-guest__container__sub-info">
-                <div>First Name</div>
-                <div>Benjamin</div>
+                <div >First Name</div>
+                <div id="preview-guest-first-name"></div>
               </div>
 
               <div class="check-guest__container__sub-total">
                 <div>Last Name</div>
-                <div>Oyewole</div>
+                <div id="preview-guest-last-name"></div>
               </div>
             </div>
           </div>
@@ -154,15 +119,15 @@
             <div class="check-guest__container__sub">
               <div class="check-guest__container__sub-info">
                 <div>Sex</div>
-                <div>Male</div>
+                <div id="guest-preview-gender"></div>
               </div>
               <div class="check-guest__container__sub-info">
                 <div>Date of Birth</div>
-                <div>12-12-2024</div>
+                <div id="guest-preview-date-of-birth"></div>
               </div>
               <div class="check-guest__container__sub-total">
                 <div>Occupation</div>
-                <div>Teacher</div>
+                <div id="guest-preview-occupation"></div>
               </div>
             </div>
           </div>
@@ -177,11 +142,11 @@
           <div class="check-guest__container__sub">
             <div class="check-guest__container__sub-info">
               <div>Arrival Time:</div>
-              <div>1:00 PM</div>
+              <div id="guest-preview-arrival-time"></div>
             </div>
             <div class="check-guest__container__sub-info">
               <div>Purpose:</div>
-              <div>Business</div>
+              <div id="guest-preview-purpose"></div>
             </div>
           </div>
 
@@ -190,7 +155,7 @@
             <div class="check-guest__container__sub">
               <div class="check-guest__container__sub-total">
                 <div>Additional Requirements:</div>
-                <div></div>
+                <div id="guest-preview-additional-info"></div>
               </div>
             </div>
           </div>
@@ -206,16 +171,16 @@
             <div class="check-guest__container__sub">
               <div class="check-guest__container__sub-info">
                 <div>Phone:</div>
-                <div>08183437774</div>
+                <div id="guest-preview-phone"></div>
               </div>
               <div class="check-guest__container__sub-info">
                 <div>Email:</div>
-                <div>benjaminodeleye1@gmail.com</div>
+                <div id="guest-preview-email"></div>
               </div>
 
               <div class="check-guest__container__sub-total">
                 <div>Address Line 1:</div>
-                <div>46, Araromi street</div>
+                <div id="guest-preview-address1"></div>
               </div>
             </div>
           </div>
@@ -225,15 +190,15 @@
             <div class="check-guest__container__sub">
               <div class="check-guest__container__sub-info">
                 <div>Address Line 2:</div>
-                <div></div>
+                <div id="guest-preview-address2"></div>
               </div>
               <div class="check-guest__container__sub-info">
-                <div>City:</div>
-                <div>Yaba</div>
+                <div>State</div>
+                <div id="guest-preview-state"></div>
               </div>
               <div class="check-guest__container__sub-total">
-                <div>State:</div>
-                <div>Lagos</div>
+                <div>Country</div>
+                <div id="guest-preview-country"></div>
               </div>
             </div>
           </div>
@@ -261,7 +226,7 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
-    <script src="/wwwroot/js/custom/rooms.js"></script>
+    <script src="/wwwroot/js/custom/booking-preview.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
   </body>
 </html>

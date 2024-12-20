@@ -216,6 +216,73 @@ textarea {
 }
 
 
+.payment-success-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+     padding: 32px;
+   
+}
+
+.payment-success-message{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.payment-success-message h5{
+  text-align: center;
+}
+
+.payment-success-message p{
+  font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    text-align: center;
+}
+
+.booking-summary .detail  {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Two columns: 1 for the label, 2 for the value */
+  /* Adds space between label and value */
+  padding-left: 10px; /* Adds padding to the left */
+  margin-bottom: 20px;
+}
+
+
+
+.booking-summary p {
+  margin: 0; /* Removes default margin from p tag */
+  font-weight: normal; /* Normal weight for the label */
+  text-align: left;
+}
+
+.booking-summary span {
+  font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    text-align: center;
+  text-align: left; /* Aligns the value to the left */
+}
+
+
+.booking-summary h5{
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+
+.confirmation-message a{
+  color: var(--primary-color); 
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+width: 100%;
+}
 
 @media (max-width: 480px) {
 

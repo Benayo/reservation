@@ -1,22 +1,29 @@
-<form class="form-search form-search-position">
+<head>
+  <!-- jQuery (Ensure this is loaded first) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- jQuery UI (Load after jQuery) -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  
+  <!-- Font Awesome (For calendar icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <!-- Your custom JavaScript -->
+  <script src="/wwwroot/js/custom/check-availabilty.js"></script>
+</head>
 
+<form id="check-availability-form" class="form-search form-search-position">
   <div class="container">
-    <!-- Row for inputs -->
     <div class="row">
       <!-- Check In Date -->
       <div class="col-sm gutters-19">
         <div class="form-group">
           <div class="form-select-custom position-relative">
-            <!-- Input field for check-in date -->
-            <input
-              type="text"
-              class="form-control datepicker"
-              id="date-in"
-              placeholder="Check In Date"
-            />
-            <!-- Calendar Icon (Font Awesome) -->
-            <i class="fas fa-calendar-alt calendar-icon" id="calendar-in"></i> <!-- Unique id -->
+            <input type="text" class="form-control datepicker" id="date-in" placeholder="Check In Date" />
+            <i class="fas fa-calendar-alt calendar-icon" id="calendar-in"></i>
           </div>
         </div>
       </div>
@@ -25,15 +32,8 @@
       <div class="col-sm gutters-19">
         <div class="form-group">
           <div class="form-select-custom position-relative">
-            <!-- Input field for check-out date -->
-            <input
-              type="text"
-              class="form-control datepicker"
-              id="date-out"
-              placeholder="Check Out Date"
-            />
-            <!-- Calendar Icon (Font Awesome) -->
-            <i class="fas fa-calendar-alt calendar-icon" id="calendar-out"></i> <!-- Unique id -->
+            <input type="text" class="form-control datepicker" id="date-out" placeholder="Check Out Date" />
+            <i class="fas fa-calendar-alt calendar-icon" id="calendar-out"></i>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
       <div class="col-sm gutters-19">
         <div class="form-group">
           <div class="form-select-custom">
-            <select name="adults" id="adults">
+            <select name="adults" id="num-adults">
               <option value="" disabled selected>Adults</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -57,7 +57,7 @@
       <div class="col-sm gutters-19">
         <div class="form-group">
           <div class="form-select-custom">
-            <select name="children" id="children">
+            <select id="num-children" name="children">
               <option value="" disabled selected>Children</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -68,25 +68,15 @@
         </div>
       </div>
 
-      <!-- Button in the same row -->
+      <!-- Button -->
       <div class="col-sm gutters-19">
         <div class="form-group">
           <button class="button-availability" type="submit">
-            <a href="/view/bookings.html">Check Availability</a>
+            Check Availability
           </button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- jQuery and jQuery UI Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
-  <!-- External CSS for jQuery UI -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-
-  <!-- Custom Script for Datepicker -->
-  <script src="/wwwroot/js/custom/check-availabilty.js"></script>
 </form>
 

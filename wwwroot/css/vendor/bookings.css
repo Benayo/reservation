@@ -201,12 +201,20 @@
     }
   } */
 
-
+  body {
+    background-color: #f4f4f4;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.667; }
+  
+  
 
 
   .room-container {
     padding: 80px 0;
     border-bottom: 1px solid var(--primary-color);
+
   }
 
   .room-container:first-child {
@@ -223,6 +231,17 @@
     grid-template-columns: repeat(12, 1fr);
     gap: 40px;
     width: 100%;
+   padding: 40px;
+   margin: 60px 0;
+   background: #fff;
+   
+  }
+
+
+  .details-container:first-child {
+
+   margin-top: 0;
+   
   }
 
   .image-container {
@@ -230,6 +249,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    /* background: #fff; */
   }
 
   .side-images {
@@ -239,7 +259,7 @@
   }
 
   .side-images img {
-    width: 25%;
+    width: 24%;
     height: 100px;
     object-fit: cover;
     cursor: pointer;
@@ -283,13 +303,13 @@
   .room-title span {
     font-size: 14px;
     font-weight: 400;
+    color: #222222;
   }
 
   .detail-explore__price {
     font-size: 40px;
-    
     display: flex;
-    align-items: center;
+   align-items: center;
     justify-content: space-between;
     flex-grow: 1;
   }
@@ -306,7 +326,7 @@
 
   .star-rating i {
     color: var(--primary-color);
-    font-size: 16px;
+    font-size: 12px;
   }
 
   .room-accommodates  {
@@ -323,6 +343,8 @@
     text-align: center;
    }
 
+
+
    
 
   .room-accommodates p {
@@ -330,20 +352,24 @@
     color: #707079;
   }
 
-  .room-accommodates span {
-    color: #222222;
+  .room-accommodates .info  {
+    font-size: 14px;
+ 
   }
 
 
   .room__more__details div{
-    margin-bottom: 8px;
+
+    font-size: 14px;
+margin-bottom: 2px;
       }
 
 
 
   .room__more__details span{
-    color: #000;
     font-size: 14px;
+    font-weight: 500;
+    color: #222222;
     line-height: 28px;
       }
       .room__more__details a{
@@ -359,34 +385,43 @@
 .room__info__container{
 display: flex;
 align-items: center;
-gap: 12px;
+gap: 20px;
   }
+
+  .room__info__container div{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+      }
 
   .room__info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
-    gap: 4px;
     font-size: 14px;
   }
+
+  .room__info span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+  }
+
+
 
   .room__info .detail {
     border: #2222 1px solid;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    cursor: default;
+    padding:0 4px;
+    font-size: 13px;
+
   }
 
-  .room__info div {
-    cursor: default;
-    padding: 2px;
-    font-size: 14px;
-  }
+ 
 
   .room__info div i {
-    font-size: 16px;
-    padding: 4px;
+    font-size: 13px;
+
   }
 
   .room__info div:hover {
@@ -399,12 +434,8 @@ color: var(--primary-color);
   flex-direction: column;
   gap: 16px;
 }
-  select {
-    width: 100%;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    color: #222222;
-  }
+
+
 
   .thumbnail {
     border: 2px solid transparent;
@@ -431,7 +462,7 @@ color: var(--primary-color);
   }
 
   .carousel-buttons button {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     color: white;
     border: none;
     padding: 10px;
@@ -439,12 +470,36 @@ color: var(--primary-color);
   }
 
   .carousel-buttons button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
   }
+
+.no-room{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.error-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 
 
 @media (max-width: 480px) {
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+   padding: 24px;
+  }
+
+
   .room-title h4 {
     font-size: 20px;
   }
@@ -453,9 +508,7 @@ color: var(--primary-color);
     font-size: 28px;
   }
 
-  .side-images img {
-    width: 50px;
-  }
+
 
   .room__info div {
     font-size: 12px;
@@ -469,10 +522,9 @@ color: var(--primary-color);
     padding: 8px;
   }
 
-  /* Ensure images fill the mobile screen */
   .main-images img {
     width: 100%;
-    height: 100%; /* Fill screen height */
+    height: 100%; 
     object-fit: cover;
   }
 
@@ -483,12 +535,7 @@ color: var(--primary-color);
      
   }
 
-  .side-images img {
-    width: 25%;
-    height: 90px;
-    object-fit: cover;
-    cursor: pointer;
-  }
+
 
   .room__more__details span{
    font-size: 14px;

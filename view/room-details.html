@@ -56,7 +56,7 @@
       <div class="container h-100">
         <div class="contact-banner">
           <div class="text-center">
-            <h1 id="room_title"></h1>
+            <h1 id="room_details_title"></h1>
             <nav aria-label="breadcrumb" class="banner-breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/index.html">Home</a></li>
@@ -82,7 +82,7 @@
                   <img
                     src="/wwwroot/images/rooms/room-details.jpg"
                     alt="room-image"
-                    id="main-image"
+                    id="room_image-1"
                   />
                   <div class="carousel-buttons">
                     <button id="prevBtn">
@@ -99,21 +99,25 @@
                     src="/wwwroot/images/gallery/g1.png"
                     alt="img-1"
                     class="thumbnail active"
+                    id="room_image-2"
                   />
                   <img
                     src="/wwwroot/images/gallery/g2.png"
                     alt="img-2"
                     class="thumbnail"
+                    id="room_image-3"
                   />
                   <img
                     src="/wwwroot/images/gallery/g3.png"
                     alt="img-3"
                     class="thumbnail"
+                    id="room_image-4"
                   />
                   <img
                     src="/wwwroot/images/gallery/g4.png"
                     alt="img-4"
                     class="thumbnail"
+                    id="room_image-5"
                   />
                 </div>
               </div>
@@ -122,7 +126,9 @@
 
               <div class="rd-text">
                 <div class="rd-title">
-                  <h3 id="title"></h3>
+                  <h3 id="room_details__title"></h3>
+
+                  
                   <div class="content">
                     
                     <div id="rating-1" class="star-rating"></div>
@@ -130,10 +136,9 @@
                     <button class="button-contact"> <a id="booking-link" href="#" 
                       >Booking Now</a
                     ></button>
-                   
                   </div>
                 </div>
-            <h2 >₦1,090,000<span>/Night</span></h2>
+                <div class="room_details_rate"><h2 id="room_details_rate"></h2><span>/ Night</span></div>
                 <table>
                   <tbody>
                     <tr>
@@ -154,7 +159,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="f-para">
+                <p id="room_details_summary" class="f-para">
                   Motorhome or Trailer that is the question for you. Here are
                   some of the advantages and disadvantages of both, so you will
                   be confident when purchasing an RV. When comparing Rvs, a
@@ -178,21 +183,21 @@
           <div class="col-lg-4">
             <div class="room-booking">
               <h3>Your Reservation</h3>
-              <form action="#">
+              <form id="room-availability" action="#">
                 <div class="check-date">
                   <label for="date-in">Check In:</label>
-                  <input type="text"  class="form-control datepicker"  id="date-in" />
+                  <input type="text"  class="form-control datepicker"  id="room-date-in" />
                   <i id="date-in" class="fas fa-calendar-alt  icon_calendar"></i>
                 </div>
                 <div class="check-date">
                   <label for="date-out">Check Out:</label>
-                  <input type="text"   class="form-control datepicker" id="date-out" />
+                  <input type="text"   class="form-control datepicker" id="room-date-out" />
                  
                   <i id="date-out" class="fas fa-calendar-alt  icon_calendar"></i>
                 </div>
                 <div class="select-option">
                   <label for="guest">Adults</label>
-                  <select id="guest">
+                  <select id="room-guest-adult">
                     <option value="">1</option>
                     <option value="">2</option>
                     <option value="">3</option>
@@ -200,7 +205,7 @@
                   </select>
                 </div>
                 <div class="select-option">
-                  <label for="room">Children</label>
+                  <label for="room-guest-children">Children</label>
                   <select id="room">
                     <option value="">1</option>
                     <option value="">2</option>
@@ -209,7 +214,7 @@
                   </select>
                 </div>
                 <button class="button-form">
-                 <a href="/view/bookings.html"></a> Check Availability
+                  Check Availability
                 </button>
               </form>
             </div>

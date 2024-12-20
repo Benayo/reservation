@@ -414,8 +414,8 @@ margin-bottom: 8px;}
 /*=================== section-intro start ====================*/
 .section-intro__style {
   margin-bottom: 14px;
-  color:  var(--primary-color); }
-
+  color: var(--primary-color); 
+}
   .section-intro__style img {
     width: 70px;
     height: 70px;
