@@ -1,18 +1,26 @@
-$(document).ready(function() {  
+$(document).ready(function() {
+
+  $('#availability').load('/wwwroot/js/custom/bookings.js')
+
   function setRating(rating) {
+    
+    rating = Math.min(Math.max(rating, 1), 5);
+    
     let fullStars = Math.floor(rating);
     let halfStar = (rating % 1) >= 0.5 ? 1 : 0;
     let emptyStars = 5 - fullStars - halfStar;
     let stars = '';
 
+    
     for (let i = 0; i < fullStars; i++) {
       stars += '<i class="fas fa-star full"></i>';
     }
-
+    
     if (halfStar) {
       stars += '<i class="fas fa-star-half-alt half"></i>';
     }
 
+    
     for (let i = 0; i < emptyStars; i++) {
       stars += '<i class="far fa-star empty"></i>';
     }
@@ -20,85 +28,129 @@ $(document).ready(function() {
     return stars;
   }
 
-  function formatDate(dateStr) {
-    var dateParts = dateStr.split('/');
-    var day = dateParts[0];
-    var month = dateParts[1] - 1; 
-    var year = '20' + dateParts[2]; 
+  var urlParams = new URLSearchParams(window.location.search);
 
-    var dateObj = new Date(year, month, day);
-    var formattedDate = dateObj.toISOString().split('T')[0]; 
-    return formattedDate;
+
+
+  function getUrlParameter(name, defaultValue) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name) || defaultValue;
   }
 
-  var urlParams = new URLSearchParams(window.location.search);
-  var checkInDate = urlParams.get('checkInDate');
-  var checkOutDate = urlParams.get('checkOutDate');
-  var adults = urlParams.get('adults');
-  var children = urlParams.get('children');
+  var checkInDate = getUrlParameter('checkInDate', new Date().toISOString().split('T')[0]);
+  var checkOutDate = getUrlParameter('checkOutDate', new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0]);
+  var adults = getUrlParameter('adults', 1);
+  var children = getUrlParameter('children', 0); 
 
-  var formattedCheckInDate = formatDate(checkInDate);
-  var formattedCheckOutDate = formatDate(checkOutDate);
+  var currentUrl = window.location.href;
+  var newUrl = new URL(currentUrl);
+
+  if (!newUrl.searchParams.has('checkInDate')) {
+    newUrl.searchParams.append('checkInDate', checkInDate);
+  }
+  if (!newUrl.searchParams.has('checkOutDate')) {
+    newUrl.searchParams.append('checkOutDate', checkOutDate);
+  }
+  if (!newUrl.searchParams.has('adults')) {
+    newUrl.searchParams.append('adults', adults);
+  }
+  if (!newUrl.searchParams.has('children')) {
+    newUrl.searchParams.append('children', children);
+  }
+
+  if (newUrl.toString() !== currentUrl) {
+    window.location.href = newUrl.toString();
+    return;  
+
+
+  }
+
+
+  var checkInDate = urlParams.get('checkInDate')  || new Date().toISOString().split('T')[0];
+  var checkOutDate = urlParams.get('checkOutDate') || new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0];
+  var adults = urlParams.get('adults') || 1;
+  var children = urlParams.get('children') || 0;
+
+  if (!checkInDate) {
+    checkInDate = new Date().toISOString().split('T')[0];
+  }
+  
+  if (!checkOutDate) {
+    var nextDay = new Date();
+    nextDay.setDate(nextDay.getDate() + 1);
+    checkOutDate = nextDay.toISOString().split('T')[0];
+  }
+  if (!adults) {
+    adults = 1;
+  }
+  if (!children) {
+    children = 0;
+  }
 
   $('#checkInDate').text(checkInDate);
   $('#checkOutDate').text(checkOutDate);
-  $('#adults').text(adults);
-  $('#children').text(children);
+  $('#num-adults').text(adults);
+  $('#num-children').text(children);
+
+  $('#children').val(children); 
+
+  var checkInDateFormatted = new Date(checkInDate).toISOString().split('T')[0];
+  var checkOutDateFormatted = new Date(checkOutDate).toISOString().split('T')[0];
 
   var requestData = {
-    checkInDate: formattedCheckInDate,
-    checkOutDate: formattedCheckOutDate,
+    checkInDate: checkInDateFormatted,
+    checkOutDate: checkOutDateFormatted,
     adultNo: adults,
     childNo: children,
-    facilityTypeId: 1  
+    facilityTypeId: 1
   };
-console.log(requestData);
 
   sessionStorage.setItem('requestData', JSON.stringify(requestData));
 
-  var availabilityData = sessionStorage.getItem('availabilityData');
-
-  if (availabilityData) {
-    availabilityData = JSON.parse(availabilityData);
-    displayRooms(availabilityData);
-  } else {
-    $.ajax({
-      url: 'https://guestapi.roomability.io/Reservation/Availability',
-      method: 'POST',
-      contentType: 'application/json',
-      headers: {
-        'X-API-KEY': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
-      },
-      data: JSON.stringify(requestData),
-      success: function(response) {
-      
-        sessionStorage.setItem('availabilityData', JSON.stringify(response));
-        displayRooms(response);
-      },
-      error: function(xhr, status, error) {
-        console.error('API Request Error:', error);
-        showError('Error fetching availability. Please try again later.');
-      }
-      
-    });
-  }
-
+  $.ajax({
+    url: 'https://guestapi.roomability.io/Reservation/Availability',
+    method: 'POST',
+    contentType: 'application/json',
+    headers: {
+      'X-API-KEY': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+    },
+    data: JSON.stringify(requestData),
+    success: function(response) {
+      sessionStorage.setItem('availabilityData', JSON.stringify(response));
+      displayRooms(response);
+    },
+    error: function(xhr, status, error) {
+      console.error('API Request Error:', error);
+      showError('Error fetching availability. Please try again later.');
+    }
+  });
 
   function showError(message) {
     var errorHtml = `
       <div class="details-container error-container">
       <h2>404</h2>
         <p>${message}</p>
-     
       </div>
     `;
     $('#error').html(errorHtml);
   }
-  
+
   function displayRooms(response) {
     const rooms = response.types;
     if (rooms && rooms.length > 0) {
       rooms.forEach(function(room) {
+
+        let roomDetails = room.detail || 'No details available';
+        let truncatedDetails = roomDetails.split(' ').slice(0, 25).join(' ');
+        
+       
+        let detailsHtml = `
+          <span id="summary">${truncatedDetails}...</span>  
+          <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}" id="room-type-button">Read More</a>
+        `;
+
+
+
         const roomContainer = `
           <div class="details-container">
             <div class="image-container">
@@ -115,12 +167,15 @@ console.log(requestData);
             </div>
 
             <div class="details">
+              <div class="room-error"></div>
               <div class="room-title">
-              <a id="room-type-button" href="javascript:void(0);" data-room='${JSON.stringify(room)}'><h4>${room.roomType}</h4></a>  
+                <a id="room-type-button" href="/view/room-details.html?roomTypeId=${
+                      room.roomTypeId
+                    }"><h4>${room.roomType}</h4></a>  
                 <span>${room.available} Rooms Available</span>
               </div>
               <div class="detail-explore__price">
-                <h3>₦ ${room.rate}<sub>/ Night</sub></h3>
+                <h3>${formatCurrency(room.currencySymbol, room.rate)}<sub>/ Night</sub></h3>
                 <div id="rating" class="star-rating">${setRating(room.rateId)}</div>
               </div>
               <div class="room-accommodates">
@@ -145,13 +200,12 @@ console.log(requestData);
 
               <div id="summary-container" class="room__more__details">
                 <div>Room Details</div>
-                <span id="summary">${room.detail || 'No details available'}</span> 
-                <a href="/view/room-details.html?roomId=${room.roomTypeId}">Read More</a>
+               ${detailsHtml}   
               </div>
 
               <div class="room__number__container">
                 <div class="room__number">Number of Rooms</div>
-                <select class="nice-select">
+                <select class="form-control">
                 ${generateRoomOptions(room.available)}
                 </select>
                 <a id="continue-button" href="javascript:void(0);" class="button button-bookings" data-room='${JSON.stringify(room)}'>Continue</a>
@@ -186,14 +240,16 @@ console.log(requestData);
     return optionsHtml;
   }
 
-
   
+  function formatCurrency(currencySymbol, rate) {
+    return currencySymbol + ' ' + rate.toLocaleString(); 
+  }
+
   $(document).on('click', '#continue-button', function() {
     var roomData = $(this).data('room');  
     var selectedRoomCount = $(this).closest('.room__number__container').find('select').val(); 
 
     var requestData = JSON.parse(sessionStorage.getItem('requestData'));
-
 
     var bookingData = {
       requestData: requestData,
@@ -201,23 +257,27 @@ console.log(requestData);
       roomCount: selectedRoomCount
     };
 
-    sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+    var errorContainer = $(this).closest('.details').find('.room-error');
 
+    errorContainer.html('');
+
+    if (!checkInDate || !checkOutDate) {
+      errorContainer.html('<p style="color: red;">Please select both check-in and check-out dates.</p>');
+      return;  
+    }
+
+    sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
     
     window.location.href = 'check-guest.html';
   });
 
-
-    
   $(document).on('click', '#room-type-button', function() {
     var roomData = $(this).data('room');  
 
-  sessionStorage.setItem('roomDetailsData', JSON.stringify(roomData));
+    sessionStorage.setItem('roomDetailsData', JSON.stringify(roomData));
 
-    
     window.location.href = 'room-details.html';
   });
-
 
   function initCarousel() {
     $('.carousel-button').on('click', function() {

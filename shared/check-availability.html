@@ -1,75 +1,91 @@
-<head>
-  <!-- jQuery (Ensure this is loaded first) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
-  <!-- jQuery UI (Load after jQuery) -->
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-  
-  <!-- jQuery UI CSS -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  
-  <!-- Font Awesome (For calendar icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
-  <!-- Your custom JavaScript -->
-  <script src="/wwwroot/js/custom/check-availabilty.js"></script>
 </head>
+<body>
 
 <form id="check-availability-form" class="form-search form-search-position">
   <div class="container">
+
+    <div class="col-12" id="error-message" style="color: #9d3b3b; font-size: 12px; display: none;"></div>
     <div class="row">
-      <!-- Check In Date -->
-      <div class="col-sm gutters-19">
-        <div class="form-group">
-          <div class="form-select-custom position-relative">
-            <input type="text" class="form-control datepicker" id="date-in" placeholder="Check In Date" />
-            <i class="fas fa-calendar-alt calendar-icon" id="calendar-in"></i>
-          </div>
+        <div class=" col-sm gutters-19">
+    
+          <div class="form-group">
+         
+          <div class="did-floating-label-content form-select-custom position-relative">
+          <input class="did-floating-input form-control datepicker" type="text" id="date-in" autocomplete="off" placeholder=""  name="date">
+          <label class="did-floating-label">Check-in</label>
+          <i class="fas fa-calendar-alt calendar-icon" id="calendar-in"></i>
+          
+        
+           </div>
+           <div id="check-in-error" class="error-message"></div>
+         </div>
+       
         </div>
+        
+
+        <div class=" col-sm gutters-19">
+          <div class="form-group">
+          <div class="did-floating-label-content form-select-custom position-relative">
+          <input class="did-floating-input form-control datepicker" type="text" id="date-out" autocomplete="off" placeholder=""  name="date">
+          <label class="did-floating-label">Check-out</label>
+          <i class="fas fa-calendar-alt calendar-icon" id="calendar-in"></i>
+           </div>
+           
+           <div id="check-out-error" class="error-message"></div>
+         </div>
+        </div>
+
+
+        <div class="col-sm gutters-19">
+          <div class="form-group">
+        
+        <div class="did-floating-label-content form-select-custom">
+          <select name="adults" id="num-adults" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+            <option value="" hidden></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4+</option>
+          </select>
+          <label id="adult-age" for="adults" class="did-floating-label"></label>
+        </div>
+        <div id="adults-error" class="error-message"></div>
+      </div>
       </div>
 
-      <!-- Check Out Date -->
+      
+    
       <div class="col-sm gutters-19">
+     
         <div class="form-group">
-          <div class="form-select-custom position-relative">
-            <input type="text" class="form-control datepicker" id="date-out" placeholder="Check Out Date" />
-            <i class="fas fa-calendar-alt calendar-icon" id="calendar-out"></i>
-          </div>
-        </div>
+        
+          
+      <div class="did-floating-label-content form-select-custom">
+     
+        <select name="children" id="num-children" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+          <option value="" hidden></option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4+</option>
+        </select>
+        <label id="children-age" for="children" class="did-floating-label"></label>
       </div>
-
-      <!-- Adults Selector -->
-      <div class="col-sm gutters-19">
-        <div class="form-group">
-          <div class="form-select-custom">
-            <select name="adults" id="num-adults">
-              <option value="" disabled selected>Adults</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4+</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Children Selector -->
-      <div class="col-sm gutters-19">
-        <div class="form-group">
-          <div class="form-select-custom">
-            <select id="num-children" name="children">
-              <option value="" disabled selected>Children</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4+</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- Button -->
-      <div class="col-sm gutters-19">
+      <div id="children-error" class="error-message"></div>
+    </div>
+  
+    </div>
+ 
+<div class="col-sm gutters-19">
         <div class="form-group">
           <button class="button-availability" type="submit">
             Check Availability
@@ -78,5 +94,12 @@
       </div>
     </div>
   </div>
+</div>
 </form>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="/wwwroot/js/custom/check-availabilty.js" defer></script>
+</body>
+</html>

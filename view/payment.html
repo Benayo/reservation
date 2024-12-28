@@ -77,7 +77,7 @@
         <div class="navigation">
           <a href="javascript:history.back()" class="back">
             <i class="fa fa-arrow-left"></i>
-            <span> <span>Booking/Reservation/Guest/Preview/</span></span>
+            <span> <span>Preview/</span></span>
           </a>
           <span class="reserve">Payment</span>
         </div>
@@ -89,16 +89,19 @@
        <div id="reservation"></div>
 
         <!-- Contact Details -->
+   
+    
         <div class="check-guest__title__contact">
           <h3>Payment Method</h3>
         </div>
         <form  id="guest-payment" class="check-guest__contact">
+          <div  class="error-message" id="error"></div>
           <div class="guest__label__container">
             <label for="email">Method of Payment<span>*</span></label>
           </div>
 
           <div>
-            <select class="form-control nice-select" name="" id="">
+            <select class="form-control" name="" id="">
               <option value="">Book on Hold</option>
               <option value="">Paystack</option>
             </select>

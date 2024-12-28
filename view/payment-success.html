@@ -97,24 +97,33 @@
                 <!-- Booking Details Summary -->
                 <div class="booking-summary">
                   <h5>Booking Details</h5>
+
+               
+                  <div class="detail"><p>Booking Ref:</p><span id="booking-reference"></span></div>
+
+
                   <div class="detail"><p>Guest Name:</p><span id="guest-success-name"></span></div>
                   <div class="detail">
                     <p>Arrival Time:</p><span id="arrival-time"></span></div>
                   <div class="detail"><p>Check-in Date:</p><span id="check-in-date"></span></div>
                   <div class="detail"> <p>Check-out Date:</p><span id="check-out-date"></span></div>
                   <div class="detail"><p>Room Type:</p><span id="room-type"></span></div>
+                  <div class="detail"><p>Number of Rooms:</p><span id="num-rooms"></span></div>
                   <div class="detail">
                     <p>Total Payment:</p> <span id="total-amount"></span></div>   
                 </div>
 
                 <!-- Confirmation Message -->
                 <div class="confirmation-message">
-                  <p>We look forward to welcoming you to <a href="/index.html">Seaplace Hotel</a>. If you need further assistance, feel free to contact us at any time.</p>
+                  <p>We look forward to welcoming you to <a id="hotel-title" href="/index.html"></a>. If you need further assistance, feel free to contact us at any time.</p>
                 </div>
 
                 <!-- Action Button -->
                 <div class="button-container">
-                  <a href="/index.html" class="button button-contact">Back to Home</a>
+                  <a id="continue-booking" href="/view/bookings.html" class="button-form">
+                    Continue Booking
+                  </a>
+                  <a href="/index.html" class="button button-success">Back to Home</a>
                 </div>
               </div>
             </div>

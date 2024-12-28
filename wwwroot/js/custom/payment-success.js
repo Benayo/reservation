@@ -1,17 +1,41 @@
-$(document).ready(function(){
-    $("#header").load('/shared/header.html');
-    $("#footer").load('/shared/footer.html');  
+$(document).ready(function() {
+  $("#header").load('/shared/header.html');
+  $("#footer").load('/shared/footer.html');
+  $.getJSON('/appsettings.json', function(data) {
 
-    var guestData = JSON.parse(sessionStorage.getItem('guestData'));
-    console.log(guestData);
+    const hotel = data.contactInfo.hotel;
+    $('#hotel-title').text(hotel)
+  })
 
-    if(guestData) {
-       
-        $('#guest-success-name').text(guestData.guest.title + " " + guestData.guest.firstName + " " + guestData.guest.lastName);
-        $('#arrival-time').text(guestData.reservations[0].arrivalTime);
-        $('#check-in-date').text(guestData.reservations[0].checkInDate);
-        $('#check-out-date').text(guestData.reservations[0].checkOutDate);
-        $('#room-type').text(guestData.reservations[0].roomTypeId); // You may want to replace this with the room type name if available
-        $('#total-amount').text(guestData.payment.amount);
-    }
+  function getQueryParams() {
+      var params = {};
+      window.location.search.substr(1).split("&").forEach(function(item) {
+          var [key, value] = item.split("=");
+          params[key] = decodeURIComponent(value);
+      });
+      return params;
+  }
+  var params = getQueryParams();
+
+  if (!params.bookingRef) {
+      window.location.href = '/bookings.html';  
+      return;
+  }
+
+  $('#guest-success-name').text(params.guestName || "Guest information not available.");
+  $('#arrival-time').text(params.arrivalTime || "N/A");
+  $('#check-in-date').text(params.checkInDate || "N/A");
+  $('#check-out-date').text(params.checkOutDate || "N/A");
+  $('#room-type').text(params.roomType || "Not Available");
+  $('#num-rooms').text(params.roomCount || "Not Available");
+  $('#total-amount').text(params.totalAmount ? new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(params.totalAmount) : "0.00");
+  $('#booking-reference').text(params.bookingRef || "Booking reference not available.");
+
+  if (params.errorCode || params.bookingRef) {
+      history.pushState(null, null, location.href);
+
+      window.onpopstate = function() {
+          window.location.href = 'index.html'; 
+      };
+  }
 });

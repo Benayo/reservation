@@ -244,9 +244,9 @@ textarea {
 
 .booking-summary .detail  {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* Two columns: 1 for the label, 2 for the value */
-  /* Adds space between label and value */
-  padding-left: 10px; /* Adds padding to the left */
+  grid-template-columns: 1fr 2fr; 
+  gap: 12px;
+  padding-left: 10px; 
   margin-bottom: 20px;
 }
 
@@ -277,11 +277,37 @@ textarea {
   color: var(--primary-color); 
 }
 
+
+.confirmation-message p{
+text-align: left;
+}
+
+
 .button-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 24px;
 width: 100%;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+.privacy-container{
+  display: flex;
+  flex-direction: column;
+
+  
+  background-color: #fff;
+   padding: 32px;
+   
+
+ 
 }
 
 @media (max-width: 480px) {
@@ -331,4 +357,28 @@ width: 100%;
        
        }
 
+       .button-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+      width: 100%;
+      }
+
+      .button-form {
+       width: 100%; }
+       
+      
+       .button-contact{
+        /* width: 100%; */
+      text-align: center; }
+        
+       
+      .booking-summary .detail  {
+     
+        gap: 12px;
+        padding-left: 4px; 
+        margin-bottom: 14px;
+      }
 }

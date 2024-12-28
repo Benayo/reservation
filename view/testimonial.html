@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial Carousel</title>
+  
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <!-- Include Owl Carousel CSS -->
+  <link rel="stylesheet" href="path/to/owl.carousel.min.css">
+  <link rel="stylesheet" href="path/to/owl.theme.default.min.css">
+  
+  <!-- Include your custom stylesheets if any -->
+</head>
+<body>
+  <section class="section-margin">
+    <div class="container">
+      <div class="section-intro text-center pb-20px">
+        <h2>Our Guests Love Us</h2>
+      </div>
+      <div class="owl-carousel owl-theme testi-carousel">
+        <!-- Testimonial Items will be populated here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Include Owl Carousel JS -->
+  <script src="path/to/owl.carousel.min.js"></script>
+
+  <!-- Your custom script to load testimonials -->
+  <script>
+    $(document).ready(function() {
+      // Testimonial data
+      const testimonialSection = [
+        {
+          image: "/wwwroot/images/home/testimonial1.png",
+          name: "John Doe",
+          designation: "CEO, Company XYZ",
+          description: "This residence has been a great experience for my business. I highly recommend it to others."
+        },
+        {
+          image: "/wwwroot/images/home/testimonial2.png",
+          name: "Jane Smith",
+          designation: "CTO, Company ABC",
+          description: "I have always wanted to stay in a luxury hotel. This residence has made my dream come true."
+        },
+        {
+          image: "/wwwroot/images/home/testimonial3.png",
+          name: "Mike Johnson",
+          designation: "HR Manager, Company DEF",
+          description: "I can't believe I found this perfect place for my new business. I can't wait to share my experiences with others."
+        },
+        // More testimonials
+      ];
+
+      // Function to render testimonials
+      function renderTestimonials() {
+        $.each(testimonialSection, function(index, testimonial) {
+          const carouselItem = `
+            <div class="testi-carousel__item">
+              <div class="media">
+                <div class="testi-carousel__img">
+                  <img src="${testimonial.image}" alt="${testimonial.name}" />
+                </div>
+                <div class="media-body">
+                  <p>${testimonial.description}</p>
+                  <div class="testi-carousel__intro">
+                    <h3>${testimonial.name}</h3>
+                    <p>${testimonial.designation}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          $('.testi-carousel').append(carouselItem);
+        });
+      }
+
+      // Initialize the carousel
+      renderTestimonials();
+      if ($(".owl-carousel").length > 0) {
+    $("#testimonal-container").owlCarousel({
+      loop: true,
+      autoplay: true,
+      margin: 30,
+      smartSpeed: 600,
+      nav: false,
+      dots: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        800: {
+          items: 2,
+        },
+        1000: {
+          items: 3,
+        },
+      },
+    });
+  }
+    });
+  </script>
+</body>
+</html>

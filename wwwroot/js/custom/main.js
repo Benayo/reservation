@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
   "use strict";
 
@@ -11,16 +13,50 @@ $(document).ready(function () {
   $("#availability").load("/shared/check-availability.html");
 
 
+
+
+    // For input fields
+    $('#input-field').on('focus input', function() {
+      if ($(this).val() !== "") {
+        $(this).next('label').css({
+          top: '-10px',
+          fontSize: '12px',
+          color: '#3f51b5'
+        });
+      } else {
+        $(this).next('label').css({
+          top: '10px',
+          fontSize: '16px',
+          color: '#999'
+        });
+      }
+    });
+  
+    // For select fields
+    $('#dropdown').on('change focus', function() {
+      if ($(this).val() !== "") {
+        $(this).next('label').css({
+          top: '-10px',
+          fontSize: '12px',
+          color: '#3f51b5'
+        });
+      } else {
+        $(this).next('label').css({
+          top: '10px',
+          fontSize: '16px',
+          color: '#999'
+        });
+      }
+    });
+
   
 
 
 
-
+  
   $.getJSON("/appsettings.json", function (data) {
-    const primaryColor = data.appSettings.primaryColor;
-
-   const textInfo = data.homeContent
-
+  const primaryColor = data.appSettings.primaryColor;
+   const contentInfo = data.homeContent
    const visibilitySettings= data.homeContent.visibility
    if (!visibilitySettings.welcomeSection) {
     $(".welcome").hide();
@@ -36,55 +72,239 @@ $(document).ready(function () {
     $(".testi-carousel").hide(); 
   }
 
-   $('#slogan').text(textInfo.slogan)
-   $('#banner').text(textInfo.banner)
-   $('#banner-title').html(textInfo.welcomeBanner.title)
-     $('#banner-text').html(textInfo.welcomeBanner.text)
-     $('#banner-button').text(textInfo.welcomeBanner.buttonText);
+   $('#slogan').text(contentInfo.slogan)
+   $('#banner').text(contentInfo.banner)
+
+
+   $('#welcome-image-1').attr('src', contentInfo.welcomeBanner.image1)
+   $('#welcome-image-2').attr('src', contentInfo.welcomeBanner.image2)
+   $('#welcome-image-3').attr('src', contentInfo.welcomeBanner.image3)
+   $('#welcome-title').html(contentInfo.welcomeBanner.title)
+  $('#welcome-description').html(contentInfo.welcomeBanner.description)
+  $('#welcome-button').text(contentInfo.welcomeBanner.buttonText);
 
 
 
-     $('#facility-title1').text(textInfo.facilities.facility1.title)
-     $('#facility-title2').text(textInfo.facilities.facility2.title)
-     $('#facility-title3').text(textInfo.facilities.facility3.title)
+  $("#play-home-video").attr('src', contentInfo.videoSection.videoPath)
+  $("#video-title").text(contentInfo.videoSection.title)
+  $("#video-description").text(contentInfo.videoSection.description)
+
+  renderFacilitySection(contentInfo.facilitySection);
 
 
-     $('#facility-text1').text(textInfo.facilities.facility1.text)
-     $('#facility-text2').text(textInfo.facilities.facility2.text)
-     $('#facility-text3').text(textInfo.facilities.facility3.text)
-    
-
-$('#testimonial-text1').html(textInfo.testimonial.testimonial1.text)
-$('#testimonial-text2').html(textInfo.testimonial.testimonial2.text)
-    $('#testimonial-text3').html(textInfo.testimonial.testimonial3.text)
-    $('#testimonial-text4').html(textInfo.testimonial.testimonial4.text)
-    $('#testimonial-text5').html(textInfo.testimonial.testimonial5.text)
-    $('#testimonial-text6').html(textInfo.testimonial.testimonial6.text)
-
-    $('#testimonial-name1').html(textInfo.testimonial.testimonial1.name)
-    $('#testimonial-name2').html(textInfo.testimonial.testimonial2.name)
-        $('#testimonial-name3').html(textInfo.testimonial.testimonial3.name)
-        $('#testimonial-name4').html(textInfo.testimonial.testimonial4.name)
-        $('#testimonial-name5').html(textInfo.testimonial.testimonial5.name)
-        $('#testimonial-name6').html(textInfo.testimonial.testimonial6.name)
-    
-
-        
-    $('#testimonial-designation1').html(textInfo.testimonial.testimonial1.designation)
-    $('#testimonial-designation2').html(textInfo.testimonial.testimonial2.designation)
-        $('#testimonial-designation3').html(textInfo.testimonial.testimonial3.designation)
-        $('#testimonial-designation4').html(textInfo.testimonial.testimonial4.designation)
-        $('#testimonial-designation5').html(textInfo.testimonial.testimonial5.designation)
-        $('#testimonial-designation6').html(textInfo.testimonial.testimonial6.designation)
-
-    document.documentElement.style.setProperty("--primary-color", primaryColor);
+  document.documentElement.style.setProperty("--primary-color", primaryColor);
   }).fail(function () {
     console.error("Failed to load appsettings.json");
   });
 
 
+  function renderFacilitySection(facilitySectionData) {
+    const facilityImage = $('#facility-image');
+    facilityImage.attr('src', facilitySectionData.image);
+
+    const facilitiesList = $('#facilitiesList');
+    const facilityItems = facilitySectionData.facilities.map(facility => {
+      return `
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="card card-special">
+        <div>
+         <span class="card-special__icon"><i class="${facility.iconClass}"></i></span> 
+        <div class="media-body ">
+          <h4 class="card-special__title">${facility.title}</h4>
+           </div>
+
+           <div class="card-body">
+          <p>${facility.text}</p>
+         </div>
+          </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    facilitiesList.html(facilityItems);
+  }
 
 
+  
+  
+  
+  function getDefaultValues() {
+    var currentDate = new Date();
+    var nextDay = new Date(currentDate);
+    nextDay.setDate(currentDate.getDate() + 1);
+
+    var adults = 1;
+    var children = 1;
+
+    return {
+      checkInDate: currentDate,
+      checkOutDate: nextDay,
+      adults: adults,
+      children: children
+    };
+  }
+  
+  $(document).on('click', '#book-now',function(event) {
+    event.preventDefault();
+
+    var defaultValues = getDefaultValues();
+
+    
+    var checkInDate = defaultValues.checkInDate.toISOString().split('T')[0];
+    var checkOutDate = defaultValues.checkOutDate.toISOString().split('T')[0];
+    var adults = defaultValues.adults;
+    var children = defaultValues.children;
+
+    var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
+                      '&checkOutDate=' + encodeURIComponent(checkOutDate) +
+                      '&adults=' + encodeURIComponent(adults) +
+                      '&children=' + encodeURIComponent(children);
+
+    // Redirect to the bookings page with the query parameters
+    window.location.href = 'bookings.html?' + queryParams;
+  });
+  
+  jQuery(document).ready(function ($) {
+    $.ajax({
+      url: "https://guestapi.roomability.io/RoomType/DetailList?facilityTypeId=1",
+      method: "GET",
+      headers: {
+        "X-API-Key": "WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3",
+      },
+      success: function (response) {
+        // Check if the response has room types
+        if (response && response.types) {
+          const roomsContainer = $("#rooms-container");
+
+          $.each(response.types, function (index, room) {
+            const roomElement = `
+            <div class="testi-carousel__item-room">
+              <div class="card card-explore">
+                <div class="card-explore__img">
+                  <img class="card-img" src="${
+                    room.image1 || "default_image.jpg"
+                  }" alt="${room.roomType}" />
+                </div>
+                <div class="card-body">
+                  <h3 class="card-explore__price">${formatCurrency(
+                    room.currencySymbol,
+                    room.rate
+                  )}<sub>/ Night</sub></h3>
+                  <h4 class="card-explore__title">
+                    <a href="/view/room-details.html?roomTypeId=${
+                      room.roomTypeId
+                    }">${room.roomType}</a>
+                  </h4>
+                  <p>${room.summary}</p>
+                  <a class="card-explore__link" href="#">Book Now <i class="ti-arrow-right"></i></a>
+                </div>
+              </div>
+            </div>
+          `;
+
+            $("#rooms-container").append(roomElement);
+          });
+
+          if ($(".owl-carousel").length > 0) {
+            // Reinitialize Owl Carousel after appending the content
+            roomsContainer.owlCarousel("destroy"); 
+            roomsContainer.owlCarousel({
+              loop: true,
+              autoplay: true,
+              margin: 30,
+              smartSpeed: 600,
+              nav: false,
+              dots: true,
+              responsive: {
+                0: {
+                  items: 1,
+                },
+                800: {
+                  items: 2,
+                },
+                1000: {
+                  items: 3,
+                },
+              },
+            });
+          }
+        } else {
+          $("#rooms-container").html(`<div class="error-container">
+            <h4>No room types available.</h4>
+            </div>`);
+        }
+      },
+      error: function () {
+        $("#rooms-container").html(`<div class="error-container"><h4>Error fetching room types.</h4></div>`);
+      },
+    });
+
+
+
+
+    $.getJSON("/appsettings.json", function (data) {
+    
+       const contentInfo = data.homeContent
+   
+    const testimonialSection = contentInfo.testimonialSection;
+
+    
+     const testimonialContainer = $("#testimonial-container")
+
+        $.each(testimonialSection, function(index, testimonial) {
+          const carouselItem = `
+            <div class="testi-carousel__item">
+              <div class="media">
+                <div class="testi-carousel__img">
+                  <img src="${testimonial.image}" alt="${testimonial.name}" />
+                </div>
+                <div class="media-body">
+                  <p>${testimonial.description}</p>
+                  <div class="testi-carousel__intro">
+                    <h3>${testimonial.name}</h3>
+                    <p>${testimonial.designation}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          $('#testimonial-container').append(carouselItem);
+        });
+      
+        if ($(".owl-carousel").length > 0) {
+
+          testimonialContainer.owlCarousel("destroy");
+
+          testimonialContainer.owlCarousel({
+            loop: true,
+            autoplay: true,
+            margin: 30,
+            smartSpeed: 600,
+            nav: false,
+            dots: true,
+            responsive: {
+              0: {
+                items: 1,
+              },
+              800: {
+                items: 2,
+              },
+              1000: {
+                items: 3,
+              },
+            },
+          });
+        }
+
+      })
+  });
+  
+  function formatCurrency(currencySymbol, rate) {
+    return currencySymbol + ' ' + rate.toLocaleString(); 
+  }
+  
 
   //------- video popup -------//
   $(".play-btn").magnificPopup({
@@ -216,3 +436,5 @@ $('#testimonial-text2').html(textInfo.testimonial.testimonial2.text)
   }
   mailChimp2();
 });
+
+

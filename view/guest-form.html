@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Seaplace Hotel - Contact</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Seaplace Hotel - Contact</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="img/favicon.png" type="image/png" />
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.png" type="image/png" />
 
-    <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+  <!-- FontAwesome (For calendar icon) -->
 
-    <!-- Stylesheets -->
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/fontawesome/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/themify-icons/themify-icons.css"
-    />
-    <link rel="stylesheet" href="/wwwroot/js/vendors/linericon/style.css" />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/nice-select/nice-select.css"
-    />
-    <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
-    <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
-    <link rel="stylesheet" href="/wwwroot/css/vendor/check-guest.css" />
-  </head>
+  <link rel='stylesheet' type='text/css'href='css/timepicki.css'/>
 
+<!--   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+
+  <!-- Bootstrap CSS (For styling) -->
+  <link rel="stylesheet" href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css" />
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/wwwroot/js/vendors/themify-icons/themify-icons.css" />
+  <link rel="stylesheet" href="/wwwroot/js/vendors/linericon/style.css" />
+  <link rel="stylesheet" href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css" />
+  <link rel="stylesheet" href="/wwwroot/js/vendors/nice-select/nice-select.css" />
+  <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
+  <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
+  <link rel="stylesheet" href="/wwwroot/css/vendor/check-guest.css" />
+  <link href="
+  https://cdn.jsdelivr.net/npm/timepicki@2.0.1/css/timepicki.min.css
+  " rel="stylesheet">
+  <!-- DateTimePicker CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.3/jquery.datetimepicker.css" />
+
+</head>
   <body>
     <!-- Header Section -->
     <div id="header"></div>
@@ -70,14 +60,13 @@
     </section>
 
     <!-- Booking Details Section -->
-    <section class="section-margin section-margin--small">
+    <form id="check-guest-form" class="section-margin section-margin--small">
       <div class="container">
         <div class="navigation">
           <a href="javascript:history.back()" class="back">
-            <i class="fa fa-arrow-left"></i> <span>Booking/</span
-            ><span>Reservation/</span>
+            <i class="fa fa-arrow-left"></i><span>Check guest/</span>
           </a>
-          <span class="reserve">Guest</span>
+          <span class="reserve">Guest form</span>
         </div>
         <!-- Title -->
         <div class="check-guest__title">
@@ -97,9 +86,9 @@
           </div>
           <div>
             <select class="form-control" name="title" id="guest-title">
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Miss">Miss</option>
+              <option value="Mr.">Mr</option>
+              <option value="Mrs.">Mrs</option>
+              <option value="Miss.">Miss</option>
             </select>
           </div>
 
@@ -114,6 +103,9 @@
               name="first-name"
             />
           </div>
+          <div class="error-message">
+            <p id="first-name-error"></p>
+          </div>
 
           <div class="guest__label__container">
             <label for="last-name">Last Name<span>*</span></label>
@@ -126,27 +118,39 @@
               name="last-name"
             />
           </div>
+          <div class="error-message">
+            <p id="last-name-error"></p>
+          </div>
 
           <div class="guest__label__container">
-            <label for="sex">Sex<span>*</span></label>
+            <label for="sex">Gender</label>
           </div>
           <div>
-            <select class="form-control" name="sex" id="guest-gender">
+            <select class="form-control" name="gender" id="guest-gender">
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Other">I choose not to disclose</option>
+              <option value="Other">Others</option>
             </select>
           </div>
 
           <div class="guest__label__container">
-            <label for="date-of-birth">Date of Birth<span>*</span></label>
+            <label for="date-of-birth">Date of Birth</label>
           </div>
-          <div>
-            <input type="date" class="form-control" id="guest-date-of-birth" name="guest-date-of-birth" />
+       
+
+
+          <div class="form-select-custom position-relative">
+
+
+            <input type="text" class="form-control datepicker"  placeholder="yyyy/mm/dd" id="guest-date-of-birth" name="guest-date-of-birth"  autocomplete="off" />
+            <i class="fas fa-calendar-alt calendar-icon" id="guest-calendar-icon"></i>
           </div>
 
+
+
+
           <div class="guest__label__container">
-            <label for="occupation">Occupation<span>*</span></label>
+            <label for="occupation">Occupation</label>
           </div>
           <div>
             <input
@@ -171,11 +175,20 @@
             <input type="tel" class="form-control" id="guest-phone" name="phone" />
           </div>
 
+          <div class="error-message">
+            <p id="phone-error"></p>
+          </div>
+
           <div class="guest__label__container">
             <label for="email">Email<span>*</span></label>
           </div>
           <div>
-            <input type="text" class="form-control" id="guest-email" name="email" />
+            <input type="text" class="form-control" id="guest-email" name="email" disabled />
+          </div>
+
+          
+          <div class="error-message">
+            <p id="email-error"></p>
           </div>
 
           <div class="guest__label__container">
@@ -189,9 +202,13 @@
               name="addressLine1"
             />
           </div>
+ 
+          <div class="error-message">
+            <p id="address-error"></p>
+          </div>
 
           <div class="guest__label__container">
-            <label for="addressLine2">Address Line 2<span>*</span></label>
+            <label for="addressLine2">Address Line 2</label>
           </div>
           <div>
             <input
@@ -218,7 +235,17 @@
            <select name="state" id="guest-state" class="form-control"></select>
           </div>
 
-         
+          <div class="guest__label__container">
+            <label for="city">City</label>
+          </div>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              id="guest-city"
+              name="city"
+            />
+          </div>
         </div>
 
         <!-- Booking Details -->
@@ -227,18 +254,18 @@
         </div>
 
         <div class="check-guest__contact container">
-          <div class="guest__label__container">
-            <label for="arrivalTime">Arrival Time:<span>*</span></label>
-          </div>
-          <div>
-            <select class="form-control" name="arrivalTime" id="guest-arrival-time">
-              <option value="12pm">12pm</option>
-              <option value="12am">12am</option>
-            </select>
-          </div>
 
           <div class="guest__label__container">
-            <label for="purpose">Purpose<span>*</span></label>
+            <label for="add_time">Arrival Time</label>
+          </div>
+          
+          <div>
+            <input id='guest-arrival-time' type='text'name='timepicker'/>
+          </div>
+
+
+          <div class="guest__label__container">
+            <label for="purpose">Purpose</label>
           </div>
           <div>
             <select class="form-control" name="purpose" id="guest-purpose">
@@ -249,12 +276,13 @@
 
           <div class="guest__label__container">
             <label for="requirements"
-              >Additional Requirements:<span>*</span></label
+              >Additional Requirements</label
             >
           </div>
           <div>
-            <textarea class="form-control" name="requirements" id="guest-requirements">
-            </textarea>
+        <textarea class="form-control" name="requirements" cols="30" id="guest-requirements"></textarea>
+
+      
           </div>
         </div>
 
@@ -265,7 +293,7 @@
 
         <div class="check-guest__contact container">
           <div class="guest__label__container">
-            <label for="captcha">Captcha:<span>*</span></label>
+            <label for="captcha">Captcha</label>
           </div>
           <div>
             <div
@@ -283,8 +311,10 @@
           <div class="guest__label__container">
             <label for="captcha">Terms<span>*</span></label>
           </div>
-          <div class="d-flex ove align-start">
-            <input
+          <div>
+            <div><a href="#" id="terms-of-use-link">Read Terms and Conditions</a></div>
+
+            <div  class="d-flex ove align-start">  <input
               type="checkbox"
               id="terms"
               name="terms"
@@ -292,28 +322,66 @@
               style="width: 16px; height: 16px; background-color: lightblue"
             />
             <label for="terms">
-              I agree to the <a href="#">Terms and Conditions</a> and the
-              <a href="#">Privacy Policy</a>.
-            </label>
+              I have read and agreed to the Term of use
+            </label></div>
+          
           </div>
 
           <div class="guest-button__container">
-            <a id="guest-form-button" href="" class="button button-contact"
-              >Continue</a
+            <button id="guest-form-button" type="submit" class="button button-contact"
+              >Continue</button
             >
           </div>
         </div>
       </div>
-    </section>
+    </form>
 
-    <!-- Footer Section -->
+
+
+    <div id="terms-modal" class="modal">
+      <div class="modal-content">
+
+        <div class="modal-head">
+          <h4>Terms of Use</h4>
+          <span class="modal-close">&times;</span>
+        </div>
+    
+        
+        <div id="terms-text" class="modal-body">
+         
+        </div>
+    
+       
+        <div class="modal-footer">
+          <button id="cancel-terms" class="button-form">Cancel</button>
+          <button id="accept-terms" class="button-contact">Accept</button>
+        </div>
+      </div>
+    </div>
+
+  
     <div id="footer"></div>
 
-    <!-- Scripts -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
-    <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/wwwroot/js/custom/guest-form.js"></script>
-    <script src="/wwwroot/js/custom/main.js"></script>
-  </body>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.3/build/jquery.datetimepicker.full.js"></script>
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <script src="
+https://cdn.jsdelivr.net/npm/timepicki@2.0.1/js/timepicki.min.js
+"></script>
+  <!-- Other custom scripts -->
+  <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+ 
+  <script src="/wwwroot/js/custom/guest-form.js"></script>
+  <script src="/wwwroot/js/custom/main.js"></script>
+
+  <!-- Initialize the DateTimePicker -->
+  
+</body>
 </html>

@@ -8,8 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <title>Seaplace Hotel - Contact</title>
-    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <title>Seaplace Hotel</title>
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css"
@@ -32,11 +31,22 @@
       rel="stylesheet"
       href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css"
     />
+    <link
+      rel="stylesheet"
+      href="/wwwroot/js/vendors/owl-carousel/owl.theme.default.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/wwwroot/js/vendors/owl-carousel/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/wwwroot/js/vendors/nice-select/nice-select.css"
+    />
 
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
     <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
   </head>
-  <body>
     <!-- ================ header section start ================= -->
     <div id="header"></div>
     <!-- ================ header section end ================= -->
@@ -62,60 +72,50 @@
     <!-- ================ end banner area ================= -->
 
     <!-- ================ welcome section start ================= -->
-    <section class="welcome pt-0 section-margin">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-5 mb-4 mb-lg-0">
-            <div class="row no-gutters welcome-images">
-              <div class="col-sm-7">
-                <div class="card">
-                  <img
-                    class=""
-                    src="/wwwroot/images/home/welcomeBanner1.png"
-                    alt="Card image cap"
-                  />
-                </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="card">
-                  <img
-                    class=""
-                    src="/wwwroot/images/home/welcomeBanner2.png"
-                    alt="Card image cap"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="card">
-                  <img
-                    class=""
-                    src="/wwwroot/images/home/welcomeBanner3.png"
-                    alt="Card image cap"
-                  />
-                </div>
+    <section class="welcome pt-0 section-margin"><div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+          <div class="row no-gutters welcome-images">
+            <div class="col-sm-7">
+              <div class="card">
+                <img
+                  class=""
+                  id="welcome-image-1"
+                  alt="Card image cap"
+                />
               </div>
             </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="welcome-content">
-              <h2 class="mb-4">
-                <span class="d-block">Welcome</span> to our residence
-              </h2>
-              <p>
-                Beginning blessed second a creepeth. Darkness wherein fish years
-                good air whose after seed appear midst evenin, appear void give
-                third bearing divide one so blessed moved firmament gathered
-              </p>
-              <p>
-                Beginning blessed second a creepeth. Darkness wherein fish years
-                good air whose after seed appear midst evenin, appear void give
-                third bearing divide one so blessed
-              </p>
-              
+            <div class="col-sm-5">
+              <div class="card">
+                <img
+                id="welcome-image-2"
+                  alt="Card image cap"
+                />
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="card">
+                <img
+                id="welcome-image-3"
+                alt="Card image cap"
+                />
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-lg-7">
+          <div class="welcome-content">
+            <h2 id="welcome-title" class="mb-4">
+             
+            </h2>
+            <p id="welcome-description"></p>
+            <a id="welcome-button" class="button button--active home-banner-btn mt-4" href="/view/about.html"
+              ></a
+            >
+          </div>
+        </div>
       </div>
+    </div>
     </section>
     <!-- ================ welcome section end ================= -->
 
@@ -128,90 +128,35 @@
           <a
             id="play-home-video"
             class="video-play-button"
-            href="https://www.youtube.com/watch?v=vParh5wE-tM"
           >
             <span></span>
           </a>
-          <h3>Seaplace</h3>
-          <p>View four has said does men saw find dear shy talent</p>
+          <h3 id="video-title"></h3>
+          <p id="video-description"></p>
         </div>
       </div>
     </section>
     <!-- ================ video section end ================= -->
 
     <!-- ================ special section start ================= -->
-    <section class="section-padding bg-porcelain">
+ <section class="section-padding bg-porcelain"> 
       <div class="container">
         <div class="section-intro text-center pb-80px">
           <div class="section-intro__style">
-               <svg xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="70px" class="icon">
-                <path d="M190.77-240h-21.54L154-320h-34v-135.62q0-26.84 18.88-45.61Q157.77-520 184.62-520H200v-95.39q0-26.84 18.88-45.73Q237.77-680 264.62-680h430.76q26.85 0 45.74 18.88Q760-642.23 760-615.39V-520h15.38q26.85 0 45.74 18.88Q840-482.23 840-455.38V-320h-34l-15.23 80h-21.54L754-320H206l-15.23 80ZM500-520h220v-95.39q0-10.76-6.92-17.69-6.93-6.92-17.7-6.92H500v120Zm-260 0h220v-120H264.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.69V-520Zm-80 160h640v-95.38q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H184.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7V-360Zm640 0H160h640Z" fill="currentColor"/>
-              </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="70px" viewBox="0 -960 960 960" width="70px" class="icon">
+              <path d="M190.77-240h-21.54L154-320h-34v-135.62q0-26.84 18.88-45.61Q157.77-520 184.62-520H200v-95.39q0-26.84 18.88-45.73Q237.77-680 264.62-680h430.76q26.85 0 45.74 18.88Q760-642.23 760-615.39V-520h15.38q26.85 0 45.74 18.88Q840-482.23 840-455.38V-320h-34l-15.23 80h-21.54L754-320H206l-15.23 80ZM500-520h220v-95.39q0-10.76-6.92-17.69-6.93-6.92-17.7-6.92H500v120Zm-260 0h220v-120H264.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.69V-520Zm-80 160h640v-95.38q0-10.77-6.92-17.7-6.93-6.92-17.7-6.92H184.62q-10.77 0-17.7 6.92-6.92 6.93-6.92 17.7V-360Zm640 0H160h640Z" fill="currentColor"/>
+            </svg>
           </div>
           <h2>Special Facilities</h2>
         </div>
         <div class="special-img mb-30px">
-          <img
-            class="img-fluid"
-            src="/wwwroot/images/home/special.png"
-            alt=""
-          />
+          <img class="img-fluid" id="facility-image" src="" alt="Facility image" />
         </div>
-
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-special">
-              <div class="media align-items-center mb-1">
-                <span class="card-special__icon"><i class="ti-home"></i></span>
-                <div class="media-body">
-                  <h4 class="card-special__title">Conference Room</h4>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  Built purse maids cease her ham new seven among and. Pulled
-                  coming wooded tended it answer remain
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-special">
-              <div class="media align-items-center mb-1">
-                <span class="card-special__icon"><i class="ti-bell"></i></span>
-                <div class="media-body">
-                  <h4 class="card-special__title">Swimming Pool</h4>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  Built purse maids cease her ham new seven among and. Pulled
-                  coming wooded tended it answer remain
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-special">
-              <div class="media align-items-center mb-1">
-                <span class="card-special__icon"><i class="ti-car"></i></span>
-                <div class="media-body">
-                  <h4 class="card-special__title">Sports Culb</h4>
-                </div>
-              </div>
-              <div class="card-body">
-                <p>
-                  Built purse maids cease her ham new seven among and. Pulled
-                  coming wooded tended it answer remain
-                </p>
-              </div>
-            </div>
-          </div>
+    
+        <div class="row" id="facilitiesList">
         </div>
       </div>
-    </section>
+    </section> 
     <!-- ================ special section end ================= -->
 
     <!-- ================ carousel section start ================= -->
@@ -225,150 +170,8 @@
           </div>
           <h2>Our Guest Love Us</h2>
         </div>
-        <div class="owl-carousel owl-theme testi-carousel">
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial1.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>Robert Mack</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial2.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>David Alone</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial3.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>Adam Pallin</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial1.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>Robert Mack</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial2.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>David Alone</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial3.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>Adam Pallin</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="/wwwroot/images/home/testimonial1.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>Robert Mack</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-carousel__item">
-            <div class="media">
-              <div class="testi-carousel__img">
-                <img src="img/home/testimonial2.png" alt="" />
-              </div>
-              <div class="media-body">
-                <p>
-                  Incidunt deleniti blanditiis quas aperiam recusandae consillo
-                  ullam quibusdam cum libero illo repell endus!
-                </p>
-                <div class="testi-carousel__intro">
-                  <h3>David Alone</h3>
-                  <p>CEO & Founder</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="testimonial-container" class="owl-carousel owl-theme testi-carousel">
+         
         </div>
       </div>
     </section>
@@ -383,6 +186,7 @@
     <script src="/wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>
     <script src="/wwwroot/js/vendors/easing.min.js"></script>
     <script src="/wwwroot/js/vendors/superfish.min.js"></script>
+    <script src="/wwwroot/js/vendors/owl-carousel/owl.carousel.min.js"></script>
     <script src="/wwwroot/js/vendors/nice-select/jquery.nice-select.min.js"></script>
     <script src="/wwwroot/js/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="/wwwroot/js/vendors/mail-script.js"></script>

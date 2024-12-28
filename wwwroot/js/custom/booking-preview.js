@@ -4,28 +4,41 @@ $(document).ready(function(){
     $('#reservation').load('/shared/reservation-summary.html')
 
 
+    if (!sessionStorage.getItem('sessionStartTime')) {
+      sessionStorage.setItem('sessionStartTime', Date.now()); 
+  }
+
+  
+  const sessionTimeoutDuration = 60 * 60 * 1000; 
+  
+
+  const checkSessionExpiration = function() {
+      const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+      if (sessionStartTime) {
+          const elapsedTime = Date.now() - sessionStartTime;
+          if (elapsedTime >= sessionTimeoutDuration) {
+              sessionStorage.clear(); 
+              alert('Session has expired. Your data has been cleared.');
+
+              window.location.href = '/view/bookings.html'
+          }
+      }
+  };
+
+  
+  checkSessionExpiration();
+
+  
+  setInterval(checkSessionExpiration, 60 * 1000); 
+
+
+
 
     var bookingData = JSON.parse(sessionStorage.getItem('bookingData'));
 
 
     if (bookingData) {
-        console.log(bookingData)
-  var requestData = bookingData.requestData;
-  var selectedRoom = bookingData.selectedRoom;
-  var roomCount = bookingData.roomCount;
-
-  // Use this data to populate the check-guest page
-  console.log(requestData);
-  console.log(selectedRoom);
-  console.log(roomCount);
-
-
-
-       
       
-      
-      
-        // Example of displaying the booking information
         $('#preview-guest-title').text(bookingData.guestTitle);
         $('#preview-guest-first-name').text(bookingData.guestFirstName
         );
@@ -38,7 +51,7 @@ $(document).ready(function(){
         $('#guest-preview-arrival-time').text(bookingData.guestArrivalTime); 
         $('#guest-preview-purpose').text(bookingData.guestPurpose); 
         $('#guest-preview-phone').text(bookingData.guestPhone);
-        $('#guest-preview-email').text(bookingData.email);
+        $('#guest-preview-email').text(bookingData.guestEmail);
         $('#guest-preview-additional-info').text(bookingData.  guestAdditionalRequirements)
         $('#guest-preview-address1').text(bookingData.guestAddressLine1)
         $('#guest-preview-address2').text(bookingData.guestAddressLine2);

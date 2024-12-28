@@ -12,6 +12,31 @@ $(document).ready(function(){
         return this.optional(element) || /^\bcat\b$/.test(value)
     }, "type the correct answer -_-");
 
+
+    $.getJSON("/appsettings.json", function (data) {
+        
+ 
+    
+        const contactDetails = data.contactInfo;
+        const address = data.contactInfo.address;
+
+console.log(address, contactDetails.state);
+
+        $("#address").text(contactDetails.address);
+        $("#state").text(contactDetails.state);
+        $("#country").text(contactDetails.country);
+        $('#phone-bb').text(contactDetails.phone);
+        $('#email').text(contactDetails.contactEmail);
+        $('#operating-time').text(contactDetails.operatingTime);
+    
+        $('#phone-link').attr('href', 'tel:' + contactDetails.phone);
+        $('#email-link').attr('href', 'mailto:' + contactDetails.email);
+      }).fail(function () {
+        console.error("Failed to load settings.json");
+      });
+
+
+      
     // validate contactForm form
     $(function() {
         $('#contactForm').validate({
@@ -59,6 +84,7 @@ $(document).ready(function(){
                 }
             },
             submitHandler: function(form) {
+                
                 $(form).ajaxSubmit({
                     type:"POST",
                     data: $(form).serialize(),

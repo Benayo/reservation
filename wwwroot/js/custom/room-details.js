@@ -1,223 +1,535 @@
-$(document).ready(function(){
-    $('#header').load('/shared/header.html')
-    $('#footer').load('/shared/footer.html')
-    if ($.fn.datepicker) {
+// $(document).ready(function(){
+//     $('#header').load('/shared/header.html')
+//     $('#footer').load('/shared/footer.html')
+//     if ($.fn.datepicker) {
       
-        $('#room-date-in').datepicker({
-          dateFormat: 'yy/mm/dd',   
-          minDate: 0,              
-          onClose: function(selectedDate) {
+//         $('#room-date-in').datepicker({
+//           dateFormat: 'yy/mm/dd',   
+//           minDate: 0,              
+//           onClose: function(selectedDate) {
          
-            $('#date-out').datepicker('option', 'minDate', selectedDate);
-          }
-        });
+//             $('#date-out').datepicker('option', 'minDate', selectedDate);
+//           }
+//         });
     
    
-        $('#room-date-out').datepicker({
-          dateFormat: 'yy/mm/dd',  
-          minDate: 1,              
-        });
-      } else {
-        console.error('jQuery UI Datepicker is not loaded!');
-      }
+//         $('#room-date-out').datepicker({
+//           dateFormat: 'yy/mm/dd',  
+//           minDate: 1,              
+//         });
+//       } else {
+//         console.error('jQuery UI Datepicker is not loaded!');
+//       }
     
     
   
-  $('#room-availability').submit(function(event) {
-    event.preventDefault();  
+//   $('#room-availability').submit(function(event) {
+//     event.preventDefault();  
     
-    var checkInDate = $('#room-date-in').val();
-    var checkOutDate = $('#room-date-out').val();
-    var adults = $('#room-guest-adult').val();
-    var children = $('#room-guest-children').val();
+//     var checkInDate = $('#room-date-in').val();
+//     var checkOutDate = $('#room-date-out').val();
+//     var adults = $('#room-guest-adult').val();
+//     var children = $('#room-guest-children').val();
 
 
-    console.log(checkInDate, checkOutDate, adults, children)
+//     console.log(checkInDate, checkOutDate, adults, children)
     
-    var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
-                      '&checkOutDate=' + encodeURIComponent(checkOutDate) +
-                      '&adults=' + encodeURIComponent(adults) +
-                      '&children=' + encodeURIComponent(children);
+//     var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
+//                       '&checkOutDate=' + encodeURIComponent(checkOutDate) +
+//                       '&adults=' + encodeURIComponent(adults) +
+//                       '&children=' + encodeURIComponent(children);
     
                       
-    window.location.href = '/view/bookings.html?' + queryParams;
-  });
+//     window.location.href = '/view/bookings.html?' + queryParams;
+//   });
     
 
-   function setRating(rating) {
-                let fullStars = Math.floor(rating);
-                let halfStar = (rating % 1) >= 0.5 ? 1 : 0;
-                let emptyStars = 5 - fullStars - halfStar;
-                let stars = '';
+//   var urlParams = new URLSearchParams(window.location.search);
+//   var roomTypeId = urlParams.get('roomTypeId');
+
+
+
+//   if (roomTypeId) {
+   
+//     $.ajax({
+//         url: 'https://guestapi.roomability.io/RoomType/Detail?roomTypeId=' + roomTypeId, 
+//         method: 'GET',
+//         headers: {
+//             'X-API-Key': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+//         },
+//         success: function(response) {
+//             console.log("API Response:", response);  
+            
+//             if (response && response.type) {
+//                 var room = response.type;
+                
+                
+//                 $('#room_details_title').text(room.roomType);
+//                 $('#room_details__title').text(room.roomType);
+//                 $('#room_details_rate').text(formatCurrency(room.currencySymbol, room.rate));
+//                 $('#room_details_summary').text(room.detail || 'No description available.');
+//                 $('#rating-1').html(setRating(room.rateId));
+    
+                
+//                 var imagesContainer = $('#room-images');
+//                 var imageCount = 0;
+                
+//                 for (var i = 1; i <= 8; i++) {
+//                     var imageUrl = room['image' + i];
+//                     if (imageUrl) {
+//                         imageCount++;
+//                         var imageElement = `
+//                             <div class="room-image">
+//                                 <img src="${imageUrl}" alt="Room Image ${i}" class="thumbnail" />
+//                             </div>
+//                         `;
+//                         imagesContainer.append(imageElement);
+//                     }
+//                 }
+    
+//                 if (imageCount > 0) {
+//                     $('#main-image').attr('src', room.image1 || 'default_image.jpg');
+//                 } else {
+//                     $('#main-image').attr('src', 'default_image.jpg');
+//                 }
+//             } else {
+//                 console.log("Error: Room details not found.");
+//                 $('#room-details').html('<p>Room details not found.</p>');
+//             }
+//         },
+//         error: function(xhr, status, error) {
+//             console.error("API Error:", error); 
+//             console.error("Response Text:", xhr.responseText); 
+//             $('#room-details').html('<p>Error fetching room details.</p>');
+//         }
+//     });
+    
+// } else {
+//     $('#room-details').html('<p>No room selected.</p>');
+// }
+
+
+
+//    function setRating(rating) {
+//                 let fullStars = Math.floor(rating);
+//                 let halfStar = (rating % 1) >= 0.5 ? 1 : 0;
+//                 let emptyStars = 5 - fullStars - halfStar;
+//                 let stars = '';
 
                
-                for (let i = 0; i < fullStars; i++) {
-                    stars += '<i class="fas fa-star full"></i>';
-                }
+//                 for (let i = 0; i < fullStars; i++) {
+//                     stars += '<i class="fas fa-star full"></i>';
+//                 }
 
-                if (halfStar) {
-                    stars += '<i class="fas fa-star-half-alt half"></i>';
-                }
+//                 if (halfStar) {
+//                     stars += '<i class="fas fa-star-half-alt half"></i>';
+//                 }
 
          
-                for (let i = 0; i < emptyStars; i++) {
-                    stars += '<i class="far fa-star empty"></i>';
-                }
+//                 for (let i = 0; i < emptyStars; i++) {
+//                     stars += '<i class="far fa-star empty"></i>';
+//                 }
 
-                return stars;
-            }
-
-            
-            // $('#rating-1').html(setRating(2.8));
+//                 return stars;
+//             }
 
            
 
-            var bookingData = JSON.parse(sessionStorage.getItem('roomDetailsData'));
+//             var bookingData = JSON.parse(sessionStorage.getItem('roomDetailsData'));
 
-if (bookingData) {
-    
-    
-console.log(bookingData.roomType)
 
-    $('#room_details_title').text(bookingData.roomType);
-    $('#room_details__title').text(bookingData.roomType);
-    $('#room_image-1').attr('src', bookingData.image1);
-    $('#room_image-2').attr('src', bookingData.image2);    
-    $('#room_image-3').attr('src', bookingData.image3);   
-    $('#room_image-4').attr('src', bookingData.image4);
-    $('#room_image-5').attr('src', bookingData.image4);
-    $('#rating-1').html(setRating(bookingData.rateId))
-    $('#room_details_rate').text('₦ ' + bookingData.rate);
-    $('#room_details_summary').text(bookingData.summary);
-    
-  } else {
-    console.log('No booking data found in sessionStorage.');
-  }
 
-            var urlParams = new URLSearchParams(window.location.search);
-            var roomType = urlParams.get('room');
+//   function formatCurrency(currencySymbol, rate) {
+//     return currencySymbol + ' ' + rate.toLocaleString(); 
+//   }
+//             var urlParams = new URLSearchParams(window.location.search);
+//             var roomType = urlParams.get('room');
 
             
 
-            // Define room data
-    var roomData = {
-        classic_bed_room: {
-            title: "Classic Bed Room",
-            price: "₦1,500,000",
-            description: "This is a classic bed room with all modern amenities.",
-            size: "20 ft",
-            capacity: "2 Persons",
-            bed: "King Bed",
-            services: "Wifi, Television, Bathroom",
-            image: "/wwwroot/images/rooms/classic_bed_room.jpg",
-            sideImages: ["/wwwroot/images/rooms/classic_bed_room_side1.jpg", "/wwwroot/images/rooms/classic_bed_room_side2.jpg"]
-        },
-        premium_bed_room: {
-            title: "Premium Room",
-            price: "₦170,000",
-            description: "Luxurious room with premium facilities and a beautiful view.",
-            size: "25 ft",
-            capacity: "3 Persons",
-            bed: "Queen Bed",
-            services: "Wifi, Television, Air Conditioning",
-            image: "/wwwroot/images/rooms/premium_room.jpg",
-            sideImages: ["/wwwroot/images/rooms/premium_room_side1.jpg", "/wwwroot/images/rooms/premium_room_side2.jpg"]
-        },
-        family_bed_room: {
-            title: "Family Room",
-            price: "₦190,000",
-            description: "A spacious room ideal for families with kids.",
-            size: "35 ft",
-            capacity: "5 Persons",
-            bed: "King and Single Beds",
-            services: "Wifi, Television, Refrigerator, Bathroom",
-            image: "/wwwroot/images/rooms/family_room.jpg",
-            sideImages: ["/wwwroot/images/rooms/family_room_side1.jpg", "/wwwroot/images/rooms/family_room_side2.jpg"]
-        },
 
-    };
-    console.log(roomType);
+//     document.querySelectorAll('.thumbnail').forEach((thumbnail) => {
+//         thumbnail.addEventListener('click', (e) => {
+//             const mainImage = document.getElementById('main-image');
+//             const newSrc = e.target.src;
+//             mainImage.src = newSrc;
+//             document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
+//             e.target.classList.add('active');
   
-    if (roomData[roomType]) {
-        var room = roomData[roomType];
+  
+            
+//         });
+//     });
+  
+//     let currentIndex = 0;
+//     const thumbnails = document.querySelectorAll('.thumbnail');
+//     const totalImages = thumbnails.length;
+  
+//     function updateCarousel(index) {
+//         const nextSrc = thumbnails[index].src;
+//         document.getElementById('main-image').src = nextSrc;
+//         document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
+//         thumbnails[index].classList.add('active');
+//     }
+  
+//     document.getElementById('prevBtn').addEventListener('click', () => {
+//         currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+//         updateCarousel(currentIndex);
+//     });
+  
+//     document.getElementById('nextBtn').addEventListener('click', () => {
+//         currentIndex = (currentIndex + 1) % totalImages;
+//         updateCarousel(currentIndex);
+//     });
+// })
 
 
-        $('#room_title').text(room.title);
-        $('#title').text(room.title);
-        $('#price').text(room.price);
+// $(document).ready(function () {
+//     $('#header').load('/shared/header.html');
+//     $('#footer').load('/shared/footer.html');
 
-       
-        $('#booking-link').attr('href', '/view/bookings.html?room=' + roomType + '&price=' + encodeURIComponent(room.price) + '&title=' + encodeURIComponent(room.title));
+    
+//     if ($.fn.datepicker) {
+//         $('#room-date-in').datepicker({
+//             dateFormat: 'yy/mm/dd',
+//             minDate: 0,
+//             onClose: function (selectedDate) {
+//                 $('#room-date-out').datepicker('option', 'minDate', selectedDate);
+//             }
+//         });
+
+//         $('#room-date-out').datepicker({
+//             dateFormat: 'yy/mm/dd',
+//             minDate: 1,
+//         });
+//     } else {
+//         console.error('jQuery UI Datepicker is not loaded!');
+//     }
+    
+//     $('#room-availability').submit(function (event) {
+//         event.preventDefault();
+
+//         var checkInDate = $('#room-date-in').val();
+//         var checkOutDate = $('#room-date-out').val();
+//         var adults = $('#room-guest-adult').val();
+//         var children = $('#room-guest-children').val();
+
+//         console.log(checkInDate, checkOutDate, adults, children);
+
+//         var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
+//             '&checkOutDate=' + encodeURIComponent(checkOutDate) +
+//             '&adults=' + encodeURIComponent(adults) +
+//             '&children=' + encodeURIComponent(children);
+
+//         window.location.href = '/view/bookings.html?' + queryParams;
+//     });
+
+    
+//     var urlParams = new URLSearchParams(window.location.search);
+//     var roomTypeId = urlParams.get('roomTypeId');
+
+//     if (roomTypeId) {
+//         $.ajax({
+//             url: 'https://guestapi.roomability.io/RoomType/Detail?roomTypeId=' + roomTypeId,
+//             method: 'GET',
+//             headers: {
+//                 'X-API-Key': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+//             },
+//             success: function (response) {
+//                 console.log("API Response:", response);
+
+//                 if (response && response.type) {
+//                     var room = response.type;
+//                     $('#room_details_title').text(room.roomType);
+//                     $('#room_details__title').text(room.roomType);
+//                     $('#room_details_rate').text(formatCurrency(room.currencySymbol, room.rate));
+//                     $('#room_details_summary').text(room.detail || 'No description available.');
+//                     $('#size').text('');
+//                     $('#capacity').text('');
+//                     $('#bed').text('');
+//                     $('#service').text('');
+//                     $('#rating-1').html(setRating(room.rateId));
+
+                    
+//                     var imagesContainer = $('#room-images');
+//                     var imageCount = 0;
+
+//                     for (var i = 1; i <= 8; i++) {
+//                         var imageUrl = room['image' + i];
+//                         if (imageUrl) {
+//                             imageCount++;
+//                             var imageElement = `
+//                                 <div class="room-image">
+//                                     <img src="${imageUrl}" alt="Room Image ${i}" class="thumbnail" />
+//                                 </div>
+//                             `;
+//                             imagesContainer.append(imageElement);
+//                         }
+//                     }
+
+                    
+//                     if (imageCount > 0) {
+//                         $('#main-image').attr('src', room.image1 || 'default_image.jpg');
+//                     } else {
+//                         $('#main-image').attr('src', 'default_image.jpg');
+//                     }
+//                 } else {
+//                     console.log("Error: Room details not found.");
+//                     $('#room-details').html('<p>Room details not found.</p>');
+//                 }
+//             },
+//             error: function (xhr, status, error) {
+//                 console.error("API Error:", error);
+//                 console.error("Response Text:", xhr.responseText);
+//                 $('#room-details').html('<p>Error fetching room details.</p>');
+//             }
+//         });
+
+//     } else {
+//         $('#room-details').html('<p>No room selected.</p>');
+//     }
+
+    
+//     function formatCurrency(currencySymbol, rate) {
+//         return currencySymbol + ' ' + rate.toLocaleString();
+//     }
+
+//     function setRating(rating) {
+//                 let fullStars = Math.floor(rating);
+//                 let halfStar = (rating % 1) >= 0.5 ? 1 : 0;
+//                 let emptyStars = 5 - fullStars - halfStar;
+//                 let stars = '';
+
+               
+//                 for (let i = 0; i < fullStars; i++) {
+//                     stars += '<i class="fas fa-star full"></i>';
+//                 }
+
+//                 if (halfStar) {
+//                     stars += '<i class="fas fa-star-half-alt half"></i>';
+//                 }
+
+         
+//                 for (let i = 0; i < emptyStars; i++) {
+//                     stars += '<i class="far fa-star empty"></i>';
+//                 }
+
+//                 return stars;
+//             }
+
+           
+
+    
+//     $(document).on('click', '.thumbnail', function () {
+//         const newSrc = $(this).attr('src');
+//         $('#main-image').attr('src', newSrc);
+//         $('.thumbnail').removeClass('active');
+//         $(this).addClass('active');
+//     });
+
+//     // Handle carousel functionality
+//     let currentIndex = 0;
+//     const thumbnails = document.querySelectorAll('.thumbnail');
+//     const totalImages = thumbnails.length;
+
+//     function updateCarousel(index) {
+//         const nextSrc = thumbnails[index].src;
+//         document.getElementById('main-image').src = nextSrc;
+//         document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
+//         thumbnails[index].classList.add('active');
+//     }
+
+//     document.getElementById('prevBtn').addEventListener('click', () => {
+//         currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+//         updateCarousel(currentIndex);
+//     });
+
+//     document.getElementById('nextBtn').addEventListener('click', () => {
+//         currentIndex = (currentIndex + 1) % totalImages;
+//         updateCarousel(currentIndex);
+//     });
+
+// });
+ $(document).ready(function () {
+    $('#header').load('/shared/header.html');
+    $('#footer').load('/shared/footer.html');
+
+    if ($.fn.datepicker) {
+        $('#room-date-in').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 0,
+            onClose: function (selectedDate) {
+                $('#room-date-out').datepicker('option', 'minDate', selectedDate);
+            }
+        });
+
+        $('#room-date-out').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 1,
+        });
     } else {
-        // If room type doesn't exist in roomData, show a default message or redirect
-        $('#room-title').text("Room not found");
-        $('#room-description').text("Sorry, this room is unavailable.");
+        console.error('jQuery UI Datepicker is not loaded!');
     }
 
+    var urlParams = new URLSearchParams(window.location.search);
+    var roomTypeId = urlParams.get('roomTypeId');
 
+    if (roomTypeId) {
+        $.ajax({
+            url: 'https://guestapi.roomability.io/RoomType/Detail?roomTypeId=' + roomTypeId,
+            method: 'GET',
+            headers: {
+                'X-API-Key': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+            },
+            success: function (response) {
+                console.log("API Response:", response);
 
+                if (response && response.type) {
+                    var room = response.type;
+                    $('#room_image-1').attr('src', room.image1
+                    )
+                    $('#room_image-2').attr('src', room.image2
+                    )
+                    $('#room_image-3').attr('src', room.image3
+                    )
+                    $('#room_image-4').attr('src', room.image4
+                    )
+                    $('#room_image-5').attr('src', room.image4
+                    )
+                    $('#room_details_title').text(room.roomType);
+                    $('#room_details__title').text(room.roomType);
+                    $('#room_details_rate').text(formatCurrency(room.currencySymbol, room.rate));
+                    $('#room_details_summary').text(room.detail || 'No description available.');
+                    $('#size').text('');
+                    $('#capacity').text('');
+                    $('#bed').text('');
+                    $('#service').text('');
+                    $('#rating-1').html(setRating(room.rateId));
 
-    // let currentIndex = 0;
-    //   const images = document.querySelectorAll(".carousel-images img");
-    //   const totalImages = images.length;
+                    var imagesContainer = $('#room-images');
+                    var imageCount = 0;
 
-    
-    //   function nextImage() {
-    //       currentIndex = (currentIndex + 1) % totalImages;
-    //       updateCarousel();
-    //   }
+                    // Iterate over image fields (image1, image2, etc.)
+                    for (var i = 1; i <= 8; i++) {
+                        var imageUrl = room['image' + i];
+                        if (imageUrl && imageUrl !== 'https://api.reservations.ng/images/hotels/room-placeholder.png') {
+                            imageCount++;
+                            var imageElement = `
+                                <div class="room-image">
+                                    <img src="${imageUrl}" alt="Room Image ${i}" class="thumbnail" />
+                                </div>
+                            `;
+                            imagesContainer.append(imageElement);
+                        }
+                    }
 
-    
-    //   function prevImage() {
-    //       currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-    //       updateCarousel();
-    //   }
-
-     
-    //   function updateCarousel() {
-    //       const carousel = document.querySelector(".carousel-images");
-    //       carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-    //   }
-
-     
-    //   setInterval(nextImage, 5000);
-
-      
-    //   document.getElementById("nextBtn").addEventListener("click", nextImage);
-    //   document.getElementById("prevBtn").addEventListener("click", prevImage);
-
-
-    document.querySelectorAll('.thumbnail').forEach((thumbnail) => {
-        thumbnail.addEventListener('click', (e) => {
-            const mainImage = document.getElementById('main-image');
-            const newSrc = e.target.src;
-            mainImage.src = newSrc;
-            document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
-            e.target.classList.add('active');
-  
-  
-            
+                    // If no valid images, show a default image instead of a placeholder
+                    if (imageCount > 0) {
+                        console.log('Images loaded:', room);
+                        $('#main-image').attr('src', room.image1 || 'default_image.jpg');
+                    } else {
+                        console.log('No valid images found, using default image.');
+                        $('#main-image').attr('src', 'default_image.jpg');
+                    }
+                } else {
+                    console.log("Error: Room details not found.");
+                    $('#room-details').html('<p>Room details not found.</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("API Error:", error);
+                console.error("Response Text:", xhr.responseText);
+                $('#room-details').html('<p>Error fetching room details.</p>');
+            }
         });
+    } else {
+        $('#room-details').html('<p>No room selected.</p>');
+    }
+
+    function formatCurrency(currencySymbol, rate) {
+        return currencySymbol + ' ' + rate.toLocaleString();
+    }
+
+    function setRating(rating) {
+    
+        rating = Math.min(Math.max(rating, 1), 5);
+        
+        let fullStars = Math.floor(rating);
+        let halfStar = (rating % 1) >= 0.5 ? 1 : 0;
+        let emptyStars = 5 - fullStars - halfStar;
+        let stars = '';
+    
+        
+        for (let i = 0; i < fullStars; i++) {
+          stars += '<i class="fas fa-star full"></i>';
+        }
+        
+        if (halfStar) {
+          stars += '<i class="fas fa-star-half-alt half"></i>';
+        }
+    
+        
+        for (let i = 0; i < emptyStars; i++) {
+          stars += '<i class="far fa-star empty"></i>';
+        }
+    
+        return stars;
+      }
+
+      $(document).on('click', '#booking-link', function (e) {
+        e.preventDefault(); 
+        var roomTypeId = getUrlParameter('roomTypeId');
+        
+        
+        var checkInDate = $('#room-date-in').val() || new Date().toISOString().split('T')[0]; // Current date as default
+        var checkOutDate = $('#room-date-out').val() || new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0]; // Next day as default
+        var adults = $('#adults').val() || 1; // Default adult count = 1
+        var children = $('#children').val() || 0; // Default children count = 0
+    
+        // Construct the booking URL with query parameters
+        var bookingUrl = '/view/bookings.html?roomTypeId=' + roomTypeId + 
+                         '&checkInDate=' + checkInDate + 
+                         '&checkOutDate=' + checkOutDate + 
+                         '&adults=' + adults + 
+                         '&children=' + children;
+    
+        // Redirect to the booking page
+        window.location.href = bookingUrl;
     });
-  
+
+
+    // Handle thumbnail click
+    $(document).on('click', '.thumbnail', function () {
+        const newSrc = $(this).attr('src');
+        $('#main-image').attr('src', newSrc);
+        $('.thumbnail').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    // Carousel image navigation
     let currentIndex = 0;
-    const thumbnails = document.querySelectorAll('.thumbnail');
+    const thumbnails = $('.thumbnail');
     const totalImages = thumbnails.length;
-  
+
     function updateCarousel(index) {
         const nextSrc = thumbnails[index].src;
-        document.getElementById('main-image').src = nextSrc;
-        document.querySelectorAll('.thumbnail').forEach((img) => img.classList.remove('active'));
-        thumbnails[index].classList.add('active');
+        $('#main-image').attr('src', nextSrc);
+        thumbnails.removeClass('active');
+        $(thumbnails[index]).addClass('active');
     }
-  
-    document.getElementById('prevBtn').addEventListener('click', () => {
+
+    $('#prevBtn').click(function () {
         currentIndex = (currentIndex - 1 + totalImages) % totalImages;
         updateCarousel(currentIndex);
     });
-  
-    document.getElementById('nextBtn').addEventListener('click', () => {
+
+    $('#nextBtn').click(function () {
         currentIndex = (currentIndex + 1) % totalImages;
         updateCarousel(currentIndex);
     });
-})
+
+    // Initialize the first image
+    if (totalImages > 0) {
+        updateCarousel(currentIndex);
+    }
+});
