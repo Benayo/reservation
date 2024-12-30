@@ -24,6 +24,8 @@ $(document).ready(function() {
 
   $('#guest-success-name').text(params.guestName || "Guest information not available.");
   $('#arrival-time').text(params.arrivalTime || "N/A");
+  $('#duration').text(params.duration || "N/A");
+  $('#num-night').text(params.numOfNights || "N/A");
   $('#check-in-date').text(params.checkInDate || "N/A");
   $('#check-out-date').text(params.checkOutDate || "N/A");
   $('#room-type').text(params.roomType || "Not Available");
@@ -35,7 +37,7 @@ $(document).ready(function() {
       history.pushState(null, null, location.href);
 
       window.onpopstate = function() {
-          window.location.href = 'index.html'; 
+          window.location.href = '/view/bookings.html'; 
       };
   }
 });

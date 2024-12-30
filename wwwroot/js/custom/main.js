@@ -1,36 +1,15 @@
 
-
 $(document).ready(function () {
-  "use strict";
+  
+  let key = '';
 
   $("#header").load("/shared/header.html");
 
-  $("#footer").load("/shared/footer.html", function () {
- 
-   
-  });
+  $("#footer").load("/shared/footer.html");
 
   $("#availability").load("/shared/check-availability.html");
 
-
-
-
-    // For input fields
-    $('#input-field').on('focus input', function() {
-      if ($(this).val() !== "") {
-        $(this).next('label').css({
-          top: '-10px',
-          fontSize: '12px',
-          color: '#3f51b5'
-        });
-      } else {
-        $(this).next('label').css({
-          top: '10px',
-          fontSize: '16px',
-          color: '#999'
-        });
-      }
-    });
+  $('html, body').animate({ scrollTop: 0 }, 'fast');
   
     // For select fields
     $('#dropdown').on('change focus', function() {
@@ -55,6 +34,10 @@ $(document).ready(function () {
 
   
   $.getJSON("/appsettings.json", function (data) {
+
+    key = data.api.key
+
+
   const primaryColor = data.appSettings.primaryColor;
    const contentInfo = data.homeContent
    const visibilitySettings= data.homeContent.visibility
@@ -145,6 +128,8 @@ $(document).ready(function () {
     };
   }
   
+  let roomTypeId = '';
+
   $(document).on('click', '#book-now',function(event) {
     event.preventDefault();
 
@@ -170,15 +155,39 @@ $(document).ready(function () {
       url: "https://guestapi.roomability.io/RoomType/DetailList?facilityTypeId=1",
       method: "GET",
       headers: {
-        "X-API-Key": "WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3",
+        "X-API-Key": key
       },
       success: function (response) {
         // Check if the response has room types
         if (response && response.types) {
           const roomsContainer = $("#rooms-container");
 
+         
+
           $.each(response.types, function (index, room) {
+
+           
+
+            let roomDetails = room.summary || 'Room summary not available';
+            let truncatedDetails = roomDetails.split(' ').slice(0, 15).join(' ');
+
+            
+         
+      
+            let detailsHtml = `
+              <span>${truncatedDetails}...</span> 
+              <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}" id="room-type-button">Read More</a>
+            `;
+
+            if (room.summary === "") {
+              detailsHtml = ''; 
+            }
+            
+
+
             const roomElement = `
+
+         
             <div class="testi-carousel__item-room">
               <div class="card card-explore">
                 <div class="card-explore__img">
@@ -196,18 +205,18 @@ $(document).ready(function () {
                       room.roomTypeId
                     }">${room.roomType}</a>
                   </h4>
-                  <p>${room.summary}</p>
-                  <a class="card-explore__link" href="#">Book Now <i class="ti-arrow-right"></i></a>
+                  <div class="card-explore__summary">${detailsHtml}</div>
+                  <a class="card-explore__link" id="book-now" href="#" data-roomTypeId=${room.roomTypeId}>Book Now <i class="ti-arrow-right"></i></a>
                 </div>
               </div>
             </div>
+        
           `;
 
             $("#rooms-container").append(roomElement);
           });
 
           if ($(".owl-carousel").length > 0) {
-            // Reinitialize Owl Carousel after appending the content
             roomsContainer.owlCarousel("destroy"); 
             roomsContainer.owlCarousel({
               loop: true,
@@ -220,11 +229,11 @@ $(document).ready(function () {
                 0: {
                   items: 1,
                 },
-                800: {
+                700: {
                   items: 2,
                 },
                 1000: {
-                  items: 3,
+                  items: 2,
                 },
               },
             });
@@ -239,6 +248,38 @@ $(document).ready(function () {
         $("#rooms-container").html(`<div class="error-container"><h4>Error fetching room types.</h4></div>`);
       },
     });
+
+
+
+
+
+    $(document).on('click', '#book-now', function(event) {
+
+        
+          event.preventDefault();
+
+          var roomTypeId = $(this).data('roomtypeid');
+
+
+          var defaultValues = getDefaultValues();
+          var checkInDate = defaultValues.checkInDate.toISOString().split('T')[0];
+          var checkOutDate = defaultValues.checkOutDate.toISOString().split('T')[0];
+          var adults = defaultValues.adults;
+          var children = defaultValues.children;
+  
+
+  
+        var queryParams = 'checkInDate=' + encodeURIComponent(checkInDate) +
+                        '&checkOutDate=' + encodeURIComponent(checkOutDate) +
+                        '&adults=' + encodeURIComponent(adults) +
+                        '&children=' + encodeURIComponent(children)  +
+                        '&roomTypeId=' + encodeURIComponent(roomTypeId);
+  
+      window.location.href = '/view/bookings.html?' + queryParams;
+  
+      })
+
+
 
 
 

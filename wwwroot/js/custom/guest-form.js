@@ -1,14 +1,31 @@
+
+let key = "";
+
+let defaultArrivalTime = "";
+
 $(document).ready(function() {
     $('#reservation').load('/shared/reservation-summary.html')
   
 
+    if (!sessionStorage.getItem('bookingData')) {
+        window.location.href = '/index.html'; 
+        return; 
+    }
 
-  // Load terms content from the API
+    
+    $.getJSON('/appsettings.json', function(data) {
+
+     defaultArrivalTime = data.appSettings.arrival
+        key = data.api.key
+   });
+
+
+
 $.ajax({
     url: 'https://guestapi.roomability.io/Term/Detail',
     method: 'GET',
     headers: {
-      'X-API-Key': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+      'X-API-KEY': key
     },
     success: function(response) {
       $('#terms-text').html(response.detail);
@@ -66,7 +83,7 @@ $.ajax({
             method: 'GET',
             contentType: 'application/json',
             headers: {
-                'X-API-KEY': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+                'X-API-KEY': "WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3"
             },
             success: function(response) {
 
@@ -169,7 +186,7 @@ const emailValue = sessionStorage.getItem('guestEmail');
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+                'X-API-KEY': key
             },
             success: function(response) {
                 if (response && response.countries) {
@@ -200,7 +217,7 @@ const emailValue = sessionStorage.getItem('guestEmail');
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-KEY':'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+                'X-API-KEY': key
             },
             success: function(response) {
                 if (response && response.states) {
@@ -301,7 +318,7 @@ const emailValue = sessionStorage.getItem('guestEmail');
     }
 
     
-    const sessionTimeoutDuration = 60 * 60 * 1000; 
+    const sessionTimeoutDuration = 15 * 60 * 1000; 
     
 
     const checkSessionExpiration = function() {

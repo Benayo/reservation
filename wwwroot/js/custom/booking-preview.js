@@ -4,13 +4,29 @@ $(document).ready(function(){
     $('#reservation').load('/shared/reservation-summary.html')
 
 
+    
+    if (!sessionStorage.getItem('bookingData')) {
+      window.location.href = '/index.html'; 
+      return; 
+  }
+
+
+
     if (!sessionStorage.getItem('sessionStartTime')) {
       sessionStorage.setItem('sessionStartTime', Date.now()); 
   }
 
   
-  const sessionTimeoutDuration = 60 * 60 * 1000; 
+  const sessionTimeoutDuration = 15 * 60 * 1000; 
   
+
+    
+  if (!sessionStorage.getItem('bookingData')) {
+    window.location.href = '/index.html'; 
+    return; 
+}
+
+
 
   const checkSessionExpiration = function() {
       const sessionStartTime = sessionStorage.getItem('sessionStartTime');

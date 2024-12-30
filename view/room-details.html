@@ -41,7 +41,9 @@
       href="/wwwroot/js/vendors/elegant-icons/elegant-icons.css"
     />
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <link rel="stylesheet" href="/wwwroot/css/vendor/room-details.css" />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
@@ -79,11 +81,11 @@
 
               <div class="image-container">
                 <div class="main-images">
-                  <img
-                    src="/wwwroot/images/rooms/room-details.jpg"
-                    alt="room-image"
-                    id="room_image-1"
-                  />
+              
+
+
+                  <img id="main-image" src="" alt="Main Room Image" />
+
                   <div class="carousel-buttons">
                     <button id="prevBtn">
                       &#10094;
@@ -94,31 +96,8 @@
                   </div>
                 </div>
   
-                <div class="side-images">
-                  <img
-                    src="/wwwroot/images/gallery/g1.png"
-                    alt="img-1"
-                    class="thumbnail active"
-                    id="room_image-2"
-                  />
-                  <img
-                    src="/wwwroot/images/gallery/g2.png"
-                    alt="img-2"
-                    class="thumbnail"
-                    id="room_image-3"
-                  />
-                  <img
-                    src="/wwwroot/images/gallery/g3.png"
-                    alt="img-3"
-                    class="thumbnail"
-                    id="room_image-4"
-                  />
-                  <img
-                    src="/wwwroot/images/gallery/g4.png"
-                    alt="img-4"
-                    class="thumbnail"
-                    id="room_image-5"
-                  />
+                <div id="room-images"  class="side-images">
+                  <!-- Dynamic room images will be loaded here -->
                 </div>
               </div>
 
@@ -126,42 +105,72 @@
 
               <div class="rd-text">
                 <div class="rd-title">
-                  <h3 id="room_details__title"></h3>
 
+                  <div class="content"><h3 id="room_details__title"></h3>
+                    <div id="rating-1" class="star-rating"></div>
+                    </div>
                   
                   <div class="content">
+                    <div class="room_details_rate"><h2 id="room_details_rate"></h2><span>/ Night</span></div>
                     
-                    <div id="rating-1" class="star-rating"></div>
 
-                    <button class="button-contact"> <a id="booking-link" href="#" 
+                    <!-- <button class="button-contact"> <a id="booking-link" href="#" 
                       >Booking Now</a
-                    ></button>
+                    ></button> -->
                   </div>
                 </div>
-                <div class="room_details_rate"><h2 id="room_details_rate"></h2><span>/ Night</span></div>
+               
                 <table>
                   <tbody>
                     <tr>
                       <td class="r-o">Size:</td>
-                      <td id="size"></td>
+                      <td class="text" id="size"></td>
                     </tr>
                     <tr>
                       <td class="r-o">Capacity:</td>
-                      <td id="capacity"></td>
+                      <td class="text" id="capacity"></td>
                     </tr>
                     <tr>
                       <td class="r-o">Bed:</td>
-                      <td id="bed"></td>
-                    </tr>
-                    <tr>
-                      <td class="r-o">Services:</td>
-                      <td id="service"></td>
+                      <td class="text" id="bed"></td>
                     </tr>
                   </tbody>
                 </table>
                 <p id="room_details_summary" class="f-para">
                   
                 </p>
+
+
+                <div class="room-amenities">
+                  <div class="title">Room Amenities</div>
+                  <div class="room-item"><i class="fa fa-wifi"></i>
+                    <div class="label">Wifi</div>
+                  </div>
+                  
+
+                  <div class="room-item"><i class="fa fa-bath"></i>
+                    <div class="label">Bathhub</div>
+                  </div>
+
+
+                  <div class="room-item"><i class="fas fa-snowflake"></i> 
+                    <div class="label">Air Conditioning</div>
+                  </div>
+
+
+                  <div class="room-item"><i class="fas fa-coffee"></i>
+                    <div class="label">Coffee Maker</div>
+                  </div>
+                 
+
+                  <div class="room-item"><i class="fas fa-glass-cheers"></i>
+                    <div class="label">Mini Bar</div>
+                  </div>
+                 
+                  <div class="room-item"><i class="fas fa-tv"></i>
+                    <div class="label">70 inches smart TV</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -170,34 +179,103 @@
             <div class="room-booking">
               <h3>Your Reservation</h3>
               <form id="room-availability" action="#">
-                <div class="check-date">
-                  <label for="date-in">Check In:</label>
-                  <input type="text"  class="form-control datepicker"  id="room-date-in" />
+             <div class="check-date">
+                  <!-- <label for="date-in">Check In:</label>
+                  <input type="text" style="background-color: transparent;"  class="form-control datepicker" readonly  id="room-date-in" />
                   <i id="date-in" class="fas fa-calendar-alt  icon_calendar"></i>
+
+                  <span id="check-in-error" class="error-message"></span> -->
+
+                  <div class="form-group">
+         
+                    <div class="did-floating-label-content form-select-custom position-relative">
+                    <input class="did-floating-input form-control datepicker" style="background-color: transparent;" readonly type="text" id="room-date-in" autocomplete="off" placeholder=""  name="date">
+                    <label class="did-floating-label">Check-in</label>
+                    <i class="fas fa-calendar-alt calendar-icon" id="date-in"></i>
+                    
+                  
+                     </div>
+                     <span id="check-in-error" class="error-message"></span>
+                   </div>
+                 
                 </div>
+              
+                
                 <div class="check-date">
-                  <label for="date-out">Check Out:</label>
-                  <input type="text"   class="form-control datepicker" id="room-date-out" />
+                  <!-- <label for="date-out">Check Out:</label>
+                  <input type="text" style="background-color: transparent;"   class="form-control datepicker" readonly id="room-date-out" />
                  
                   <i id="date-out" class="fas fa-calendar-alt  icon_calendar"></i>
+
+                <span id="check-out-error" class="error-message"></span> -->
+
+                <div class="form-group">
+         
+                  <div class="did-floating-label-content form-select-custom position-relative">
+                  <input class="did-floating-input form-control datepicker" style="background-color: transparent;" readonly type="text" id="room-date-out" autocomplete="off" placeholder=""  name="date">
+                  <label class="did-floating-label">Check-out</label>
+                  <i class="fas fa-calendar-alt calendar-icon" id="date-out"></i>
+                  
+                
+                   </div>
+                   <span id="check-in-error" class="error-message"></span>
+                 </div>
+                
                 </div>
-                <div class="select-option">
-                  <label for="guest">Adults</label>
+                <!-- <div class="select-option">
+                  <label for="guest" id="adult-age">Adults</label>
                   <select id="room-guest-adult">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4+</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
                   </select>
+                  <span id="adults-error" class="error-message"></span>
+                </div> -->
+
+                
+                <div class="form-group">
+        
+                  <div class="did-floating-label-content form-select-custom">
+                    <select name="adults" id="room-guest-adult" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                      <option value="" hidden></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4+</option>
+                    </select>
+                    <label id="adult-age" for="adults" class="did-floating-label"></label>
+                  </div>
+                  <span id="adults-error" class="error-message"></span>
                 </div>
-                <div class="select-option">
-                  <label for="room-guest-children">Children</label>
-                  <select id="room">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4+</option>
+                <!-- <div class="select-option">
+                  <label for="guest" id="children-age"></label>
+                  <select id="room-guest-children">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
                   </select>
+
+                  <span id="children-error" class="error-message"></span>
+                </div> -->
+
+
+                
+                <div class="form-group">
+        
+                  <div class="did-floating-label-content form-select-custom">
+                    <select name="adults" id="room-guest-children" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                      <option value="" hidden></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4+</option>
+                    </select>
+                    <label id="children-age" for="adults" class="did-floating-label"></label>
+                  </div>
+                  <span id="adults-error" class="error-message"></span>
                 </div>
                 <button class="button-form">
                   Check Availability
@@ -210,7 +288,7 @@
     </section>
     <div id="footer"></div>
     <!-- JS Libraries -->
-    <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
+    <!-- <script src="/wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="/wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="/wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>
     <script src="/wwwroot/js/vendors/easing.min.js"></script>
@@ -220,10 +298,10 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
-    <script src="/wwwroot/js/vendors/nice-select/jquery.nice-select.min.js"></script>
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
+    <script src="/wwwroot/js/vendors/nice-select/jquery.nice-select.min.js"></script> -->
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
    
     <script src="/wwwroot/js/custom/room-details.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>

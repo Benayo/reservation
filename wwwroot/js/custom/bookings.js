@@ -1,6 +1,13 @@
+let key = '';
+
 $(document).ready(function() {
 
   $('#availability').load('/wwwroot/js/custom/bookings.js')
+
+  $.getJSON('/appsettings.json', function(data) {
+
+     key = data.api.key
+});
 
   function setRating(rating) {
     
@@ -41,6 +48,7 @@ $(document).ready(function() {
   var checkOutDate = getUrlParameter('checkOutDate', new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0]);
   var adults = getUrlParameter('adults', 1);
   var children = getUrlParameter('children', 0); 
+  var roomTypeId = getUrlParameter('roomTypeId'); 
 
   var currentUrl = window.location.href;
   var newUrl = new URL(currentUrl);
@@ -107,17 +115,224 @@ $(document).ready(function() {
 
   sessionStorage.setItem('requestData', JSON.stringify(requestData));
 
+  // $.ajax({
+  //   url: 'https://guestapi.roomability.io/Reservation/Availability',
+  //   method: 'POST',
+  //   contentType: 'application/json',
+  //   headers: {
+  //     'X-API-KEY': key
+  //   },
+  //   data: JSON.stringify(requestData),
+  //   success: function(response) {
+  //     sessionStorage.setItem('availabilityData', JSON.stringify(response));
+  //     displayRooms(response);
+  //   },
+  //   error: function(xhr, status, error) {
+  //     console.error('API Request Error:', error);
+  //     showError('Error fetching availability. Please try again later.');
+  //   }
+  // });
+
+  // function showError(message) {
+  //   var errorHtml = `
+  //     <div class="details-container error-container">
+  //     <h2>404</h2>
+  //       <p>${message}</p>
+  //     </div>
+  //   `;
+  //   $('#error').html(errorHtml);
+  // }
+
+  // function displayRooms(response) {
+  //   const rooms = response.types;
+  //   if (rooms && rooms.length > 0) {
+  //     rooms.forEach(function(room) {
+
+  //       if (roomTypeId && room.roomTypeId !== parseInt(roomTypeId)) {
+  //         return; 
+  //       }
+
+  //       let roomDetails = room.summary || 'Room summary not available';
+  //       let truncatedDetails = roomDetails.split(' ').slice(0, 25).join(' ');
+        
+
+       
+  //       let detailsHtml = `
+  //         <span id="summary">${truncatedDetails}...</span>  
+  //         <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}" id="room-type-button">Read More</a>
+  //       `;
+
+
+
+  //       const roomContainer = `
+  //         <div class="details-container">
+  //           <div class="image-container">
+  //             <div class="main-images">
+  //               <img src="${room.image1}" alt="Room Image" id="main-image" />
+  //               <div class="carousel-buttons">
+  //                 <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+  //                 <button class="carousel-button next" id="nextBtn">&#10095;</button>
+  //               </div>
+  //             </div>
+  //             <div class="side-images">
+  //               ${getRoomImages(room)}
+  //             </div>
+  //           </div>
+
+  //           <div class="details">
+  //             <div class="room-error"></div>
+  //             <div class="room-title">
+  //               <a id="room-type-button" href="/view/room-details.html?roomTypeId=${
+  //                     room.roomTypeId
+  //                   }"><h4>${room.roomType}</h4></a>  
+  //               <span>${room.available} Rooms Available</span>
+  //             </div>
+  //             <div class="detail-explore__price">
+  //               <h3>${formatCurrency(room.currencySymbol, room.rate)}<sub>/ Night</sub></h3>
+  //               <div id="rating" class="star-rating">${setRating(room.rateId)}</div>
+  //             </div>
+  //             <div class="room-accommodates">
+  //               <div class="info">Room Accommodates</div>
+  //               <div class="room__info__container">
+  //                 <div class="room__info">
+  //                   <span>Adults:</span>
+  //                   <div class="detail">
+  //                     <i class="fa fa-user"></i> 
+  //                     <span>${room.adult}</span>
+  //                   </div>
+  //                 </div>
+  //                 <div class="room__info">
+  //                   <span>Children:</span>
+  //                   <div class="detail">
+  //                     <i class="fa fa-child"></i>
+  //                     <span>${room.children}</span>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+
+  //             <div id="summary-container" class="room__more__details">
+  //               <div>Summary</div>
+  //              ${detailsHtml}   
+  //             </div>
+
+  //             <div class="room__number__container">
+  //               <div class="room__number">Number of Rooms</div>
+  //               <select class="form-control">
+  //               ${generateRoomOptions(room.available)}
+  //               </select>
+  //               <a id="continue-button" href="javascript:void(0);" class="button button-bookings" data-room='${JSON.stringify(room)}'>Continue</a>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       `;
+  //       $('#room-template').append(roomContainer);
+  //     });
+
+  //     initCarousel();
+  //   } else {
+  //     $('#room-template').append('<h3 class="no-room">No rooms available.</h3>');
+  //   }
+  // }
+
+  // function getRoomImages(room) {
+  //   let imagesHtml = '';
+  //   for (let i = 1; i <= 8; i++) {
+  //     if (room[`image${i}`] && room[`image${i}`] !== "") {
+  //       imagesHtml += `<img src="${room[`image${i}`]}" alt="Room Image ${i}" class="thumbnail" data-image="${room[`image${i}`]}">`;
+  //     }
+  //   }
+  //   return imagesHtml;
+  // }
+
+  // function generateRoomOptions(availableRooms) {
+  //   let optionsHtml = '';
+  //   for (let i = 1; i <= availableRooms; i++) {
+  //     optionsHtml += `<option value="${i}">${i}</option>`;
+  //   }
+  //   return optionsHtml;
+  // }
+
+  
+  // function formatCurrency(currencySymbol, rate) {
+  //   return currencySymbol + ' ' + rate.toLocaleString(); 
+  // }
+
+  // $(document).on('click', '#continue-button', function() {
+  //   var roomData = $(this).data('room');  
+  //   var selectedRoomCount = $(this).closest('.room__number__container').find('select').val(); 
+
+  //   var requestData = JSON.parse(sessionStorage.getItem('requestData'));
+
+  //   var bookingData = {
+  //     requestData: requestData,
+  //     selectedRoom: roomData,
+  //     roomCount: selectedRoomCount
+  //   };
+
+  //   var errorContainer = $(this).closest('.details').find('.room-error');
+
+  //   errorContainer.html('');
+
+  //   if (!checkInDate || !checkOutDate) {
+  //     errorContainer.html('<p style="color: red;">Please select both check-in and check-out dates.</p>');
+  //     return;  
+  //   }
+
+  //   sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+    
+  //   window.location.href = 'check-guest.html';
+  // });
+
+  // $(document).on('click', '#room-type-button', function() {
+  //   var roomData = $(this).data('room');  
+
+  //   sessionStorage.setItem('roomDetailsData', JSON.stringify(roomData));
+
+  //   window.location.href = 'room-details.html';
+  // });
+
+  // function initCarousel() {
+  //   $('.carousel-button').on('click', function() {
+  //     let $mainImage = $('#main-image');
+  //     let images = $('.side-images img');
+  //     let currentIndex = images.index($('.side-images img.selected'));
+
+  //     if ($(this).hasClass('next')) {
+  //       currentIndex = (currentIndex + 1) % images.length;
+  //     } else if ($(this).hasClass('prev')) {
+  //       currentIndex = (currentIndex - 1 + images.length) % images.length;
+  //     }
+
+  //     let nextImageSrc = $(images[currentIndex]).attr('src');
+  //     $mainImage.attr('src', nextImageSrc);
+
+  //     images.removeClass('selected');
+  //     $(images[currentIndex]).addClass('selected');
+  //   });
+
+  //   $('.side-images img').on('click', function() {
+  //     let imageSrc = $(this).attr('src');
+  //     $('#main-image').attr('src', imageSrc);
+
+  //     $('.side-images img').removeClass('selected');
+  //     $(this).addClass('selected');
+  //   });
+
+  //   $('.side-images img').first().addClass('selected');
+  // }
+
   $.ajax({
     url: 'https://guestapi.roomability.io/Reservation/Availability',
     method: 'POST',
     contentType: 'application/json',
     headers: {
-      'X-API-KEY': 'WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3'
+      'X-API-KEY': key
     },
     data: JSON.stringify(requestData),
     success: function(response) {
       sessionStorage.setItem('availabilityData', JSON.stringify(response));
-      displayRooms(response);
+      displayRooms(response);  
     },
     error: function(xhr, status, error) {
       console.error('API Request Error:', error);
@@ -125,32 +340,23 @@ $(document).ready(function() {
     }
   });
 
-  function showError(message) {
-    var errorHtml = `
-      <div class="details-container error-container">
-      <h2>404</h2>
-        <p>${message}</p>
-      </div>
-    `;
-    $('#error').html(errorHtml);
-  }
 
   function displayRooms(response) {
     const rooms = response.types;
     if (rooms && rooms.length > 0) {
       rooms.forEach(function(room) {
-
-        let roomDetails = room.detail || 'No details available';
+        if (roomTypeId && room.roomTypeId !== parseInt(roomTypeId)) {
+          return;
+        }
+  
+        let roomDetails = room.summary || 'Room summary not available';
         let truncatedDetails = roomDetails.split(' ').slice(0, 25).join(' ');
-        
-       
+  
         let detailsHtml = `
           <span id="summary">${truncatedDetails}...</span>  
           <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}" id="room-type-button">Read More</a>
         `;
-
-
-
+  
         const roomContainer = `
           <div class="details-container">
             <div class="image-container">
@@ -165,13 +371,13 @@ $(document).ready(function() {
                 ${getRoomImages(room)}
               </div>
             </div>
-
+  
             <div class="details">
               <div class="room-error"></div>
               <div class="room-title">
-                <a id="room-type-button" href="/view/room-details.html?roomTypeId=${
-                      room.roomTypeId
-                    }"><h4>${room.roomType}</h4></a>  
+                <a id="room-type-button" href="/view/room-details.html?roomTypeId=${room.roomTypeId}">
+                  <h4>${room.roomType}</h4>
+                </a>
                 <span>${room.available} Rooms Available</span>
               </div>
               <div class="detail-explore__price">
@@ -197,40 +403,34 @@ $(document).ready(function() {
                   </div>
                 </div>
               </div>
-
+  
               <div id="summary-container" class="room__more__details">
-                <div>Room Details</div>
+                <div>Summary</div>
                ${detailsHtml}   
               </div>
-
+  
               <div class="room__number__container">
                 <div class="room__number">Number of Rooms</div>
                 <select class="form-control">
                 ${generateRoomOptions(room.available)}
                 </select>
-                <a id="continue-button" href="javascript:void(0);" class="button button-bookings" data-room='${JSON.stringify(room)}'>Continue</a>
+                 <a id="continue-button" href="javascript:void(0);" class="button button-bookings" data-room='${JSON.stringify(room)}'>Continue</a>
               </div>
             </div>
           </div>
         `;
         $('#room-template').append(roomContainer);
       });
-
+  
       initCarousel();
     } else {
       $('#room-template').append('<h3 class="no-room">No rooms available.</h3>');
     }
   }
 
-  function getRoomImages(room) {
-    let imagesHtml = '';
-    for (let i = 1; i <= 8; i++) {
-      if (room[`image${i}`] && room[`image${i}`] !== "") {
-        imagesHtml += `<img src="${room[`image${i}`]}" alt="Room Image ${i}" class="thumbnail" data-image="${room[`image${i}`]}">`;
-      }
-    }
-    return imagesHtml;
-  }
+  function formatCurrency(currencySymbol, rate) {
+    return currencySymbol + ' ' + rate.toLocaleString();
+}
 
   function generateRoomOptions(availableRooms) {
     let optionsHtml = '';
@@ -239,12 +439,62 @@ $(document).ready(function() {
     }
     return optionsHtml;
   }
-
   
-  function formatCurrency(currencySymbol, rate) {
-    return currencySymbol + ' ' + rate.toLocaleString(); 
+  function getRoomImages(room) {
+    let imagesHtml = '';
+    let images = [];
+    for (let i = 1; i <= 8; i++) {
+      if (room[`image${i}`] && room[`image${i}`] !== "") {
+        images.push(room[`image${i}`]);
+      }
+    }
+  
+    // Show only the first 4 images as thumbnails
+    let displayImages = images.slice(0, 4);
+  
+    // Generate HTML for the side images (thumbnails)
+    displayImages.forEach(image => {
+      imagesHtml += `<img src="${image}" alt="Room Image" class="thumbnail" data-image="${image}">`;
+    });
+  
+    return imagesHtml;
+  }
+  
+  function initCarousel() {
+   
+    $('.side-images img').on('click', function() {
+      let imageSrc = $(this).attr('src');
+      $('#main-image').attr('src', imageSrc);
+  
+      $('.side-images img').removeClass('selected');
+      $(this).addClass('selected');
+    });
+
+    $('.carousel-button').on('click', function() {
+      let $mainImage = $('#main-image');
+      let images = $('.side-images img');
+      let currentIndex = images.index($('.side-images img.selected'));
+  
+      if ($(this).hasClass('next')) {
+        currentIndex = (currentIndex + 1) % images.length;
+      } else if ($(this).hasClass('prev')) {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+      }
+  
+      let nextImageSrc = $(images[currentIndex]).attr('src');
+      $mainImage.attr('src', nextImageSrc);
+  
+      // Update selected thumbnail
+      images.removeClass('selected');
+      $(images[currentIndex]).addClass('selected');
+    });
+  
+    // Initially, select the first thumbnail as the main image
+    $('.side-images img').first().addClass('selected');
   }
 
+
+  
   $(document).on('click', '#continue-button', function() {
     var roomData = $(this).data('room');  
     var selectedRoomCount = $(this).closest('.room__number__container').find('select').val(); 
@@ -270,42 +520,5 @@ $(document).ready(function() {
     
     window.location.href = 'check-guest.html';
   });
-
-  $(document).on('click', '#room-type-button', function() {
-    var roomData = $(this).data('room');  
-
-    sessionStorage.setItem('roomDetailsData', JSON.stringify(roomData));
-
-    window.location.href = 'room-details.html';
-  });
-
-  function initCarousel() {
-    $('.carousel-button').on('click', function() {
-      let $mainImage = $('#main-image');
-      let images = $('.side-images img');
-      let currentIndex = images.index($('.side-images img.selected'));
-
-      if ($(this).hasClass('next')) {
-        currentIndex = (currentIndex + 1) % images.length;
-      } else if ($(this).hasClass('prev')) {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-      }
-
-      let nextImageSrc = $(images[currentIndex]).attr('src');
-      $mainImage.attr('src', nextImageSrc);
-
-      images.removeClass('selected');
-      $(images[currentIndex]).addClass('selected');
-    });
-
-    $('.side-images img').on('click', function() {
-      let imageSrc = $(this).attr('src');
-      $('#main-image').attr('src', imageSrc);
-
-      $('.side-images img').removeClass('selected');
-      $(this).addClass('selected');
-    });
-
-    $('.side-images img').first().addClass('selected');
-  }
+  
 });

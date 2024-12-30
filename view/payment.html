@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -10,108 +11,88 @@
     <link rel="icon" href="img/favicon.png" type="image/png" />
 
     <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- Stylesheets -->
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/fontawesome/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/themify-icons/themify-icons.css"
-    />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/themify-icons/themify-icons.css" />
     <link rel="stylesheet" href="/wwwroot/js/vendors/linericon/style.css" />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/wwwroot/js/vendors/nice-select/nice-select.css"
-    />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="/wwwroot/js/vendors/nice-select/nice-select.css" />
     <link rel="stylesheet" href="/wwwroot/css/vendor/footer.css" />
 
-    <link rel="stylesheet" href="/wwwroot/css/vendor/check-guest.css" />
 
     <link rel="stylesheet" href="/wwwroot/css/custom/style.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Header Section -->
     <div id="header"></div>
 
     <!-- Banner Section -->
     <section class="contact-banner-area" id="contact">
-      <div class="container h-100">
-        <div class="contact-banner text-center">
-          <h1>Bookings</h1>
-          <nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/index.html">Home</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                Bookings
-              </li>
-            </ol>
-          </nav>
+        <div class="container h-100">
+            <div class="contact-banner text-center">
+                <h1>Bookings</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Bookings
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Booking Details Section -->
     <section class="section-margin section-margin--small">
-      <div class="container">
-        <div class="navigation">
-          <a href="javascript:history.back()" class="back">
-            <i class="fa fa-arrow-left"></i>
-            <span> <span>Preview/</span></span>
-          </a>
-          <span class="reserve">Payment</span>
-        </div>
-        <!-- Title -->
-        <div class="check-guest__title">
-          <h3>Your Booking</h3>
-        </div>
-        <!-- Booking Container -->
-       <div id="reservation"></div>
+        <div class="container">
+            <div class="navigation">
+                <a href="javascript:history.back()" class="back">
+                    <i class="fa fa-arrow-left"></i>
+                    <span> <span>Preview/</span></span>
+                </a>
+                <span class="reserve">Payment</span>
+            </div>
+            <!-- Title -->
+            <div class="check-guest__title">
+                <h3>Your Booking</h3>
+            </div>
+            <!-- Booking Container -->
+            <div id="reservation"></div>
 
-        <!-- Contact Details -->
-   
-    
-        <div class="check-guest__title__contact">
-          <h3>Payment Method</h3>
+            <!-- Contact Details -->
+
+
+            <div class="error-message" id="error"></div>
+
+            <div class="check-guest__title__contact">
+                <h3>Payment Method</h3>
+            </div>
+            <form id="guest-payment" class="check-guest__contact">
+             
+                <div class="guest__label__container">
+                    <label for="email">Method of Payment<span>*</span></label>
+                </div>
+
+                <div>
+                    <select class="form-control" name="payment" id="payment-method">
+                        <option value="book-on-hold">Book on Hold</option>
+                        <option value="paystack">Paystack</option>
+                    </select>
+                </div>
+
+                <div class="guest-button__container">
+                    <button id="payment-button" class="button button-contact" type="submit">Continue</button>
+                </div>
+            </form>
         </div>
-        <form  id="guest-payment" class="check-guest__contact">
-          <div  class="error-message" id="error"></div>
-          <div class="guest__label__container">
-            <label for="email">Method of Payment<span>*</span></label>
-          </div>
-
-          <div>
-            <select class="form-control" name="" id="">
-              <option value="">Book on Hold</option>
-              <option value="">Paystack</option>
-            </select>
-          </div>
-
-          <div class="guest-button__container">
-            <button id="payment-button" class="button button-contact" type="submit">Continue</button>
-          </div>
-        </form>
-      </div>
     </section>
 
     <!-- Footer Section -->
@@ -128,7 +109,9 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
+    <script src="https://js.paystack.co/v2/inline.js"></script>
     <script src="/wwwroot/js/custom/payment.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
-  </body>
+</body>
+
 </html>

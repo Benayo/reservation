@@ -1,6 +1,44 @@
 $(document).ready(function() {
     $('#reservation').load('/shared/reservation-summary.html');
 
+
+    
+    
+    if (!sessionStorage.getItem('sessionStartTime')) {
+        sessionStorage.setItem('sessionStartTime', Date.now()); 
+    }
+
+    
+    const sessionTimeoutDuration = 15 * 60 * 1000; 
+    
+
+    const checkSessionExpiration = function() {
+        const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+        if (sessionStartTime) {
+            const elapsedTime = Date.now() - sessionStartTime;
+            if (elapsedTime >= sessionTimeoutDuration) {
+                sessionStorage.clear(); 
+                alert('Session has expired. Your data has been cleared.');
+
+                window.location.href = '/view/bookings.html'
+            }
+        }
+    };
+
+    
+    checkSessionExpiration();
+
+    
+    setInterval(checkSessionExpiration, 60 * 1000);
+
+    
+    
+    if (!sessionStorage.getItem('bookingData')) {
+        window.location.href = '/index.html'; 
+        return; 
+    }
+
+
     $(document).on('click', '#check-guest-button', function(e) {
         e.preventDefault();
 
