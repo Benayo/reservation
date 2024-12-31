@@ -1,18 +1,21 @@
-let key = '';
+let apiKey = '';
+let baseUrl = '';
 $(document).ready(function() {
 
   $.getJSON('/appsettings.json', function(data) {
-    
-    key = data.api.key
+
+    apiKey = data.api.apiKey;
+    baseUrl = data.api.baseUrl;
+    loadTermOfUse()
 });
 
 
 
-    $.ajax({
-        url: 'https://guestapi.roomability.io/Term/Detail',
+  function loadTermOfUse(){  $.ajax({
+        url: `${baseUrl}/Term/Detail`,
         method: 'GET',
         headers: {
-          'X-API-Key': key
+         
         },
         success: function(response) {
             console.log(response.detail)
@@ -22,6 +25,5 @@ $(document).ready(function() {
           $('#terms-text').html('<h5>Failed to load terms of use. Please try again later.</h5>');
         }
       });
-     
-
+    }
 })

@@ -1,6 +1,5 @@
-
-let key = '';
-
+let apiKey = '';
+let baseUrl = '';
 $(document).ready(function () {
     $("#header").load("/shared/header.html");
     $("#footer").load("/shared/footer.html");
@@ -14,7 +13,8 @@ $(document).ready(function () {
 
     $.getJSON('/appsettings.json', function(data) {
 
-       key = data.api.key
+      apiKey = data.api.apiKey;
+      baseUrl = data.api.baseUrl;
   });
 
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
       sessionStorage.setItem("sessionStartTime", Date.now());
     }
   
-    const sessionTimeoutDuration = 15 * 60 * 1000;
+    const sessionTimeoutDuration = 60 * 60 * 1000;
   
     const checkSessionExpiration = function () {
       const sessionStartTime = sessionStorage.getItem("sessionStartTime");
@@ -41,10 +41,9 @@ $(document).ready(function () {
     checkSessionExpiration();
   
     setInterval(checkSessionExpiration, 60 * 1000);
-  
-    $(document).on("submit", "#guest-payment", function (e) {
-      e.preventDefault();
-  
+
+    
+    function loadPayment(){
       var paymentMethod = $("#payment-method").val();
       if (paymentMethod === "book-on-hold") {
         var bookingData = JSON.parse(sessionStorage.getItem("bookingData"));
@@ -54,7 +53,7 @@ $(document).ready(function () {
           var checkOutDate = new Date(bookingData.requestData.checkOutDate);
           var timeDifference = checkOutDate - checkInDate;
           var numberOfNights = timeDifference / (1000 * 3600 * 24);
-         var roomRate = bookingData.selectedRoom.rate * bookingData.roomCount;
+          const roomRate = bookingData.selectedRoom.rate * bookingData.roomCount;
           var totalRate = numberOfNights * roomRate;
   
           var roomType = bookingData.selectedRoom.roomType;
@@ -68,12 +67,12 @@ $(document).ready(function () {
               " " +
               bookingData.guestLastName,
               duration:
-              formatDate(bookingData.requestData.checkInDate) +
-              " to " +
-            formatDate(bookingData.requestData.checkOutDate),
+              formatDate(bookingData.requestData.checkInDate) + " " +
+              " To " + " " + 
+            formatDate(bookingData.requestData.checkOutDate) + " " + `(${numberOfNights} Night(s))`,
             checkInDate: formatDate(bookingData.requestData.checkInDate),
             checkOutDate: formatDate(bookingData.requestData.checkOutDate),
-            numberOfNights: timeDifference,
+            numberOfNights: numberOfNights,
             roomType: roomType,
             roomCount: roomCount,
             totalAmount: totalRate,
@@ -81,11 +80,11 @@ $(document).ready(function () {
           };
   
           $.ajax({
-            url: "https://guestapi.roomability.io/Reservation/Add",
+            url: `${baseUrl}/Reservation/Add`,
             method: "POST",
             contentType: "application/json",
             headers: {
-              "X-API-KEY": "WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3"
+              'X-API-KEY': apiKey
             },
             data: JSON.stringify({
               guest: {
@@ -146,7 +145,9 @@ $(document).ready(function () {
                   "&duration=" +
                   encodeURIComponent(guestData.duration)  +
                   "&numOfNights=" +
-                  encodeURIComponent(guestData.numberOfNights);
+                  encodeURIComponent(guestData.numberOfNights) +
+                  "&arrivalTime=" +
+                  encodeURIComponent(guestData.guestArrivalTime);
   
                 window.location.href =
                   "/view/payment-success.html?" + queryParams;
@@ -166,44 +167,10 @@ $(document).ready(function () {
           });
         }
       } else if (paymentMethod === "paystack") {
+
         var bookingData = JSON.parse(sessionStorage.getItem("bookingData"));
-  
-      
-          var checkInDate = new Date(bookingData.requestData.checkInDate);
-          var checkOutDate = new Date(bookingData.requestData.checkOutDate);
-          var timeDifference = checkOutDate - checkInDate;
-          var numberOfNights = timeDifference / (1000 * 3600 * 24);
-          var roomPayRate = bookingData.selectedRoom.rate * bookingData.roomCount;
-          var totalRate = numberOfNights * roomPayRate;
-  
-          var roomType = bookingData.selectedRoom.roomType;
-          var roomCount = bookingData.roomCount;
-  
-          var guestData = {
-            guestName:
-              bookingData.guestTitle +
-              " " +
-              bookingData.guestFirstName +
-              " " +
-              bookingData.guestLastName,
-              duration:
-              formatDate(bookingData.requestData.checkInDate) +
-              " to " +
-            formatDate(bookingData.requestData.checkOutDate),
-            checkInDate: formatDate(bookingData.requestData.checkInDate),
-            checkOutDate: formatDate(bookingData.requestData.checkOutDate),
-            numberOfNights: timeDifference,
-            roomType: roomType,
-            roomCount: roomCount,
-            totalAmount: totalRate,
-            guestArrivalTime: bookingData.guestArrivalTime,
-          };
 
         
-   
-
-          
-
         var checkInDate = new Date(bookingData.requestData.checkInDate);
         var checkOutDate = new Date(bookingData.requestData.checkOutDate);
         var timeDifference = checkOutDate - checkInDate;
@@ -212,16 +179,39 @@ $(document).ready(function () {
         var numberOfNights = timeDifference / (1000 * 3600 * 24);
 
 
-        var roomRate = bookingData.selectedRoom.rate * bookingData.roomCount;
-
-
-
+        const roomRate = bookingData.selectedRoom.rate * bookingData.roomCount;
+        
         var totalRate = numberOfNights * roomRate;
   
 
+        var roomType = bookingData.selectedRoom.roomType;
+        var roomCount = bookingData.roomCount;
+
+
+
+        var guestData = {
+            guestName:
+              bookingData.guestTitle +
+              " " +
+              bookingData.guestFirstName +
+              " " +
+              bookingData.guestLastName,
+
+              duration:
+              formatDate(bookingData.requestData.checkInDate) + " " +
+              " To " + " " + 
+            formatDate(bookingData.requestData.checkOutDate) + `(${numberOfNights} Night(s))`,
+            numberOfNights:  numberOfNights,
+            roomType: bookingData.selectedRoom.roomType,
+            roomCount: bookingData.roomCount,
+            totalAmount: totalRate,
+            guestArrivalTime: bookingData.guestArrivalTime,
+          };
+
+        console.log(guestData.guestArrivalTime)
+
+
        var emailValue = bookingData.guestEmail
-
-
         const paystack = new PaystackPop();
   
         paystack.newTransaction({
@@ -231,11 +221,14 @@ $(document).ready(function () {
           currency: "NGN", 
           reference: "" + Math.floor(Math.random() * 1000000000 + 1),
           onSuccess: (transaction) => {
-            // alert(`Payment complete! Reference: ${transaction.reference}`);
-
-    const transactionRef = transaction.reference
+            alert(`Payment complete! Reference: ${transaction.reference}`);
 
     
+var transactionRef = transaction.reference
+
+console.log(transactionRef)
+
+
            var queryParams = "bookingRef=" +
            encodeURIComponent("BW738G") +
            "&guestName=" +
@@ -255,18 +248,20 @@ $(document).ready(function () {
            "&numOfNights=" +
            encodeURIComponent(guestData.numberOfNights)  +
            "&transactionRef=" +
-           encodeURIComponent(transactionRef)  +
+           encodeURIComponent(transaction.reference)  +
            "&arrivalTime=" +
-           encodeURIComponent(guestArrivalTime);;
+           encodeURIComponent(guestData.guestArrivalTime);
 
+            
             
            window.location.href =
            "/view/payment-success.html?" + queryParams;
 
-         sessionStorage.removeItem("bookingData");
+           sessionStorage.removeItem("bookingData");
 
           },
           onLoad: (response) => {
+
             console.log("onLoad: ", response);
 
             
@@ -282,6 +277,12 @@ $(document).ready(function () {
           },
         });
       }
+    }
+  
+    $(document).on("submit", "#guest-payment", function (e) {
+      e.preventDefault();
+  
+loadPayment()
     });
   
     if (!sessionStorage.getItem("bookingData")) {

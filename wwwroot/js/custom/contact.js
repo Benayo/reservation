@@ -4,10 +4,10 @@ $(document).ready(function () {
       
       $.getJSON("/appsettings.json", function (data) {
         const contactDetails = data.contactInfo;
-        const address = data.contactInfo.address;
-  
-        console.log("Info: " + address, contactDetails.state);
-  
+   
+        
+        
+    $('#hotel-name').text(data.contactInfo.hotel);
         $("#address").text(contactDetails.address);
         $("#state").text(contactDetails.state);
         $("#country").text(contactDetails.country);

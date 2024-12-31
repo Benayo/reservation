@@ -4,7 +4,7 @@ $(document).ready(function() {
   $.getJSON('/appsettings.json', function(data) {
 
     const hotel = data.contactInfo.hotel;
-    $('#hotel-title').text(hotel)
+    $('#hotel-name').text(hotel)
   })
 
   function getQueryParams() {
@@ -22,6 +22,10 @@ $(document).ready(function() {
       return;
   }
 
+  if(!params.transactionRef){
+    $('#transaction').hide();
+  }
+
   $('#guest-success-name').text(params.guestName || "Guest information not available.");
   $('#arrival-time').text(params.arrivalTime || "N/A");
   $('#duration').text(params.duration || "N/A");
@@ -32,7 +36,7 @@ $(document).ready(function() {
   $('#num-rooms').text(params.roomCount || "Not Available");
   $('#total-amount').text(params.totalAmount ? new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(params.totalAmount) : "0.00");
   $('#booking-reference').text(params.bookingRef || "Booking reference not available.");
-
+  $('#transaction-ref').text(params.transactionRef || "Booking reference not available.");
   if (params.errorCode || params.bookingRef) {
       history.pushState(null, null, location.href);
 

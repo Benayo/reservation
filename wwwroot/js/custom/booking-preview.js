@@ -3,7 +3,11 @@ $(document).ready(function(){
     $("#footer").load('/shared/footer.html')
     $('#reservation').load('/shared/reservation-summary.html')
 
-
+    $.getJSON('/appsettings.json', function(data) {
+   
+      $('#hotel-name').text(data.contactInfo.hotel);
+      
+  });
     
     if (!sessionStorage.getItem('bookingData')) {
       window.location.href = '/index.html'; 
@@ -68,7 +72,7 @@ $(document).ready(function(){
         $('#guest-preview-purpose').text(bookingData.guestPurpose); 
         $('#guest-preview-phone').text(bookingData.guestPhone);
         $('#guest-preview-email').text(bookingData.guestEmail);
-        $('#guest-preview-additional-info').text(bookingData.  guestAdditionalRequirements)
+        $('#guest-preview-additional-info').text(bookingData.guestAdditionalRequirements)
         $('#guest-preview-address1').text(bookingData.guestAddressLine1)
         $('#guest-preview-address2').text(bookingData.guestAddressLine2);
         $('#guest-preview-state').text(bookingData.guestStateName

@@ -730,7 +730,7 @@ select.did-floating-select::-ms-expand {
 
 .error-message {
   color: #9d3b3b !important;
-  font-size: 16px;
+  font-size: 12px;
   padding: 0 !important;
   margin: 0 !important;
   margin-bottom: 8px;

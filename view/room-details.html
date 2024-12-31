@@ -8,8 +8,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <title>Seaplace Hotel - Contact</title>
-    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <title id="hotel-name"></title>
+    <link rel="icon" href="/wwwroot/images/favicon.png" type="image/png" />
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css"
@@ -143,6 +143,8 @@
 
                 <div class="room-amenities">
                   <div class="title">Room Amenities</div>
+
+                  
                   <div class="room-item"><i class="fa fa-wifi"></i>
                     <div class="label">Wifi</div>
                   </div>
@@ -218,7 +220,7 @@
                   
                 
                    </div>
-                   <span id="check-in-error" class="error-message"></span>
+                   <span id="check-out-error" class="error-message"></span>
                  </div>
                 
                 </div>
@@ -237,7 +239,7 @@
                 <div class="form-group">
         
                   <div class="did-floating-label-content form-select-custom">
-                    <select name="adults" id="room-guest-adult" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                    <select name="adults" id="room-guest-adult" class="did-floating-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                       <option value="" hidden></option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -266,7 +268,7 @@
                 <div class="form-group">
         
                   <div class="did-floating-label-content form-select-custom">
-                    <select name="adults" id="room-guest-children" class="did-floating-select form-control form-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                    <select name="adults" id="room-guest-children" class="did-floating-select" onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                       <option value="" hidden></option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -275,7 +277,7 @@
                     </select>
                     <label id="children-age" for="adults" class="did-floating-label"></label>
                   </div>
-                  <span id="adults-error" class="error-message"></span>
+                  <span id="children-error" class="error-message"></span>
                 </div>
                 <button class="button-form">
                   Check Availability

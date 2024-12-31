@@ -2,16 +2,22 @@ let key = '';
 $(document).ready(function() {
 
   $.getJSON('/appsettings.json', function(data) {
-   key = data.api.key
+
+    apiKey = data.api.apiKey;
+    baseUrl = data.api.baseUrl;
+
+    loadPrivacyPolicy()
+  
+    
+    $('#hotel-name').text(data.contactInfo.hotel);
 });
 
-
-
-    $.ajax({
-        url: 'https://guestapi.roomability.io/Privacy/Detail',
+function loadPrivacyPolicy(){
+$.ajax({
+        url: `${baseUrl}/Privacy/Detail`,
         method: 'GET',
         headers: {
-          'X-API-Key': key
+          'X-API-KEY': apiKey
         },
         success: function(response) {
             console.log(response.detail)
@@ -22,5 +28,5 @@ $(document).ready(function() {
         }
       });
      
-
+}
 })

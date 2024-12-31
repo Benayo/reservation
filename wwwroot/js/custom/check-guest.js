@@ -2,7 +2,11 @@ $(document).ready(function() {
     $('#reservation').load('/shared/reservation-summary.html');
 
 
-    
+    $.getJSON('/appsettings.json', function(data) {
+
+        
+        $('#hotel-name').text(data.contactInfo.hotel);
+    });
     
     if (!sessionStorage.getItem('sessionStartTime')) {
         sessionStorage.setItem('sessionStartTime', Date.now()); 

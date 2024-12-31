@@ -1,6 +1,5 @@
-
-let key = "";
-
+let apiKey = '';
+let baseUrl = '';
 let defaultArrivalTime = "";
 
 $(document).ready(function() {
@@ -15,17 +14,26 @@ $(document).ready(function() {
     
     $.getJSON('/appsettings.json', function(data) {
 
+        apiKey = data.api.apiKey;
+     baseUrl = data.api.baseUrl;
      defaultArrivalTime = data.appSettings.arrival
-        key = data.api.key
+
+     $('#hotel-name').text(data.contactInfo.hotel);
+
+     loadTermsOfUseModal()
+     loadGuestEmailDetails()
+     loadCountries();
+     loadStates() 
+  
    });
 
 
-
+function loadTermsOfUseModal(){
 $.ajax({
-    url: 'https://guestapi.roomability.io/Term/Detail',
+    url:   `${baseUrl}/Term/Detail`,
     method: 'GET',
     headers: {
-      'X-API-KEY': key
+      'X-API-KEY': apiKey
     },
     success: function(response) {
       $('#terms-text').html(response.detail);
@@ -52,7 +60,7 @@ $.ajax({
   
   $('#cancel-terms').on('click', function() {
     $('#terms-modal').fadeOut();
-  });
+  });}
   
 
     
@@ -75,20 +83,20 @@ $.ajax({
     })
 
 
+function loadGuestEmailDetails(){
+        var emailValue = sessionStorage.getItem('guestEmail');
 
-const emailValue = sessionStorage.getItem('guestEmail');
-
-$.ajax({
-            url: `https://guestapi.roomability.io/Guest/Detail?email=${emailValue}`,
+        $.ajax({
+            url: `${baseUrl}/Guest/Detail?email=${emailValue}`,
             method: 'GET',
             contentType: 'application/json',
             headers: {
-                'X-API-KEY': "WEB_ZtxI7rfuxyz0xaSQmJi73R123wCMEcjNQmzTrma1b2c3"
+                'X-API-KEY': apiKey
             },
             success: function(response) {
 
                 
-const emailValue = sessionStorage.getItem('guestEmail');
+        //    var emailValue = sessionStorage.getItem('guestEmail');
 
                 if (response.errorCode === 0) {
                     var guestDetails = response.detail;
@@ -125,7 +133,7 @@ const emailValue = sessionStorage.getItem('guestEmail');
 
 
   
-    
+    }
 
 
     $('#guest-date-of-birth').datetimepicker({
@@ -178,15 +186,15 @@ const emailValue = sessionStorage.getItem('guestEmail');
     });
     
 
-    loadCountries();
+
 
     function loadCountries() {
         $.ajax({
-            url: 'https://guestapi.roomability.io/Country/GetSelectList',
+            url: `${baseUrl}/Country/GetSelectList`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-KEY': key
+                'X-API-KEY': apiKey
             },
             success: function(response) {
                 if (response && response.countries) {
@@ -213,11 +221,11 @@ const emailValue = sessionStorage.getItem('guestEmail');
 
     function loadStates(countryId) {
         $.ajax({
-            url: `https://guestapi.roomability.io/State/GetSelectList?countryId=${countryId}`,
+            url: `${baseUrl}/State/GetSelectList?countryId=${countryId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-KEY': key
+                'X-API-KEY': apiKey
             },
             success: function(response) {
                 if (response && response.states) {

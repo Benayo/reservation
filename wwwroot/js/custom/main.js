@@ -1,7 +1,8 @@
 
 $(document).ready(function () {
-  
-  let key = '';
+  let apiKey = '';
+let baseUrl = '';
+
 
   $("#header").load("/shared/header.html");
 
@@ -34,9 +35,9 @@ $(document).ready(function () {
 
   
   $.getJSON("/appsettings.json", function (data) {
-
-    key = data.api.key
-
+    
+    apiKey = data.api.apiKey;
+    baseUrl = data.api.baseUrl;
 
   const primaryColor = data.appSettings.primaryColor;
    const contentInfo = data.homeContent
@@ -55,6 +56,8 @@ $(document).ready(function () {
     $(".testi-carousel").hide(); 
   }
 
+
+  $('#hotel-name').text(data.contactInfo.hotel)
    $('#slogan').text(contentInfo.slogan)
    $('#banner').text(contentInfo.banner)
 
@@ -146,19 +149,25 @@ $(document).ready(function () {
                       '&adults=' + encodeURIComponent(adults) +
                       '&children=' + encodeURIComponent(children);
 
-    // Redirect to the bookings page with the query parameters
     window.location.href = 'bookings.html?' + queryParams;
   });
   
+
   jQuery(document).ready(function ($) {
+
+    $.getJSON("/appsettings.json", function (data) {
+
+      apiKey = data.api.apiKey;
+      baseUrl = data.api.baseUrl;
+
     $.ajax({
-      url: "https://guestapi.roomability.io/RoomType/DetailList?facilityTypeId=1",
+      url: `${baseUrl}/RoomType/DetailList?facilityTypeId=1`,
       method: "GET",
       headers: {
-        "X-API-Key": key
+        'X-API-KEY': apiKey
       },
       success: function (response) {
-        // Check if the response has room types
+        
         if (response && response.types) {
           const roomsContainer = $("#rooms-container");
 
@@ -248,11 +257,9 @@ $(document).ready(function () {
         $("#rooms-container").html(`<div class="error-container"><h4>Error fetching room types.</h4></div>`);
       },
     });
-
-
-
-
-
+  });
+  
+    
     $(document).on('click', '#book-now', function(event) {
 
         

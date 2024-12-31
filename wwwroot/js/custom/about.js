@@ -7,6 +7,7 @@ $(document).ready(function () {
 
   $.getJSON("/appsettings.json",function (data){
 
+    $('#hotel-name').text(data.contactInfo.hotel);
 
     const visibilitySettings= data.aboutContent.visibility
 

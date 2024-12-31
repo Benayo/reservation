@@ -1,4 +1,5 @@
-let key = '';
+let apiKey = '';
+let baseUrl = '';
 $(document).ready(function() {
   $('#header').load('/shared/header.html');
   $('#footer').load('/shared/footer.html');
@@ -8,8 +9,14 @@ $(document).ready(function() {
   $.getJSON('/appsettings.json', function(data) {
     $('#adult-age').text(data.appSettings.adults);
     $('#children-age').text(data.appSettings.children);
+    $('#hotel-name').text(data.contactInfo.hotel);
 
-     key = data.api.key
+    apiKey = data.api.apiKey;
+    baseUrl = data.api.baseUrl;
+  
+
+    loadRoomTypes()
+
 });
 
 function getDefaultValues() {
@@ -26,16 +33,17 @@ function getDefaultValues() {
       adults: adults,
       children: children
     };
-  }
-  
-  let roomTypeId = '';
+  };
 
 
-  $.ajax({
-      url: 'https://guestapi.roomability.io/RoomType/DetailList?facilityTypeId=1',
+function loadRoomTypes() {
+
+ $.ajax({
+
+      url: `${baseUrl}/RoomType/DetailList?facilityTypeId=1`,
       method: 'GET',
       headers: {
-          'X-API-Key': key
+        'X-API-KEY': apiKey
       },
       success: function(response) {
           if (response && response.types) {
@@ -69,7 +77,7 @@ function getDefaultValues() {
                   const roomData = $(this).data('room');
                   
                   sessionStorage.setItem('roomDetailsData', JSON.stringify(roomData));
-                  
+                
                   window.location.href = '/view/room-details.html';
               });
           } else {
@@ -80,6 +88,7 @@ function getDefaultValues() {
           $('#rooms-container').html('<p>Error fetching room types.</p>');
       }
   });
+};
 
   function formatCurrency(currencySymbol, rate) {
       return currencySymbol + ' ' + rate.toLocaleString();
