@@ -1,5 +1,5 @@
 body {
-  background-color: #F7F9F9;
+  background-color: #f4f4f4;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -15,7 +15,7 @@ body {
 
 .navigation .back{
 margin-bottom: 12px;
-color: #222222;
+color: var(--primary-text-color);
 text-decoration: none;
 display: inline-flex;
 align-items: center;
@@ -100,7 +100,7 @@ align-items: center;
    gap: 80px;
     color: black;
     padding: 4px;
-    border-bottom:#2222 1px solid;
+    border-bottom:var(--primary-text-color)2 1px solid;
   }
   
 
@@ -208,11 +208,19 @@ textarea {
   width: auto;
 }
 
+#terms-of-use-link{
+  color: var(--primary-color);
+}
+
+#terms-of-use-link:hover{
+  text-decoration: underline;
+}
+
 
 .checkbox-size {
   width: 16px; 
   height: 16px; 
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 
@@ -238,7 +246,7 @@ textarea {
 .payment-success-message p{
   font-size: 14px;
     font-weight: 500;
-    color: #222222;
+    color: var(--primary-text-color);
     text-align: center;
 }
 
@@ -261,7 +269,7 @@ textarea {
 .booking-summary span {
   font-size: 14px;
     font-weight: 500;
-    color: #222222;
+    color: var(--primary-text-color);
     text-align: center;
   text-align: left; /* Aligns the value to the left */
 }
@@ -293,7 +301,7 @@ width: 100%;
 
 .error-message {
   color: #9d3b3b !important;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 
 }

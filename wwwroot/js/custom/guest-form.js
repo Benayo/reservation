@@ -5,20 +5,58 @@ let defaultArrivalTime = "";
 $(document).ready(function() {
     $('#reservation').load('/shared/reservation-summary.html')
   
+    let inactivityTimer;
 
-    if (!sessionStorage.getItem('bookingData')) {
-        window.location.href = '/index.html'; 
-        return; 
+    const sessionTimeoutDuration = 5 * 60 * 1000; 
+
+    const clearSession = function() {
+        sessionStorage.clear();
+        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+        window.location.href = '/view/bookings.html';
+    };
+
+    const resetInactivityTimer = function() {
+        clearTimeout(inactivityTimer);
+        sessionStorage.setItem('sessionStartTime', Date.now());
+        inactivityTimer = setTimeout(clearSession, sessionTimeoutDuration);
+    };
+
+    const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+    if (sessionStartTime) {
+        const elapsedTime = Date.now() - sessionStartTime;
+        if (elapsedTime >= sessionTimeoutDuration) {
+            clearSession();
+            return;
+        }
+    } else {
+        sessionStorage.setItem('sessionStartTime', Date.now());
     }
 
-    
+    $(document).on('mousemove keydown click scroll touchstart', function() {
+        resetInactivityTimer();
+    });
+
+    resetInactivityTimer();
+
+    if (!sessionStorage.getItem('bookingData')) {
+        window.location.href = '/view/bookings.html';
+        return;
+    }
+
+
+
     $.getJSON('/appsettings.json', function(data) {
 
         apiKey = data.api.apiKey;
      baseUrl = data.api.baseUrl;
      defaultArrivalTime = data.appSettings.arrival
 
+
+
+
      $('#hotel-name').text(data.contactInfo.hotel);
+
+
 
      loadTermsOfUseModal()
      loadGuestEmailDetails()
@@ -39,7 +77,7 @@ $.ajax({
       $('#terms-text').html(response.detail);
     },
     error: function() {
-      alert('Failed to load terms of service.');
+        toastr.error('Failed to load terms of service.');
     }
   });
   
@@ -72,6 +110,20 @@ $.ajax({
             const defaultArrivalTime = data.appSettings.arrival
 
             $('#guest-arrival-time').val(defaultArrivalTime);
+
+
+            const visibilitySettings = data.guestForm.visibility
+  
+            if (!visibilitySettings.captcha) {
+              $("#human-verification").hide();
+              $("#human-verification-content").hide();	
+            };
+       
+
+
+            const recaptchaSiteKey = data.appSettings.recaptchaSiteKey;
+
+            $('#recaptcha-container').attr('data-sitekey', recaptchaSiteKey)
         })
 
        
@@ -80,6 +132,9 @@ $.ajax({
         $('#guest-arrival-time').timepicki(); 
 
          $('#guest-arrival-time').timepicki('setTime', defaultArrivalTime);
+
+
+ 
     })
 
 
@@ -95,8 +150,6 @@ function loadGuestEmailDetails(){
             },
             success: function(response) {
 
-                
-        //    var emailValue = sessionStorage.getItem('guestEmail');
 
                 if (response.errorCode === 0) {
                     var guestDetails = response.detail;
@@ -105,6 +158,7 @@ function loadGuestEmailDetails(){
                         $('#guest-email').prop('disabled', false); 
 
                         $('#guest-email').val(emailValue || '');
+                        toastr.error("User does not exists! Kindly fill out all required fields");
                     } else {
                         $('#guest-title').val(guestDetails.title || 'Mr.'); 
                         $('#guest-first-name').val(guestDetails.firstName || '');
@@ -119,14 +173,14 @@ function loadGuestEmailDetails(){
                         $('#guest-city').val(guestDetails.city || '');
                         $('#guest-address-line1').val(guestDetails.address1 || '');
                         $('#guest-address-line2').val(guestDetails.address2 || '');
-                  
+                  toastr.success("User exists!");
                     }
                 } else {
                     console.log('Error in API response: ' + response.errorMessage); 
                 }
             },
             error: function() {
-                alert('An error occurred with the API request. Please try again.');
+                toastr.error('An error occurred with the API request. Please try again.');
             }
         });
 
@@ -184,10 +238,14 @@ function loadGuestEmailDetails(){
             $('#email-error').text('');
         }
     });
+
+   
+    
     
 
 
 
+    
     function loadCountries() {
         $.ajax({
             url: `${baseUrl}/Country/GetSelectList`,
@@ -207,19 +265,46 @@ function loadGuestEmailDetails(){
         });
     }
 
+ 
+
     function populateCountryDropdown(countries) {
         const countrySelect = $('#guest-country');
-        countries.forEach(function(country) {
-            const option = $('<option>').val(country.id).text(country.name);
+    
+        countrySelect.empty();
+
+        countries.forEach(function (country, index) {
+            const option = $('<option>')
+                .val(country.id)
+                .text(country.name);
+        
+            if (index === 0) {
+                option.attr('selected', 'selected');
+            }
             countrySelect.append(option);
         });
-
+        
         if (countries.length > 0) {
             loadStates(countries[0].id);
         }
     }
+    
+    
+    $('#guest-country').change(function () {
+        const selectedCountryId = $(this).val();
+        if (selectedCountryId) {
+            loadStates(selectedCountryId);
+        } else {
+            console.error('No country selected.');
+        }
+    });
 
+
+    
     function loadStates(countryId) {
+        if (!countryId) {
+            return;
+        }
+
         $.ajax({
             url: `${baseUrl}/State/GetSelectList?countryId=${countryId}`,
             method: 'GET',
@@ -227,12 +312,12 @@ function loadGuestEmailDetails(){
                 'Content-Type': 'application/json',
                 'X-API-KEY': apiKey
             },
-            success: function(response) {
+            success: function (response) {
                 if (response && response.states) {
                     populateStateDropdown(response.states);
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 console.error("Error fetching states:", error);
             }
         });
@@ -269,6 +354,17 @@ function loadGuestEmailDetails(){
     $(document).on('click', "#guest-form-button", function(e) {
         e.preventDefault();
 
+
+    var recaptchaResponse = grecaptcha.getResponse();
+
+    if (recaptchaResponse.length == 0) {
+        toastr.error('Please complete the reCAPTCHA to proceed.');
+        return;  
+    }
+
+
+
+
         var urlParams = new URLSearchParams(window.location.search);
 
     
@@ -299,8 +395,9 @@ function loadGuestEmailDetails(){
 
         
         if (!guestData.guestFirstName || !guestData.guestLastName || !guestData.guestEmail || !guestData.guestPhone || !guestData.guestAddressLine1 || !guestData.termsAccepted) {
-            alert('Please fill all required fields.');
+            toastr.error('Please fill out all required fields');
             isValid = false;
+            return;
         }
 
         
@@ -312,39 +409,6 @@ function loadGuestEmailDetails(){
             window.location.href = `/view/booking-preview.html`;  
         }
     });
+   
 
-    $('#guest-country').change(function() {
-        const selectedCountryId = $(this).val();
-        loadStates(selectedCountryId);
-    });
-
-
-
-    
-    if (!sessionStorage.getItem('sessionStartTime')) {
-        sessionStorage.setItem('sessionStartTime', Date.now()); 
-    }
-
-    
-    const sessionTimeoutDuration = 15 * 60 * 1000; 
-    
-
-    const checkSessionExpiration = function() {
-        const sessionStartTime = sessionStorage.getItem('sessionStartTime');
-        if (sessionStartTime) {
-            const elapsedTime = Date.now() - sessionStartTime;
-            if (elapsedTime >= sessionTimeoutDuration) {
-                sessionStorage.clear(); 
-                alert('Session has expired. Your data has been cleared.');
-
-                window.location.href = '/view/bookings.html'
-            }
-        }
-    };
-
-    
-    checkSessionExpiration();
-
-    
-    setInterval(checkSessionExpiration, 60 * 1000); 
 });

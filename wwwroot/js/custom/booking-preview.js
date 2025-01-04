@@ -3,55 +3,56 @@ $(document).ready(function(){
     $("#footer").load('/shared/footer.html')
     $('#reservation').load('/shared/reservation-summary.html')
 
+    
+    let inactivityTimer;
+
+    const sessionTimeoutDuration = 5 * 60 * 1000; 
+
+    const clearSession = function() {
+        sessionStorage.clear();
+        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+        window.location.href = '/view/bookings.html';
+    };
+
+    const resetInactivityTimer = function() {
+        clearTimeout(inactivityTimer);
+        sessionStorage.setItem('sessionStartTime', Date.now());
+        inactivityTimer = setTimeout(clearSession, sessionTimeoutDuration);
+    };
+
+    const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+    if (sessionStartTime) {
+        const elapsedTime = Date.now() - sessionStartTime;
+        if (elapsedTime >= sessionTimeoutDuration) {
+            clearSession();
+            return;
+        }
+    } else {
+        sessionStorage.setItem('sessionStartTime', Date.now());
+    }
+
+    $(document).on('mousemove keydown click scroll touchstart', function() {
+        resetInactivityTimer();
+    });
+
+    resetInactivityTimer();
+
+    if (!sessionStorage.getItem('bookingData')) {
+        window.location.href = '/view/bookings.html';
+        return;
+    }
+
+
+
+
+
     $.getJSON('/appsettings.json', function(data) {
    
       $('#hotel-name').text(data.contactInfo.hotel);
       
   });
     
-    if (!sessionStorage.getItem('bookingData')) {
-      window.location.href = '/index.html'; 
-      return; 
-  }
-
-
-
-    if (!sessionStorage.getItem('sessionStartTime')) {
-      sessionStorage.setItem('sessionStartTime', Date.now()); 
-  }
-
-  
-  const sessionTimeoutDuration = 15 * 60 * 1000; 
-  
-
-    
-  if (!sessionStorage.getItem('bookingData')) {
-    window.location.href = '/index.html'; 
-    return; 
-}
-
-
-
-  const checkSessionExpiration = function() {
-      const sessionStartTime = sessionStorage.getItem('sessionStartTime');
-      if (sessionStartTime) {
-          const elapsedTime = Date.now() - sessionStartTime;
-          if (elapsedTime >= sessionTimeoutDuration) {
-              sessionStorage.clear(); 
-              alert('Session has expired. Your data has been cleared.');
-
-              window.location.href = '/view/bookings.html'
-          }
-      }
-  };
-
-  
-  checkSessionExpiration();
-
-  
-  setInterval(checkSessionExpiration, 60 * 1000); 
-
-
+   
 
 
     var bookingData = JSON.parse(sessionStorage.getItem('bookingData'));

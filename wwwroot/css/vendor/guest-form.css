@@ -1,6 +1,6 @@
 .check-guest__title .back{
     margin-bottom: 12px;
-    color: #222222;
+    color: var(--primary-text-color);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -35,7 +35,7 @@
       }
   
     .check-guest__container {
-      border: #2222 1px solid;
+      border: var(--primary-text-color)2 1px solid;
       background-color: white !important;
         padding: 16px;
         margin: 16px 0;
@@ -64,7 +64,7 @@
         justify-content: space-between;
         color: black;
         padding: 4px;
-        border-bottom:#2222 1px solid;
+        border-bottom:var(--primary-text-color)2 1px solid;
       }
       
       .check-guest__container__sub-total {
@@ -76,7 +76,7 @@
       }
       
       .check-guest__contact {
-        border: #2222 1px solid;
+        border: var(--primary-text-color)2 1px solid;
         background-color: white !important;
         padding: 16px;
         margin: 16px 0;

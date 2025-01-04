@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+  
   let apiKey = '';
 let baseUrl = '';
 
@@ -11,7 +12,10 @@ let baseUrl = '';
   $("#availability").load("/shared/check-availability.html");
 
   $('html, body').animate({ scrollTop: 0 }, 'fast');
-  
+
+
+
+
     // For select fields
     $('#dropdown').on('change focus', function() {
       if ($(this).val() !== "") {
@@ -40,9 +44,22 @@ let baseUrl = '';
     baseUrl = data.api.baseUrl;
 
   const primaryColor = data.appSettings.primaryColor;
-   const contentInfo = data.homeContent
+  const primaryTextColor = data.appSettings.primaryTextColor;
+  
+  const footerColor = data.appSettings.footerColor;
+  const footerCopyrightColor = data.appSettings.footerCopyrightColor;
+
+ const contentInfo = data.homeContent
+ const mainFontFamily = data.appSettings.mainFontFamily;
+ const bodyFontFamily = data.appSettings.bodyFontFamily;
+
+ 
+
+
+
    const visibilitySettings= data.homeContent.visibility
-   if (!visibilitySettings.welcomeSection) {
+
+ if (!visibilitySettings.welcomeSection) {
     $(".welcome").hide();
   }
 
@@ -71,48 +88,34 @@ let baseUrl = '';
 
 
 
-  $("#play-home-video").attr('src', contentInfo.videoSection.videoPath)
+  $("#play-home-video").attr('href', contentInfo.videoSection.videoPath)
   $("#video-title").text(contentInfo.videoSection.title)
   $("#video-description").text(contentInfo.videoSection.description)
 
-  renderFacilitySection(contentInfo.facilitySection);
+
+
+
+  document.documentElement.style.setProperty("--main-font-family", mainFontFamily);
+
+  document.documentElement.style.setProperty("--body-font-family", bodyFontFamily);
 
 
   document.documentElement.style.setProperty("--primary-color", primaryColor);
+
+  document.documentElement.style.setProperty("--primary-text-color", primaryTextColor);
+
+  document.documentElement.style.setProperty("--footer-color", footerColor);
+
+  document.documentElement.style.setProperty("--footer-copyright-color", footerCopyrightColor);
   }).fail(function () {
     console.error("Failed to load appsettings.json");
   });
 
 
-  function renderFacilitySection(facilitySectionData) {
-    const facilityImage = $('#facility-image');
-    facilityImage.attr('src', facilitySectionData.image);
-
-    const facilitiesList = $('#facilitiesList');
-    const facilityItems = facilitySectionData.facilities.map(facility => {
-      return `
-        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-        <div class="card card-special">
-        <div>
-         <span class="card-special__icon"><i class="${facility.iconClass}"></i></span> 
-        <div class="media-body ">
-          <h4 class="card-special__title">${facility.title}</h4>
-           </div>
-
-           <div class="card-body">
-          <p>${facility.text}</p>
-         </div>
-          </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    facilitiesList.html(facilityItems);
-  }
 
 
-  
+
+
   
   
   function getDefaultValues() {
@@ -155,10 +158,112 @@ let baseUrl = '';
 
   jQuery(document).ready(function ($) {
 
+
+
+
+
+    function renderFacilitySection(facilitySectionData) {
+      const facilityImage = $('#facility-image');
+      facilityImage.attr('src', facilitySectionData.image);
+  
+      const facilitiesList = $('#facilitiesList');
+      const facilityItems = facilitySectionData.facilities.map(facility => {
+        return `
+          <div class="">
+          <div class="card card-special">
+          <div>
+           <span class="card-special__icon"><i class="${facility.iconClass}"></i></span> 
+          <div class="media-body ">
+            <h4 id="special__title" class="card-special__title">${facility.title}</h4>
+             </div>
+  
+             <div class="card-body">
+            <p>${facility.text}</p>
+           </div>
+            </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+  
+      facilitiesList.html(facilityItems);
+  
+      
+      if ($(".owl-carousel").length > 0) {
+        facilitiesList.owlCarousel("destroy"); 
+        facilitiesList.owlCarousel({
+          loop: true,
+          autoplay: true,
+          margin: 30,
+          smartSpeed: 600,
+          nav: false,
+          dots: true,
+          responsive: {
+            0: {
+              items: 1,
+            },
+            700: {
+              items: 2,
+            },
+            1000: {
+              items: 3,
+            },
+          },
+        })
+    }
+  }
+    
+
+
+
+    const roomsContainer = $("#rooms-container");
+
+  // Show skeleton loaders
+  for (let i = 0; i < 4; i++) {
+    roomsContainer.append(`
+      <div class="testi-carousel__item-room skeleton">
+        <div class="card card-explore">
+          <div class="card-explore__img skeleton-box skeleton-img"></div>
+          <div class="card-body">
+            <div class="skeleton-box skeleton-price"></div>
+            <div class="skeleton-box skeleton-title"></div>
+            <div class="skeleton-box skeleton-summary"></div>
+            <div class="skeleton-box skeleton-link"></div>
+          </div>
+        </div>
+      </div>
+    `);
+  }
+  if ($(".owl-carousel").length > 0) {
+    roomsContainer.owlCarousel("destroy"); 
+    roomsContainer.owlCarousel({
+      loop: true,
+      autoplay: true,
+      margin: 30,
+      smartSpeed: 600,
+      nav: false,
+      dots: true,
+      responsive: {
+        0: {
+          items: 1,
+        },
+        700: {
+          items: 1,
+        },
+        1000: {
+          items: 2,
+        },
+      }
+      })
+    }
+
     $.getJSON("/appsettings.json", function (data) {
 
       apiKey = data.api.apiKey;
       baseUrl = data.api.baseUrl;
+
+      const contentInfo = data.homeContent
+      renderFacilitySection(contentInfo.facilitySection);
 
     $.ajax({
       url: `${baseUrl}/RoomType/DetailList?facilityTypeId=1`,
@@ -171,6 +276,8 @@ let baseUrl = '';
         if (response && response.types) {
           const roomsContainer = $("#rooms-container");
 
+          
+          roomsContainer.empty(); 
          
 
           $.each(response.types, function (index, room) {
@@ -178,7 +285,7 @@ let baseUrl = '';
            
 
             let roomDetails = room.summary || 'Room summary not available';
-            let truncatedDetails = roomDetails.split(' ').slice(0, 15).join(' ');
+            let truncatedDetails = roomDetails.split(' ').slice(0, 12).join(' ');
 
             
          
@@ -202,7 +309,7 @@ let baseUrl = '';
                 <div class="card-explore__img">
                   <img class="card-img" src="${
                     room.image1 || "default_image.jpg"
-                  }" alt="${room.roomType}" />
+                  }" alt="${room.roomType}" loading="lazy" />
                 </div>
                 <div class="card-body">
                   <h3 class="card-explore__price">${formatCurrency(
@@ -219,7 +326,6 @@ let baseUrl = '';
                 </div>
               </div>
             </div>
-        
           `;
 
             $("#rooms-container").append(roomElement);
@@ -239,7 +345,7 @@ let baseUrl = '';
                   items: 1,
                 },
                 700: {
-                  items: 2,
+                  items: 1,
                 },
                 1000: {
                   items: 2,
@@ -257,6 +363,12 @@ let baseUrl = '';
         $("#rooms-container").html(`<div class="error-container"><h4>Error fetching room types.</h4></div>`);
       },
     });
+
+
+
+
+
+    
   });
   
     
@@ -285,7 +397,6 @@ let baseUrl = '';
       window.location.href = '/view/bookings.html?' + queryParams;
   
       })
-
 
 
 
@@ -396,12 +507,12 @@ let baseUrl = '';
   }
 
   //------- initialize menu --------//
-  $(".nav-menu").superfish({
-    animation: {
-      opacity: "show",
-    },
-    speed: 400,
-  });
+  // $(".nav-menu").superfish({
+  //   animation: {
+  //     opacity: "show",
+  //   },
+  //   speed: 400,
+  // });
 
   //* Navbar Fixed
   var window_width = $(window).width(),

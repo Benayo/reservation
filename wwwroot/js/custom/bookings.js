@@ -1,8 +1,5 @@
-let key = '';
-
 $(document).ready(function() {
 
-  $('#availability').load('/wwwroot/js/custom/bookings.js')
 
   $.getJSON('/appsettings.json', function(data) {
    
@@ -118,6 +115,7 @@ $(document).ready(function() {
 
   $.getJSON('/appsettings.json', function(data) {
  
+    $('#loading-spinner').show();
     
   var apiKey = data.api.apiKey;  
   var  baseUrl = data.api.baseUrl;
@@ -132,21 +130,38 @@ $(document).ready(function() {
     },
     data: JSON.stringify(requestData),
     success: function(response) {
+
+      $('#loading-spinner').hide();
+      $('#error').hide()
+      toastr.success(response.errorMessage)
       sessionStorage.setItem('availabilityData', JSON.stringify(response));
       displayRooms(response);  
     },
     error: function(xhr, status, error) {
+      
+      $('#loading-spinner').hide();
+    
+
       console.error('API Request Error:', error);
-      showError('Error fetching availability. Please try again later.');
+      
+      $('#error').append('<h4 class="no-room">Error fetching availability. Please try again later.</h4>')
+      toastr.error("Error fetching availability. Please try again later.")
     }
   });
 });
+
+
+
+
+
 
 
   function displayRooms(response) {
     const rooms = response.types;
     if (rooms && rooms.length > 0) {
       rooms.forEach(function(room) {
+
+
         if (roomTypeId && room.roomTypeId !== parseInt(roomTypeId)) {
           return;
         }
@@ -251,10 +266,10 @@ $(document).ready(function() {
       }
     }
   
-    // Show only the first 4 images as thumbnails
+    
     let displayImages = images.slice(0, 4);
   
-    // Generate HTML for the side images (thumbnails)
+    
     displayImages.forEach(image => {
       imagesHtml += `<img src="${image}" alt="Room Image" class="thumbnail" data-image="${image}">`;
     });
@@ -263,7 +278,7 @@ $(document).ready(function() {
   }
   
   function initCarousel() {
-    // Handle thumbnail click
+    
     $('.details-container').each(function () {
       const $container = $(this);
   
@@ -275,7 +290,7 @@ $(document).ready(function() {
         $(this).addClass('selected');
       });
   
-      // Handle carousel button clicks
+      
       $container.find('.carousel-button').on('click', function () {
         let $mainImage = $container.find('#main-image');
         let images = $container.find('.side-images img');
@@ -290,12 +305,12 @@ $(document).ready(function() {
         let nextImageSrc = $(images[currentIndex]).attr('src');
         $mainImage.attr('src', nextImageSrc);
   
-        // Update selected thumbnail
+        
         images.removeClass('selected');
         $(images[currentIndex]).addClass('selected');
       });
   
-      // Initially, select the first thumbnail as the main image
+      
       $container.find('.side-images img').first().addClass('selected');
     });
   }

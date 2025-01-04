@@ -18,6 +18,7 @@ $(document).ready(function () {
     $("#country").text(contactDetails.country);
     $('#phone_footer').html(contactDetails.phone);
     $('#email_footer').text(contactDetails.email);
+    $('#footerLogoPath').attr('src', data.appSettings.whiteLogoPath )
 
     const textInfo=data.homeContent
 

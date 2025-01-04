@@ -4,11 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+     
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <title id="hotel-name"></title>
+    <link rel="icon" href="wwwroot/images/favicon.png" type="image/png" />
     
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link
@@ -139,8 +142,33 @@
           </div>
           
         <div id="rooms-container"  class="owl-carousel owl-theme testi-carousel" >
-         
-       </div>
+          
+
+ 
+
+<div class="testi-carousel__item-room skeleton">
+  <div class="card card-explore">
+    <div class="card-explore__img">
+      <div class="skeleton-box skeleton-img"></div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-explore__price">
+        <div class="skeleton-box skeleton-price"></div>
+      </h3>
+      <h4 class="card-explore__title">
+        <div class="skeleton-box skeleton-title"></div>
+      </h4>
+      <div class="card-explore__summary">
+        <div class="skeleton-box skeleton-summary"></div>
+      </div>
+      <div class="skeleton-box skeleton-link"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
         </div>
       </section>
       <!-- ================ Explore section end ================= -->
@@ -154,6 +182,7 @@
             <a
               id="play-home-video"
               class="video-play-button"
+              target="_blank"
             >
               <span></span>
             </a>
@@ -179,7 +208,7 @@
             <img class="img-fluid" id="facility-image" src="" alt="Facility image" />
           </div>
       
-          <div class="row" id="facilitiesList">
+          <div class="owl-carousel owl-theme testi-carousel" id="facilitiesList">
           </div>
         </div>
       </section>
@@ -211,13 +240,6 @@
 
     <!-- <div id="secondfooter"></div> -->
     <!-- ================ End footer Area ================= -->
-    
-    
-
-
-
-    
-
     <script src="wwwroot/js/vendors/jquery/jquery-3.2.1.min.js"></script>
     <script src="wwwroot/js/vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="wwwroot/js/vendors/magnefic-popup/jquery.magnific-popup.min.js"></script>

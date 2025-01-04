@@ -8,38 +8,50 @@ $(document).ready(function() {
         $('#hotel-name').text(data.contactInfo.hotel);
     });
     
-    if (!sessionStorage.getItem('sessionStartTime')) {
-        sessionStorage.setItem('sessionStartTime', Date.now()); 
-    }
+    
+    const sessionTimeoutDuration = 5 * 60 * 1000;
+    let inactivityTimer;
 
     
-    const sessionTimeoutDuration = 15 * 60 * 1000; 
-    
-
-    const checkSessionExpiration = function() {
-        const sessionStartTime = sessionStorage.getItem('sessionStartTime');
-        if (sessionStartTime) {
-            const elapsedTime = Date.now() - sessionStartTime;
-            if (elapsedTime >= sessionTimeoutDuration) {
-                sessionStorage.clear(); 
-                alert('Session has expired. Your data has been cleared.');
-
-                window.location.href = '/view/bookings.html'
-            }
-        }
+    const clearSession = function() {
+        sessionStorage.clear();
+        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+        window.location.href = '/view/bookings.html';
     };
 
     
-    checkSessionExpiration();
+    const resetInactivityTimer = function() {
+        clearTimeout(inactivityTimer);
+        sessionStorage.setItem('sessionStartTime', Date.now());
+        inactivityTimer = setTimeout(clearSession, sessionTimeoutDuration);
+    };
 
     
-    setInterval(checkSessionExpiration, 60 * 1000);
+    if (!sessionStorage.getItem('sessionStartTime')) {
+        sessionStorage.setItem('sessionStartTime', Date.now());
+    }
 
     
+    resetInactivityTimer();
+
+    
+    $(document).on('mousemove keydown click scroll touchstart', function() {
+        resetInactivityTimer();
+    });
+
+    
+    const sessionStartTime = sessionStorage.getItem('sessionStartTime');
+    if (sessionStartTime) {
+        const elapsedTime = Date.now() - sessionStartTime;
+        if (elapsedTime >= sessionTimeoutDuration) {
+            clearSession();
+        }
+    }
+
     
     if (!sessionStorage.getItem('bookingData')) {
-        window.location.href = '/index.html'; 
-        return; 
+        window.location.href = '/view/bookings.html';
+        return;
     }
 
 

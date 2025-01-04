@@ -37,6 +37,29 @@ function getDefaultValues() {
 
 
 function loadRoomTypes() {
+  
+
+
+  
+  const roomsContainer = $('#room-container');
+
+  // Show skeleton loaders
+  for (let i = 0; i < 4; i++) {
+    roomsContainer.append(`
+      <div class="col-md-6 col-xl-6 mb-5">
+        <div class="card card-explore">
+          <div class="card-explore__img skeleton-box skeleton-img"></div>
+          <div class="card-body">
+            <div class="skeleton-box skeleton-price"></div>
+            <div class="skeleton-box skeleton-title"></div>
+            <div class="skeleton-box skeleton-summary"></div>
+            <div class="skeleton-box skeleton-link"></div>
+          </div>
+        </div>
+      </div>
+    `);
+  }
+
 
  $.ajax({
 
@@ -49,19 +72,41 @@ function loadRoomTypes() {
           if (response && response.types) {
               const roomsContainer = $('#room-container');
 
+              
+          roomsContainer.empty(); 
+
+
               $.each(response.types, function(index, room) {
+
+                 
+     
+                let roomDetails = room.summary || 'Room summary not available';
+                let truncatedDetails = roomDetails.split(' ').slice(0, 12).join(' ');
+    
+                
+             
+          
+                let detailsHtml = `
+                  <span>${truncatedDetails}...</span> 
+                  <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}" id="room-type-button">Read More</a>
+                `;
+    
+                if (room.summary === "") {
+                  detailsHtml = ''; 
+                }
+                
                   const roomElement = `
                       <div class="col-md-6 col-xl-6 mb-5">
                           <div class="card card-explore">
                               <div class="card-explore__img">
-                                  <img class="card-img" src="${room.image1}" alt="${room.roomType}" />
+                                  <img class="card-img" src="${room.image1}" alt="${room.roomType}" loading="lazy"/>
                               </div>
                               <div class="card-body">
                                   <h3 class="card-explore__price">${formatCurrency(room.currencySymbol, room.rate)}<sub>/ Night</sub></h3>
                                   <h4 class="card-explore__title">
                                     <a href="/view/room-details.html?roomTypeId=${room.roomTypeId}">${room.roomType}</a>
                                   </h4>
-                                  <p>${room.summary}</p>
+                                 <div class="card-explore__summary">${detailsHtml}</div>
                                     <a class="card-explore__link" id="rooms-book-now" href="#" data-roomTypeId=${room.roomTypeId}>Book Now <i class="ti-arrow-right"></i></a>
                               </div>
                           </div>

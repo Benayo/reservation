@@ -15,12 +15,15 @@ $(document).ready(function () {
 const email = data.contactInfo.email
 const phone = data.contactInfo.phone
 
+const logoPath = data.appSettings.logoPath 
 
 $("#phone").text(phone)
 $("#phone-link").attr('href',`tel:${phone}` )
 
 $('#email').text(email)
-$('#email-link').attr('href',`tel:${email}`)
+$('#email-link').attr('href',`mailto:${email}`)
+
+$('#logo-image').attr('src', logoPath )
 
   }).fail(function () {
     console.error("Failed to load settings.json");

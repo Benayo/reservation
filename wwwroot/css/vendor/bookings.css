@@ -1,7 +1,7 @@
 
 
   body {
-    background-color: #F7F9F9;
+    background-color: #f4f4f4;
     font-family: "Roboto", sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -105,7 +105,7 @@
   .room-title span {
     font-size: 14px;
     font-weight: 400;
-    color: #222222;
+    color: var(--primary-text-color);
   }
 
   .detail-explore__price {
@@ -171,7 +171,7 @@ margin-bottom: 2px;
   .room__more__details span{
     font-size: 14px;
     font-weight: 500;
-    color: #222222;
+    color: var(--primary-text-color);
     line-height: 28px;
       }
       .room__more__details a{
@@ -206,13 +206,13 @@ gap: 20px;
   .room__info span {
     font-size: 14px;
     font-weight: 500;
-    color: #222222;
+    color: var(--primary-text-color);
   }
 
 
 
   .room__info .detail {
-    border: #2222 1px solid;
+    border: var(--primary-text-color)2 1px solid;
     cursor: default;
     padding:0 4px;
     font-size: 13px;
@@ -289,7 +289,25 @@ color: var(--primary-color);
   text-align: center;
 }
 
+#loading-spinner {
+margin-top: 44px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: var(--primary-text-color);
+}
 
+#loading-spinner i {
+ margin: 0 8px;
+    color: var(--primary-color);
+  }
+
+.rooms-error{
+
+  text-align: center;
+padding: 80px 8px;  background-color: #fff;
+}
 
 @media (max-width: 480px) {
 
@@ -339,8 +357,8 @@ color: var(--primary-color);
 
 
   .side-images img {
-    width: 50px;
-    width: 25%;
+    /* width: 50px; */
+    width: 24.25%;
     height: 80px;
     object-fit: cover;
     cursor: pointer;

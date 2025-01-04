@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title id="hotel-name"></title>
 
+     
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
     <!-- Favicon -->
     <link rel="icon" href="/wwwroot/images/favicon.png" type="image/png" />
 
@@ -23,10 +26,10 @@
       rel="stylesheet"
       href="/wwwroot/js/vendors/fontawesome/css/all.min.css"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css"
-    />
+    /> --> 
     <link
       rel="stylesheet"
       href="/wwwroot/js/vendors/themify-icons/themify-icons.css"
@@ -101,7 +104,7 @@
 
           <div>
             <input type="email" class="form-control" id="check_guest_email" name="email" />
-            <div  id="email-error" style="color: red; font-size: 13px; display: none;"></div>
+            <div  id="email-error" class="error-message"></div>
           </div>
 
           <div class="guest-button__container">
@@ -127,6 +130,7 @@
     <script src="/wwwroot/js/vendors/mail-script.js"></script>
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/wwwroot/js/custom/check-guest.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
   </body>

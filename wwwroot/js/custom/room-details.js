@@ -6,7 +6,7 @@ $(document).ready(function () {
   $('#header').load('/shared/header.html');
     $('#footer').load('/shared/footer.html');
 
-    // Load app settings
+    
     $.getJSON('/appsettings.json', function (data) {
         $('#adult-age').text(data.appSettings.adults);
         $('#children-age').text(data.appSettings.children);
@@ -19,52 +19,58 @@ $(document).ready(function () {
         loadRoomTypes();
     });
 
-    // Load and initialize Datepicker
-    if (typeof $.fn.datepicker === 'undefined') {
-        $.getScript("https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
-            .done(function () {
-                initializeDatepickers();
-            })
-            .fail(function () {
-                console.error("Failed to load Datepicker script.");
-            });
-    } else {
-        initializeDatepickers();
-    }
+    
 
-    function initializeDatepickers() {
-        if ($.fn.datepicker) {
-            $('#room-date-in').datepicker({
-                dateFormat: 'yy/mm/dd',
-                changeMonth: true,
-                changeYear: true,
-                minDate: 0,
-                onClose: function (selectedDate) {
-                    if (selectedDate) {
-                        let checkOutMinDate = $.datepicker.parseDate('yy/mm/dd', selectedDate);
-                        checkOutMinDate.setDate(checkOutMinDate.getDate() + 1);
-                        $('#room-date-out').datepicker('option', 'minDate', checkOutMinDate);
-                        $('#check-in-error').hide();
-                    }
-                }
-            });
+    jQuery(document).ready(function ($) {
+  if (typeof $.fn.datepicker === 'undefined') {
+    $.getScript("https://code.jquery.com/ui/1.12.1/jquery-ui.min.js")
+      .done(function() {
+        initializeDatepickers();  
+      })
+      .fail(function() {
+        console.error("Failed to load Datepicker script.");
+      });
+  } else {
+    initializeDatepickers();
+  }
 
-            $('#room-date-out').datepicker({
-                dateFormat: 'yy/mm/dd',
-                changeMonth: true,
-                changeYear: true,
-                minDate: 1,
-                onClose: function () {
-                    if ($(this).val()) {
-                        $('#check-out-error').hide();
-                    }
-                }
-            });
-        } else {
-            console.error('jQuery UI Datepicker is not loaded!');
+  function initializeDatepickers() {
+    if ($.fn.datepicker) {
+      var nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + 1);
+
+      $('#room-date-in').datepicker({
+        dateFormat: 'yy/mm/dd',
+        changeMonth: true,
+        changeYear: true,
+        minDate: nextDay,
+        onClose: function(selectedDate) {
+          var checkOutMinDate = $.datepicker.parseDate('yy/mm/dd', selectedDate);
+          checkOutMinDate.setDate(checkOutMinDate.getDate() + 1);
+          $('#room-date-out').datepicker('option', 'minDate', checkOutMinDate);
+        
+          if ($(this).val()) {
+            $('#check-in-error').hide();
+          }
         }
+      });
+    
+      $('#room-date-out').datepicker({
+        dateFormat: 'yy/mm/dd',
+        changeMonth: true,
+        changeYear: true,
+        minDate: 1,
+        onClose: function(selectedDate) {
+          if ($(this).val()) {
+            $('#check-out-error').hide();
+          }
+        }
+      });
+    } else {
+      console.error('jQuery UI Datepicker is not loaded!');
     }
-
+  }
+});
 
     function loadRoomTypes() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -160,6 +166,8 @@ $(document).ready(function () {
 
   $('#room-availability').submit(function (event) {
       event.preventDefault();
+      const urlParams = new URLSearchParams(window.location.search);
+      const roomTypeId = urlParams.get('roomTypeId');
 
       const checkInDate = $('#room-date-in').val();
       const checkOutDate = $('#room-date-out').val();
@@ -180,7 +188,6 @@ $(document).ready(function () {
       window.location.href = '/view/bookings.html?' + queryParams;
   });
 
-  // Image carousel
   let currentIndex = 0;
   let thumbnails;
   let totalImages = 0;

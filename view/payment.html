@@ -5,7 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Seaplace Hotel - Contact</title>
+    <title id="hotel-name"></title>
+     
+
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
 
     <!-- Favicon -->
     <link rel="icon" href="/wwwroot/images/favicon.png" type="image/png" />
@@ -16,7 +20,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/wwwroot/js/vendors/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/all.min.css" />
-    <link rel="stylesheet" href="/wwwroot/js/vendors/fontawesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/wwwroot/js/vendors/themify-icons/themify-icons.css" />
     <link rel="stylesheet" href="/wwwroot/js/vendors/linericon/style.css" />
     <link rel="stylesheet" href="/wwwroot/js/vendors/magnefic-popup/magnific-popup.css" />
@@ -83,8 +86,8 @@
 
                 <div>
                     <select class="form-control" name="payment" id="payment-method">
-                        <option value="book-on-hold">Book on Hold</option>
-                        <option value="paystack">Paystack</option>
+                        <option value="1">Book on Hold</option>
+                        <option value="2">Paystack</option>
                     </select>
                 </div>
 
@@ -110,6 +113,8 @@
     <script src="/wwwroot/js/vendors/jquery.form.js"></script>
     <script src="/wwwroot/js/vendors/jquery.validate.min.js"></script>
     <script src="https://js.paystack.co/v2/inline.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="/wwwroot/js/custom/payment.js"></script>
     <script src="/wwwroot/js/custom/main.js"></script>
 </body>

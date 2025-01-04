@@ -14,7 +14,7 @@ body {
   /* font-family: "Roboto", sans-serif; */
 
   
-  font-family: "Cabin", sans-serif;
+  font-family: var(--body-font-family);
   font-size: 15px;
   font-weight: 400;
   line-height: 1.667; }
@@ -36,8 +36,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Playfair Display", serif;
-  color: #222222;
+  font-family: var(--main-font-family);
+  color: var(--primary-text-color);
   font-weight: 700; 
 }
 
@@ -66,10 +66,7 @@ button {
 
 .button {
   display: inline-block;
-  /* font-family: "Playfair Display", serif;
-  font-weight: 700; */
-
-  font-family: "Cabin", sans-serif;
+  font-family: var(--body-font-family);
   font-weight: 500;
   transition: all .3s ease;
   cursor: pointer;
@@ -160,16 +157,16 @@ margin-bottom: 8px;}
     .header_area .navbar .nav .nav-item {
       margin-right: 45px; }
       .header_area .navbar .nav .nav-item .nav-link {
-        font-family: "Playfair Display", serif;
+        font-family: var(--body-font-family);
         text-transform: uppercase;
-        color: #222222;
+        color: var(--primary-text-color);
         padding: 22px 4px 22px 0;
         display: inline-block; }
         .header_area .navbar .nav .nav-item .nav-link:after {
           display: none; }
         @media (max-width: 991px) {
           .header_area .navbar .nav .nav-item .nav-link {
-            color: #222222;
+            color: var(--primary-text-color);
             padding: 12px 4px 12px 0; } }
       .header_area .navbar .nav .nav-item.active .nav-link {
         color: var(--primary-color); }
@@ -412,15 +409,35 @@ margin-bottom: 8px;}
   .header-top-info .media-body p {
     margin-bottom: 0; }
   .header-top-info .media-body a {
-    color: #303030;
-    font-weight: bold; }
+    color: var(--primary-text-color);
+    font-weight: 500; }
   .header-top-info:not(:last-child) {
     margin-right: 10px; }
     @media (min-width: 600px) {
       .header-top-info:not(:last-child) {
         margin-right: 50px; } }
 
+        
+/*=================== 404 ====================*/
+.error-container{
+min-height: 55vh;
+}
 
+.error-container h1{
+  font-size: 82px;
+  margin-bottom: 24px;
+  }
+
+.error-container p{
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #303030;
+}
+
+.error-container a{
+  
+  margin: 32px 0;
+}
 /*=================== section-intro start ====================*/
 .section-intro__style {
   margin-bottom: 14px;
@@ -499,7 +516,7 @@ margin-bottom: 8px;}
   margin-right: auto;
   margin-left: auto;
   padding: 40px 25px 20px 25px;
-  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.15); }
   @media (min-width: 992px) {
     .form-search-position {
       position: relative;
@@ -511,7 +528,7 @@ margin-bottom: 8px;}
     border-radius: 0;
     height: 50px;
     padding-left: 18px;
-    border-color: #E5E5E5; }
+    border-color: #d3d3d3; }
     .form-search select {
       color: black; 
     }
@@ -527,7 +544,6 @@ margin-bottom: 8px;}
   .form-search button {
     width: 100%;
     font-size: 13px;
-    /* font-family: "Playfair Display", serif; */
     font-weight: 700;
     border: 0;
     background: var(--primary-color);
@@ -540,7 +556,7 @@ margin-bottom: 8px;}
     width: 100%;
     height: 50px;
     border: 0;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #d3d3d3;
     background: #fff url("/wwwroot/images/home/down-arrow.png") no-repeat;
     background-size: 11px;
     background-position: right 15px center;
@@ -551,7 +567,7 @@ margin-bottom: 8px;}
     -moz-appearance: none; }
 
     .form-select-custom select {
-     color: black; 
+     color: var(--primary-text-color); 
     }
 
     .form-select-custom select option {
@@ -571,7 +587,7 @@ margin-bottom: 8px;}
 
 
       .form-select-custom input.datepicker::placeholder {
-        color: #222222 !important;
+        color: var(--primary-text-color) !important;
       }
       .form-select-custom {
         position: relative;
@@ -592,8 +608,16 @@ margin-bottom: 8px;}
         width: 100%;
         height: 50px;
         border-radius: 0;
-        border-color: #b7b7b7;
-      } .form-control::after {
+        border-color: #d3d3d3;
+        color: var(--primary-text-color);
+      } 
+      
+      .form-control:focus {
+       outline: none;
+       box-shadow: none;
+      }
+      
+      .form-control::after {
         right: 16px; }
       .form-control .list {
         min-width: 200px; }
@@ -647,13 +671,13 @@ margin-bottom: 8px;}
   margin-bottom:20px; 
 }
 .did-floating-label {
-  color:#222222; 
+  color: var(--primary-text-color); 
   font-size:13px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
   left:15px;
-  top:11px;
+  top:10px;
   padding:0 5px;
   background:#fff;
   transition:0.2s ease all; 
@@ -661,15 +685,15 @@ margin-bottom: 8px;}
   -webkit-transition:0.2s ease all;
 }
 .did-floating-input, .did-floating-select {
-  font-size:12px;
+  font-size:14px;
   display:block;
   width:100%;
   height:36px;
   padding: 0 20px;
   background: #fff;
-  color: var(--primary-color);
+  color: var(--primary-text-color);
   border: 1px solid var(--primary-color);
-  border-radius: 4px;
+  /* border-radius: 4px; */
   box-sizing: border-box;
   &:focus{
     outline:none;
@@ -837,12 +861,12 @@ select.did-floating-select::-ms-expand {
     font-size: 24px;
     margin: 12px 0 18px 0; }
     .card-explore__title a {
-      color: #222222;
+      color: var(--primary-text-color);
       transition: color .2s ease; }
   .card-explore__link {
-    font-size: 13px;
+    font-size: 16px;
     text-transform: uppercase;
-    font-family: "Playfair Display", serif;
+    font-family: var(--body-font-family);
     font-weight: 700;
     color: #303030;
     transition: color .2s ease; }
@@ -857,10 +881,15 @@ select.did-floating-select::-ms-expand {
     
     .card-explore__summary{
    margin-bottom: 12px;
+   min-height: 50px;
     }
+
+
+
+
     .card-explore__summary span{
       font-size: 14px;
-      color: #222222;
+      color: var(--primary-text-color);
 
     }
 
@@ -900,7 +929,6 @@ select.did-floating-select::-ms-expand {
 
     .testi-carousel__item-room {
       background: #f7f9f9;
-      /* width: 400px; */
       padding: 24px 16px;
       transition: all .3s ease;
      }
@@ -945,45 +973,65 @@ select.did-floating-select::-ms-expand {
 
 
 /*=================== Rooms section start ====================*/
-/* #rooms-container-wrapper {
-  position: relative;
-} */
-
-/* #rooms-container {
-  display: flex;
-  overflow-x: auto;
-  padding: 20px 0;
-} */
-/* 
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.3);
-  color: white;
-  border: none;
-  padding: 10px;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 50%;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+/* Skeleton styles */
+/* Skeleton Styles */.skeleton {
+  background: #f7f9f9;
+  padding: 24px 16px;
 }
 
-.scroll-btn:hover {
-  opacity: 1;
+.skeleton-box {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
 }
 
-.scroll-btn.left {
-  left: 10px;
+/* Skeleton Component */
+.skeleton-img {
+  width: 100%;
+  height: 587px;
 }
 
-.scroll-btn.right {
-  right: 10px;
+@media (max-width: 991px) {
+  .skeleton-img {
+    height: 388px;
+  }
 }
 
-   */
+.skeleton-price {
+  width: 120px;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 24px;
+  margin-bottom: 18px;
+}
+
+.skeleton-summary {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 12px;
+}
+
+.skeleton-link {
+  width: 80px;
+  height: 20px;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+
 /*=================== testimonial section end ====================*/
 /*=================== news section start ====================*/
 .card-news {
@@ -1032,12 +1080,12 @@ select.did-floating-select::-ms-expand {
     margin: 12px 0 18px 0;
     font-weight: 700; }
     .card-news__title a {
-      color: #222222;
+      color: var(--primary-text-color);
       transition: color .2s ease; }
   .card-news__link {
     font-size: 13px;
     text-transform: uppercase;
-    font-family: "Playfair Display", serif;
+    font-family: var(--main-font-family);
     font-weight: 700;
     color: #303030;
     transition: color .2s ease; }
@@ -1090,14 +1138,12 @@ select.did-floating-select::-ms-expand {
 }
 
 .modal-content-page{
-
   background-color: white;
   margin: 0 auto;
   padding: 20px;
   width: 80%;
   max-width: 1100px;
   border-radius: 8px;
-
 }
 
 .modal-head {
@@ -1123,7 +1169,7 @@ select.did-floating-select::-ms-expand {
   overflow-y: auto;
   margin-top: 15px;
 
-color: #222222;
+color: var(--primary-text-color);
   
   scrollbar-width: thin; 
  
@@ -1219,7 +1265,8 @@ color: #222222;
     font-weight: 400;
     transition: all .4s ease; }
   .card-special .card-body {
-    padding: 0; }
+    padding: 0; 
+  margin-top: 12px;}
     .card-special .card-body p {
       margin-bottom: 0; }
   .card-special:hover {
@@ -1383,13 +1430,13 @@ color: #222222;
   border: 1px solid var(--primary-color) !important;
   color: var(--primary-color);
   text-align: center;
-  font-weight: bold !important;
   padding: 9px 30px;
-  /* font-family: "Playfair Display", serif; */
-  text-transform: uppercase; }
+  text-transform: uppercase; 
+background-color: white !important;;
+}
   .button-form:hover {
-    background:  var(--primary-color);
-  color: #ffff; }
+    background:  var(--primary-color) !important;;
+  color: #ffff !important;; }
 
 
   .button-form a {
@@ -1397,10 +1444,6 @@ color: #222222;
     text-decoration: none;
   } 
 
-/* .button-form a:hover{
-  color: var(--primary-color);
-} 
-*/
 
 
 
@@ -1426,9 +1469,6 @@ color: #222222;
   padding: 9px 30px;
   background: var(--primary-color);
   color: #fff;
-  /* font-size: 13px; */
-  font-weight: 700;
-  /* font-family: "Playfair Display", serif; */
   text-transform: uppercase; }
   .button-contact:hover {
     outline: 0;
@@ -1450,9 +1490,7 @@ color: #222222;
   padding: 9px 30px;
   background: var(--primary-color);
   color: #fff;
-  /* font-size: 13px; */
-  font-weight: 700;
-  /* font-family: "Playfair Display", serif; */
+  font-family: var(--body-font-family);
   text-transform: uppercase; }
   .button-success:hover {
     outline: 0;
@@ -1496,6 +1534,12 @@ color: #222222;
           color: inherit;
           text-decoration: none;
         }
+
+        .button-availability:focus,
+.button-availability:active {
+  outline: none;
+  box-shadow: none;
+}
 /*=================== contact banner start ====================*/
 .contact-banner {
   position: relative; }
@@ -1554,9 +1598,10 @@ color: #222222;
 
 .contact-info .media-body h3 {
   font-size: 16px;
+  font-family: var(--primary-text-color);
   margin-bottom: 0; }
   .contact-info .media-body h3 a {
-    color: #222222; }
+    color: var(--primary-text-color); }
 
 .contact-info .media-body p {
   color: #999999; }
@@ -1581,16 +1626,18 @@ color: #222222;
 /*=================== breadcrumb end ====================*/
 /*=================== contact form start ====================*/
 .contact_form .form-group {
-  margin-bottom: 10px; }
+  margin-bottom: 10px; 
+}
 
-.contact_form input {
+.contact_form input  {
   border-radius: 0;
-  height: 40px;
+  height: 42px;
   padding-left: 18px;
-  border-color: #EEEEEE; }
+  border-color: #d3d3d3; }
   .contact_form input:focus {
     outline: 0;
-    box-shadow: none; }
+    box-shadow: none;
+    border-color: #d3d3d3; }
   .contact_form input::placeholder {
     font-size: 14px;
     color: #999999; }
@@ -1598,10 +1645,19 @@ color: #222222;
 .contact_form textarea {
   border-radius: 0;
   padding-left: 18px;
-  border-color: #EEEEEE; }
+  padding-top: 14px;
+  border-color: #d3d3d3; }
+  .contact_form textarea:focus {
+    outline: 0;
+    box-shadow: none;
+    border-color: #d3d3d3; }
   .contact_form textarea::placeholder {
     font-size: 14px;
     color: #999999; }
+.contact-g-recaptcha{
+  min-width: 100%;
+}
+
 
 /*=================== contact form end ====================*/
 .accomodation.form-search-position {
