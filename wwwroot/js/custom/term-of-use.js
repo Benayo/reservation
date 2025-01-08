@@ -28,13 +28,13 @@ function loadTermsOfUse(){
         
     $('#loading-spinner').hide();
         $('#terms-text').html(response.detail);
-        console.log("Terms of Use loaded successfully: " , response.detail);
+        
         
       },
       error: function() {
-        console.log("Failed to load terms of use");
+        $('#terms-text').html('<p>Failed to load terms of service. Please try again later</p>');
+        console.error("Failed to load terms of use");
         
-          toastr.error('Failed to load terms of service.');
       }
     });
     }

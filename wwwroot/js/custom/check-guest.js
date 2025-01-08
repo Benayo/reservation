@@ -15,7 +15,7 @@ $(document).ready(function() {
     
     const clearSession = function() {
         sessionStorage.clear();
-        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+     
         window.location.href = '/view/bookings.html';
     };
 

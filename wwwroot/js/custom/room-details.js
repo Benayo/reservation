@@ -77,6 +77,11 @@ $(document).ready(function () {
   const roomTypeId = urlParams.get('roomTypeId');
 
   if (roomTypeId) {
+
+    
+    $('#loading-spinner').show();
+
+
       $.ajax({
           url: `${baseUrl}/RoomType/Detail?roomTypeId=` + roomTypeId,
           method: 'GET',
@@ -84,6 +89,10 @@ $(document).ready(function () {
             'X-API-KEY': apiKey
           },
           success: function (response) {
+
+            
+    $('#loading-spinner').hide();
+
               if (response && response.type) {
                   const room = response.type;
 
@@ -119,12 +128,14 @@ $(document).ready(function () {
               }
           },
           error: function (xhr) {
+            
+    $('#loading-spinner').hide();
               console.error("API Error:", xhr.responseText);
               $('#room-details').html('<p>Error fetching room details.</p>');
           }
       });
   } else {
-      $('#room-details').html('<p>No room selected.</p>');
+     window.location.href = "/index.html"
   }
 }
   function formatCurrency(currencySymbol, rate) {

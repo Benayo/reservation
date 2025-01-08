@@ -42,8 +42,10 @@ $(document).ready(function() {
     return urlParams.get(name) || defaultValue;
   }
 
-  var checkInDate = getUrlParameter('checkInDate', new Date().toISOString().split('T')[0]);
-  var checkOutDate = getUrlParameter('checkOutDate', new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0]);
+   var checkInDate = getUrlParameter('checkInDate', new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0]);
+  
+   var checkOutDate = getUrlParameter('checkOutDate', new Date(new Date(checkInDate).setDate(new Date(checkInDate).getDate() + 1)).toISOString().split('T')[0]);
+ 
   var adults = getUrlParameter('adults', 1);
   var children = getUrlParameter('children', 0); 
   var roomTypeId = getUrlParameter('roomTypeId'); 
@@ -133,7 +135,6 @@ $(document).ready(function() {
 
       $('#loading-spinner').hide();
       $('#error').hide()
-      toastr.success(response.errorMessage)
       sessionStorage.setItem('availabilityData', JSON.stringify(response));
       displayRooms(response);  
     },
@@ -145,7 +146,6 @@ $(document).ready(function() {
       console.error('API Request Error:', error);
       
       $('#error').append('<h4 class="no-room">Error fetching availability. Please try again later.</h4>')
-      toastr.error("Error fetching availability. Please try again later.")
     }
   });
 });
@@ -333,7 +333,7 @@ $(document).ready(function() {
     errorContainer.html('');
 
     if (!checkInDate || !checkOutDate) {
-      errorContainer.html('<p style="color: red;">Please select both check-in and check-out dates.</p>');
+      errorContainer.html('<p style="color: #9d3b3b;">Please select both check-in and check-out dates.</p>');
       return;  
     }
 

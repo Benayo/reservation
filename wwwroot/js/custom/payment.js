@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     const clearSession = function() {
         sessionStorage.clear();
-        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+       
         window.location.href = '/view/bookings.html';
     };
 
@@ -98,6 +98,12 @@ $(document).ready(function () {
             totalAmount: totalRate,
             guestArrivalTime: bookingData.guestArrivalTime,
           };
+
+
+    sessionStorage.setItem("guestData", JSON.stringify(guestData));
+
+
+
   
           $.ajax({
             url: `${baseUrl}/Reservation/Add`,
@@ -142,39 +148,15 @@ $(document).ready(function () {
               },
             }),
             success: function (response) {
-              toastr.success(response.errorMessage);
+              
   
               if (response.errorCode === 0 && response.bookingRef) {
-                var queryParams =
-                  "bookingRef=" +
-                  encodeURIComponent(response.bookingRef) +
-                  "&errorCode=" +
-                  encodeURIComponent(response.errorCode) +
-                  "&guestName=" +
-                  encodeURIComponent(guestData.guestName) +
-                  "&checkInDate=" +
-                  encodeURIComponent(guestData.checkInDate) +
-                  "&checkOutDate=" +
-                  encodeURIComponent(guestData.checkOutDate) +
-                  "&roomType=" +
-                  encodeURIComponent(guestData.roomType) +
-                  "&roomCount=" +
-                  encodeURIComponent(guestData.roomCount) +
-                  "&totalAmount=" +
-                  encodeURIComponent(guestData.totalAmount)  +
-                  "&duration=" +
-                  encodeURIComponent(guestData.duration)  +
-                  "&numOfNights=" +
-                  encodeURIComponent(guestData.numberOfNights) +
-                  "&arrivalTime=" +
-                  encodeURIComponent(guestData.guestArrivalTime);
-  
-                window.location.href =
-                  "/view/payment-success.html?" + queryParams;
-  
-                sessionStorage.removeItem("bookingData");
+               
+                sessionStorage.setItem("bookingRef", response.bookingRef);
+          window.location.href = "/view/payment-success.html";
+          sessionStorage.removeItem("bookingData");
               } else {
-                toastr.error(response.errorMessage);
+               
                 $("#error").html("Reservation failed: " + response.errorMessage);
               }
             },
@@ -184,7 +166,7 @@ $(document).ready(function () {
                 error
               );
               $("#error").html("An error occurred. Please try again.");
-              toastr.error("An error occurred. Please try again.");
+           
             },
           });
         }
@@ -230,7 +212,7 @@ $(document).ready(function () {
             guestArrivalTime: bookingData.guestArrivalTime,
           };
 
-        console.log(guestData.guestArrivalTime)
+          sessionStorage.setItem("guestData", JSON.stringify(guestData));
 
 
        var emailValue = bookingData.guestEmail
@@ -288,41 +270,17 @@ $.ajax({
     },
   }),
   success: function (response) {
-    toastr.success(response.errorMessage);
+
 
     if (response.errorCode === 0 && response.bookingRef) {
-      var queryParams =
-        "bookingRef=" +
-        encodeURIComponent(response.bookingRef) +
-        "&errorCode=" +
-        encodeURIComponent(response.errorCode) +
-        "&guestName=" +
-        encodeURIComponent(guestData.guestName) +
-        "&checkInDate=" +
-        encodeURIComponent(guestData.checkInDate) +
-        "&checkOutDate=" +
-        encodeURIComponent(guestData.checkOutDate) +
-        "&roomType=" +
-        encodeURIComponent(guestData.roomType) +
-        "&roomCount=" +
-        encodeURIComponent(guestData.roomCount) +
-        "&totalAmount=" +
-        encodeURIComponent(guestData.totalAmount)  +
-        "&duration=" +
-        encodeURIComponent(guestData.duration)  +
-        "&numOfNights=" +
-        encodeURIComponent(guestData.numberOfNights) +
-        "&arrivalTime=" +
-        encodeURIComponent(guestData.guestArrivalTime)  +
-        "&transactionRef=" +
-        encodeURIComponent(transaction.reference) ;
+     
+      sessionStorage.setItem("bookingRef", response.bookingRef);
+      sessionStorage.setItem("transactionRef", transaction.reference);
 
-      window.location.href =
-        "/view/payment-success.html?" + queryParams;
-
-      sessionStorage.removeItem("bookingData");
+          window.location.href = "/view/payment-success.html";
+          sessionStorage.removeItem("bookingData");
     } else {
-      toastr.error(response.errorMessage);
+
       $("#error").html("Reservation failed: " + response.errorMessage);
     }
   },
@@ -331,7 +289,7 @@ $.ajax({
       "Error occurred while making the reservation:",
       error
     );
-    toastr.error("An error occurred. Please try again.");
+  
     $("#error").html("An error occurred. Please try again.");
   },
 });

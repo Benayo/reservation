@@ -514,6 +514,23 @@ font-size: 14px;
   }
 
 
+  
+#loading-spinner {
+  margin-top: 44px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--primary-text-color);
+  }
+  
+  #loading-spinner i {
+   margin: 0 8px;
+      color: var(--primary-color);
+    }
+  
+
+    
   .datepicker{
     cursor: pointer;
   }

@@ -1,7 +1,7 @@
 let apiKey = '';
 let baseUrl = '';
 let defaultArrivalTime = "";
-
+let guestState = '';
 $(document).ready(function() {
     $('#reservation').load('/shared/reservation-summary.html')
   
@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     const clearSession = function() {
         sessionStorage.clear();
-        toastr.error('Session has expired due to inactivity. Your data has been cleared.');
+      
         window.location.href = '/view/bookings.html';
     };
 
@@ -58,10 +58,11 @@ $(document).ready(function() {
 
 
 
-     loadTermsOfUseModal()
+    
      loadGuestEmailDetails()
-     loadCountries();
-     loadStates() 
+     Promise.all([loadCountries(), loadStates(),  loadTermsOfUseModal()]).then(() => {
+       
+    }); 
   
    });
 
@@ -77,7 +78,8 @@ $.ajax({
       $('#terms-text').html(response.detail);
     },
     error: function() {
-        toastr.error('Failed to load terms of service.');
+        $('#terms-text').html('<p>Failed to load terms of service. Please try again later</p>');
+        console.error('Failed to load terms of service.');
     }
   });
   
@@ -158,7 +160,7 @@ function loadGuestEmailDetails(){
                         $('#guest-email').prop('disabled', false); 
 
                         $('#guest-email').val(emailValue || '');
-                        toastr.error("User does not exists! Kindly fill out all required fields");
+                    
                     } else {
                         $('#guest-title').val(guestDetails.title || 'Mr.'); 
                         $('#guest-first-name').val(guestDetails.firstName || '');
@@ -169,18 +171,20 @@ function loadGuestEmailDetails(){
                         $('#guest-occupation').val(guestDetails.occupation || '');
                         $('#guest-country').val(guestDetails.country || ''); 
                         loadCountries(country);
+                        guestState = guestDetails.state || '';
                         $('#guest-state').val(guestDetails.state || '');
                         $('#guest-city').val(guestDetails.city || '');
                         $('#guest-address-line1').val(guestDetails.address1 || '');
                         $('#guest-address-line2').val(guestDetails.address2 || '');
-                  toastr.success("User exists!");
+              
+                        sessionStorage.setItem('guestState', guestDetails.state);
                     }
                 } else {
                     console.log('Error in API response: ' + response.errorMessage); 
                 }
             },
             error: function() {
-                toastr.error('An error occurred with the API request. Please try again.');
+                console.error('An error occurred with the API request. Please try again.');
             }
         });
 
@@ -328,15 +332,16 @@ function loadGuestEmailDetails(){
         const stateSelect = $('#guest-state');
         stateSelect.empty();
         
-        const urlParams = new URLSearchParams(window.location.search);
-        const state = urlParams.get('state');
+        const state = guestState
     
+
         states.forEach(function(stateData) {
             
             const option = $('<option>').val(stateData.id).text(stateData.name);
    
-            if ( stateData.name === state) {
-                console.log(state === stateData.name);
+            console.log(state , stateData.name);
+            if ( stateData.name == state) {
+               
                 option.attr('selected', 'selected'); 
             }
     
@@ -355,12 +360,15 @@ function loadGuestEmailDetails(){
         e.preventDefault();
 
 
-    var recaptchaResponse = grecaptcha.getResponse();
-
-    if (recaptchaResponse.length == 0) {
-        toastr.error('Please complete the reCAPTCHA to proceed.');
-        return;  
-    }
+        const isCaptchaVisible = $("#human-verification").is(':visible');
+        if (isCaptchaVisible) {
+            var recaptchaResponse = grecaptcha.getResponse();
+    
+            if (recaptchaResponse.length == 0) {
+                toastr.error('Please complete the reCAPTCHA to proceed.');
+                return;  
+            }
+        }
 
 
 
