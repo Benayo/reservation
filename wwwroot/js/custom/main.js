@@ -45,6 +45,7 @@ let baseUrl = '';
 
   const primaryColor = data.appSettings.primaryColor;
   const primaryTextColor = data.appSettings.primaryTextColor;
+  const primaryColorOpacity = data.appSettings.primaryColorOpacity; 
   
   const footerColor = data.appSettings.footerColor;
   const footerCopyrightColor = data.appSettings.footerCopyrightColor;
@@ -101,6 +102,8 @@ let baseUrl = '';
 
 
   document.documentElement.style.setProperty("--primary-color", primaryColor);
+
+  document.documentElement.style.setProperty('--primary-color-opacity', primaryColorOpacity);
 
   document.documentElement.style.setProperty("--primary-text-color", primaryTextColor);
 

@@ -212,7 +212,7 @@ gap: 20px;
 
 
   .room__info .detail {
-    border: var(--primary-text-color)2 1px solid;
+    border: var(--primary-text-color) 1px solid;
     cursor: default;
     padding:0 4px;
     font-size: 13px;

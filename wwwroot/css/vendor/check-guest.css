@@ -319,6 +319,275 @@ width: 100%;
  
 }
 
+.manage-main__container{
+   background-color: white !important;
+    padding: 24px 8px;
+    margin-top:12px;
+   margin-bottom: 64px;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   font-family: var(--body-font-family);
+}
+
+.manage-booking__container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.manage-booking__container .details{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 32px;
+  align-items: center;
+    color: var(--primary-text-color);
+  
+}
+
+.manage-booking__container .details img{
+  width: 160px !important;
+  height: 160px !important;
+}
+
+.manage-booking__container .details .info{
+  width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 32px;
+  font-size: 14px;}
+
+.manage-booking__container .details .info h6{
+   display: inline;
+   font-size: 16px;
+   
+}
+
+.manage-booking__container .details .info .num-guest{
+   display: flex;
+  gap: 32px;
+}
+
+
+.manage-booking__container .details i{
+   margin-right: 12px;
+   
+}
+
+
+.manage-booking__container .action{
+   font-size: 14px;
+  width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-end;
+  color: var(--primary-text-color);
+ 
+ 
+}
+.manage-booking__container .action .ref{
+font-style: italic;
+}
+
+
+.manage-booking__container .action a{
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: var(--body-font-family);
+    font-weight: 500;
+    color: #303030;
+    transition: color .2s ease;
+}
+
+  .manage-booking__container .action:hover a {
+    color: var(--primary-color); }
+
+
+.card{
+   color: var(--primary-text-color);
+ 
+}
+    .card-header{
+    background-color:#303030;
+    color: #fff;
+    text-align: center;
+   
+    }
+    .card-footer-info{
+      width: 100%;
+    }
+
+.card-footer-info button{
+float: right;
+}
+
+.card-body-info{
+  padding: 12px 0;
+  border-bottom: 1px solid #2222;
+
+}
+
+
+
+.card-body-info:last-child{
+  margin-bottom: 0px;
+  border: none;
+}
+
+.card-body-info span{
+  color: #534f4f;
+}
+
+
+    .card-footer{
+      background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px !important;
+    }
+
+    .card-body .room-info{
+       width: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       margin-bottom: 4px
+    ;
+
+ 
+    }
+
+    .card-body .contact-detail{
+    color: #534e4e;
+    font-size: 13px;
+     display: flex;
+     align-items: center;
+     gap: 8px;
+    }
+
+       .card-footer span{
+    color: #534e4e;
+    font-size: 13px;
+    }
+
+
+    .card-footer .info{
+    font-size: 16px;
+    font-weight: 600;
+    }
+
+    .card-footer .num-nights{
+      background-color: #f4f4f4;
+     color: var(--primary-text-color);
+      padding: 4px 6px;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+        .card-footer .num-nights i{
+       color: var(--primary-text-color);
+    }
+
+.card-body-info p{
+  font-size: 14px;
+}
+
+.card-body-info .details{
+display: flex;
+gap: 24px;
+     }
+
+
+    .card-body-info .details a{
+
+      font-size: 14px;
+       color: var(--primary-text-color);
+     }
+     .card-body-info a:hover{
+       color: var(--primary-color);
+       text-decoration: underline;
+     }
+.policy div{
+  font-size: 16px;
+    font-weight: 600;
+}
+
+.policy span{
+  font-size: 14px;
+}
+
+.policy span a{
+  color: var(--primary-color);
+}
+
+
+
+.policy span a:hover{
+ text-decoration: underline;
+}
+
+
+.payment div{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.payment-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.payment-info span{
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.payment-info div{
+  font-size: 14px;
+  font-weight: normal;
+  
+}
+
+
+
+.charge{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   
+}
+
+.payment .charge {
+    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ font-size: 16px;
+  font-weight: 600;
+}
+
+
+
+
+.btn-danger.button-contact {
+    background-color: #dc3545; 
+color: white;
+}
+
+.btn-danger.button-contact:hover {
+    background-color: #c82333; 
+}
+
+
 @media (max-width: 480px) {
 
 
@@ -390,4 +659,67 @@ width: 100%;
         padding-left: 4px; 
         margin-bottom: 14px;
       }
+
+      .card-header-info{
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 16px;
+    }
+}
+
+
+@media (max-width: 760px) {
+
+.manage-main__container{
+   background-color: white !important;
+    padding: 16px 8px;
+ 
+}
+
+
+.manage-booking__container .details{
+  display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+
+
+}
+
+
+
+.manage-booking__container .details img{
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+.manage-booking__container .action{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-top: 24px;
+
+
+}
+
+.card-footer{
+   width: 100%;
+   gap: 16px;
+    display: flex;
+  }
+
+}
+
+
+
+
+
+@media (max-width: 1024px) {
+
+.manage-booking__container{
+ padding: 0px;
+ margin: 0;
+      gap: 0px;
+}
+
 }
